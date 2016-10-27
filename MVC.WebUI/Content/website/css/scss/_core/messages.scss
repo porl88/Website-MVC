@@ -1,0 +1,39 @@
+﻿/*******************************************************************************************************************************/
+/* MESSAGES */
+/*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************/
+/* Alert Colours */
+.ok {
+    color: $ok-colour !important;
+}
+
+.warning {
+    color: $warning-colour !important;
+}
+
+.error {
+    color: $error-colour !important;
+}
+
+.bg-ok {
+    /* set currentColor on the original element instead */
+    /*border-color: currentColor !important;*/
+    color: #FFF !important;
+    background-color: $ok-colour !important;
+}
+
+.bg-warning {
+    /* set currentColor on the original element instead */
+    /*border-color: currentColor !important;*/
+    color: #FFF !important;
+    background-color: $warning-colour !important;
+}
+
+.bg-error {
+    /* set currentColor on the original element instead */
+    /*border-color: currentColor !important;*/
+    color: #FFF !important;
+    background-color: $error-colour !important;
+}
+

@@ -1,0 +1,542 @@
+﻿/***********************************************************************************************************************************************/
+/* RESET STYLE SHEET - RE-SETS ALL THE DEFAULT STYLING FOR THE SITE */
+/***********************************************************************************************************************************************/
+
+/*
+	* Avoid setting properties explicitly wherever possible. Instead, rely on an element's default inheritance to inherit properties from the root element. Those elements that do not by default inherit, such as margin and padding, are set explicitly. Otherwise values are explicitly set to inherit from the root element. The idea behind this is so that these default settings will be easy to override and will not interfere with 3rd party stylesheets.
+	* This style sheet is just a starting point. It should be adapted to your personal preferences and to your individual site requirements. Ideally you should be creating a reset/default stylesheet that is unique to each site.
+*/
+
+
+
+/***********************************************************************************************************************************************/
+/* ROOT ELEMENT */
+
+/*
+    * :root - supported in IE9+ - has higher specifity than 'html' - for IE8-, use 'html'
+    * for setting default styles that will be inherited - use _layout style sheet for non-inherited values such as background-color, width, height, etc.
+    * don't set font-size in the :root element - this value should come from the browser's settings - usual default: 16px
+*/
+
+:root {
+    /* box-sizing (N.B. Opera & IE have never had vendor prefixes) */
+    -moz-box-sizing: border-box; /* Firefox 2-28 */
+    -webkit-box-sizing: border-box; /* Chrome 4-9, Safari 3.1-5, IOS Safari 3.2-4.3 */
+    box-sizing: border-box; /* Chrome 10+, Firefox 29+, IE 8+, Edge, Opera 10.1+, Safari 5.1+, IOS Safari 5.1+ */
+    font-family: sans-serif; /* web safe fonts: http://cssfontstack.com/ */
+    /* N.B. each @font-face should have its own font-size-adjust setting */
+    /*font-size-adjust: 0.545;*/ /* http://fontdeck.com/support/fontsizeadjust */
+    -webkit-font-smoothing: antialiased; /* maxvoltar.com/archive/-webkit-font-smoothing */
+    line-height: 1; /* prefer unitless numbers for line-height values: https://developer.mozilla.org/en-US/docs/Web/CSS/line-height */
+    word-wrap: break-word; /* word-wrap has been renamed to overflow-wrap */
+    overflow-wrap: break-word; /* word-wrap/overflow-wrap does not work with dynamic widths (e.g. percentage widths, tables that are not set to layout="fixed") - you will need to use word-break instead for these */
+    color: var(--text-colour);
+    color: $text-colour;
+    background-color: var(--bg-color);
+    background-color: $bg-colour;
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* ALL ELEMENTS (Universal Selector) */
+
+*, *:before, *:after {
+    /* http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+    -moz-box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* UNIVERSAL PSEUDO-ELEMENTS */
+
+/* Selection ***********************************************************************************************************************************/
+::-moz-selection {
+    background-color: var(--selection-bg-colour);
+	background-color: $selection-bg-colour;
+    color: var(--selection-colour);
+	color: $selection-colour;
+}
+
+::selection {
+    background-color: var(--selection-bg-colour);
+	background-color: $selection-bg-colour;
+    color: var(--selection-colour);
+	color: $selection-colour;
+}
+
+
+/* Scrollbars **********************************************************************************************************************************/
+::-webkit-scrollbar {
+
+}
+
+::-webkit-scrollbar:horizontal {
+
+}
+
+::-webkit-scrollbar-button {
+
+}
+
+::-webkit-scrollbar-track {
+
+}
+
+::-webkit-scrollbar-thumb {
+
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* UNIVERSAL PSEUDO-CLASSES */
+
+:target {
+
+}
+
+
+/* Full Screen API *****************************************************************************************************************************/
+
+/* Blink/WebKit - emulate Gecko behaviour to make content stretch to fill the screen */
+:-webkit-full-screen {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* GLOBAL ATTRIBUTES */
+
+[readonly],
+[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+[draggable="true"] {
+    cursor: move;
+    -webkit-user-drag: element; /* enables dragging in Safari */
+}
+
+[hidden] {
+    display: none; /* fix for browsers that do not support the HTML5 hidden attribute - support: IE11, Edge, Firefox 4+, Chrome 6+, Safari 5.1+, IOS Safari 5.1+, Opera 11.5+ */
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* BLOCK-LEVEL ELEMENTS */
+
+body,
+main,
+section,
+article,
+header,
+footer,
+nav,
+aside,
+div,
+h1, h2, h3, h4, h5, h6,
+hr,
+noscript,
+p,
+blockquote,
+pre,
+ol, ul, li,
+dl, dt, dd,
+form, fieldset,
+figure, figcaption,
+address,
+video, audio,
+canvas,
+output {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* HTML5 stying for older browsers - Firefox 3-3.6, Chrome 4-5, Safari 3.1-4.0, Opera 9.0-11.0 */
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section {
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6, address {
+    font: inherit;
+}
+
+p {
+    -moz-hyphens: auto; /* Firefox 6-42 */
+    -webkit-hyphens: auto; /* Safari 5.1+, IOS Safari 4.3+ - not supported by Blink browsers Chrome and Opera */
+    -ms-hyphens: auto; /* IE 10+, Edge 12+ */
+    hyphens: auto; /* Firefox 43+ */
+}
+
+template,
+dialog {
+    display: none; /* fix for browsers that do not support the HTML5 <template> or <dialog> tags - browser support: Firefox 22+, Chrome 26+, Safari 8+, IOS Safari 8+, Opera 15+ */
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* INLINE ELEMENTS */
+
+a,
+em, i,
+strong, b,
+mark,
+u,
+s,
+small,
+cite,
+q,
+dfn,
+abbr,
+data, time,
+code, var, samp, kbd,
+sub, sup,
+ruby, rt, rp,
+bdi, bdo,
+span {
+    display: inline;
+    vertical-align: baseline;
+}
+
+
+/* Code - <code>, <var>, <samp>, <kbd> *********************************************************************************************************/
+code, var, samp, kbd {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.9em;
+    hyphens: manual;
+}
+
+code var {
+    font-size: 1em;
+}
+
+/*:any(code, var, samp, kbd) code,
+:any(code, var, samp, kbd) var,
+:any(code, var, samp, kbd) samp,
+:any(code, var, samp, kbd) kbd {
+    font-size: 1em;
+}*/
+
+
+/* Abbreviations - <abbr> **********************************************************************************************************************/
+abbr {
+    speak: spell-out;
+}
+
+abbr[title] {
+    border-bottom: 0.0625em dotted #333;
+    cursor: help;
+}
+
+@supports (text-decoration-style: dotted) {
+    abbr[title] {
+        border-bottom: none;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+    }
+}
+
+
+/* Definitions - <dfn> - marks the first occurrence of a term **********************************************************************************/
+dfn::before {
+    content: open-quote;
+}
+
+dfn::after {
+    content: close-quote;
+}
+
+
+/* Superscript & Subscript - <sup>, <sub> ******************************************************************************************************/
+
+/* prevent <sup> and <sub> affecting the line-height: */
+sup, sub {
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    bottom: 1ex;
+}
+
+sub {
+    bottom: -1ex;
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* ANCHOR LINKS */
+
+/*
+	ORDER:
+    1. a - default - does not require an href attribute
+	2. a:link - unvisited link - link must have an href attribute for this to work
+	3. a:visited
+	4. a:focus (:focus can be before or after :hover depending on the expected behaviour)
+	5. a:hover
+	6. a:active
+*/
+
+/* default - used to style links without an href */
+a {
+    color: red;
+    text-decoration: underline;
+    /*transition-property: background-color, border-color, color;
+    transition-duration: 0.6s;*/
+}
+
+/*a::before,
+a::after {
+    transition-property: background-color, border-color, color;
+    transition-duration: 0.6s;
+}*/
+
+/* a:any-link - https://developer.mozilla.org/en-US/docs/Web/CSS/:any-link */
+a:link, a:visited {
+    color: var(--link-colour);
+    color: $link-colour;
+    text-decoration: underline;
+}
+
+/* unvisited links - requires an href attribute that has a value */
+a:link {
+    color: DARKGREEN;
+}
+
+a:visited {
+    color: LIME;
+}
+
+a:focus,
+a:hover {
+    color: var(--link-colour-hover);
+    color: $link-colour-hover;
+    text-decoration: none;
+}
+
+a:focus {
+
+}
+
+a:hover {
+
+}
+
+a:active {
+    color: var(--link-colour-active);
+    color: $link-colour-active;
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* LIST ELEMENTS */
+
+/*
+not needed as these elements have been set to display:block above
+ul, ol {
+    list-style: none;
+}
+*/
+
+
+
+/***********************************************************************************************************************************************/
+/* TABLE ELEMENTS */
+
+table, thead, tfoot {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    table-layout: auto;
+}
+
+th, td {
+    padding: 0;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    font-weight: bold;
+}
+
+caption {
+    caption-side: top;
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* FORM ELEMENTS */
+
+/*
+	input types:
+		button, checkbox, color, date, datetime, datetime-local, email, file,
+		hidden, image, month, number, password, radio, range, reset, search,
+		submit, tel, text, time, url, week
+
+	other field elements:
+		button, select, datalist, textarea
+*/
+
+
+/* Fieldsets & Legends - <fieldset>, <legend> **************************************************************************************************/
+legend {
+    color: inherit; /* fix for Internet Explorer */
+}
+
+
+/* Labels - <label> ****************************************************************************************************************************/
+label[for] {
+    cursor: pointer;
+}
+
+
+/* Form Fields - <input>, <textarea>, <select>, <button> ***************************************************************************************/
+input, textarea, select, button {
+    font-family: inherit; /* do not use font - do not want to inherit line-height */
+    font-size: inherit;
+    outline: none;
+    /* box-sizing - can be deleted if using univeral selector to add box-sizing */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* switch off default styling in webkit browsers */
+input, textarea, select {
+    -webkit-appearance: none;
+}
+
+
+/* Text Fields - <input type="color|date|datetime|datetime-local|email|month|number|password|search|tel|text|time|url|week">, <textarea> *******/
+
+/* Number - display spinner only on hover or focus - same behaviour as Blink */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]:focus,
+input[type="number"]:hover {
+    -moz-appearance: initial;
+}
+
+/* Number - disable spinner altogether
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+*/
+
+textarea {
+    min-height: 1.5em;
+    overflow: auto; /* removes unnecessary scrollbars in IE */
+    resize: vertical;
+}
+
+
+/* Checkboxes & Radio Buttons - <input type="checkbox|radio"> **********************************************************************************/
+input[type="checkbox"],
+input[type="radio"] {
+    cursor: pointer;
+}
+
+
+/* Dropdown Lists - <select>, <datalist> *******************************************************************************************************/
+select {
+    cursor: pointer;
+}
+
+
+/* Buttons - <button>, <input type="button|image|reset|submit"> ********************************************************************************/
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="image"],
+input[type="file"] {
+    cursor: pointer;
+}
+
+/* removes the extra padding and border on buttons and input tags for Firefox browsers
+   http://css-tricks.com/forums/topic/button-padding-issue/ */
+button::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+
+/* Errors **************************************************************************************************************************************/
+
+/* remove default error styling - WARNING: needs to be replaced with something equivalent! */
+:invalid {
+    box-shadow: none; /* Firefox */
+    outline: 0; /* IE 10 */
+}
+
+/* invalid field formatting in Gecko */
+input:-moz-ui-invalid,
+textarea:-moz-ui-invalid {
+    box-shadow: none;
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* EMBEDDED CONTENT */
+
+audio, video,
+iframe, object, embed {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+img {
+    border: none;
+    text-align: center;
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* SVG */
+
+svg {
+    fill: currentColor;
+}
+
+
+
+/***********************************************************************************************************************************************/
+/* ANGULARJS */
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak {
+    display: none !important;
+}

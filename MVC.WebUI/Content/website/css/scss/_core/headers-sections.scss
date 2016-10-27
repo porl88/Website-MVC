@@ -1,0 +1,149 @@
+﻿/*******************************************************************************************************************************/
+/* HEADERS & SECTIONS */
+/*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************/
+/* Page */
+
+.page {
+    /* the main page title should always be an h1 tag */
+    h1.page-title {
+    }
+    /* styling is applied to the headers - sections are optional - class names for the section elements are not needed (unless styling needs to be applied) */
+    .heading-1 {
+    }
+
+    .heading-2 {
+    }
+
+    .heading-3 {
+    }
+}
+
+/* alternate version - needed if styles need to be applied to the sections - otherwise, use the version above */
+.page {
+    h1.page-title {
+    }
+
+    .section-1 {
+        .heading-1 {
+        }
+    }
+
+    .section-2 {
+        .heading-2 {
+        }
+    }
+
+    .section-2 {
+        .heading-2 {
+        }
+    }
+}
+
+/* another alternate version - if you want to impose restrictions on the type of elements used for headers */
+.page {
+    h1.page-title {
+    }
+
+    .section-1 {
+        & > h2:first-of-type {
+        }
+    }
+
+    .section-2 {
+        & > h34:first-of-type {
+        }
+    }
+
+    .section-2 {
+        & > h4:first-of-type {
+        }
+    }
+}
+
+
+/*******************************************************************************************************************************/
+/* Article */
+
+/* assumes that classes cannot be applied to article contents */
+/* styling is applied to the headings - <section> elements are optional and do not need styling */
+
+.article {
+    /* page title - for SEO purposes, the main page title should be an H1 element */
+    & > h1:first-of-type {
+    }
+    /* heading 1 */
+    h2 {
+    }
+    /* heading 2 */
+    h3 {
+    }
+    /* heading 3 */
+    h4 {
+    }
+
+    p {
+    }
+
+    ul {
+    }
+
+    ol {
+    }
+
+    blockquote {
+    }
+
+    p, li, dd {
+        -moz-hyphens: auto; /* Firefox 6-42 */
+        -webkit-hyphens: auto; /* Safari 5.1+, IOS Safari 4.3+ - not supported by Blink browsers Chrome and Opera */
+        -ms-hyphens: auto; /* IE 10+, Edge 12+ */
+        hyphens: auto; /* Firefox 43+ */
+
+        abbr[title] {
+            border-bottom: 0.0625em dotted #333;
+            cursor: help;
+        }
+
+        @supports (text-decoration-style: dotted) {
+            abbr[title] {
+                border-bottom: none;
+                text-decoration: underline;
+                text-decoration-style: dotted;
+            }
+        }
+
+        code {
+            padding: 0.125em 0.25em;
+            border: 0.0625em solid #E1E1E1;
+            color: #C7254E;
+            background-color: #F9F2F4;
+            box-shadow: 0 0.0625em 0.25em rgba(0, 0, 0, 0.1);
+        }
+
+        > code {
+            font-size: 0.9em;
+        }
+
+        dfn::before {
+            content: open-quote;
+        }
+
+        dfn::after {
+            content: close-quote;
+        }
+
+        var {
+            color: #CC0000;
+        }
+    }
+
+    figure {
+        img {
+        }
+
+        figcaption {
+        }
+    }
+}

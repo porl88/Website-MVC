@@ -1,0 +1,100 @@
+﻿/***************************************************************************************************************************************************/
+/* FORMS */
+/***************************************************************************************************************************************************/
+
+/***************************************************************************************************************************************************/
+/* FIELDS */
+
+/* renders field (but not content) invisible: */
+.invisible {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    vertical-align: baseline;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;
+}
+
+.invisible:focus {
+    text-transform: none;
+}
+
+
+
+/* Built-in ASP.NET MVC validation classes */
+.validation-summary-errors {
+    margin: 1em 0;
+    padding: 1em;
+    border: 0.125em solid #CC0000;
+    color: #000;
+    font-size: 1rem;
+    background-color: #FFEEEE;
+
+    ul {
+        margin: 0;
+        padding-left: 2em;
+        list-style: circle;
+    }
+}
+
+.field-validation-error {
+    color: #CC0000;
+}
+
+
+
+
+/***************************************************************************************************************************************************/
+/* STANDARD FORM */
+
+.form {
+    /* Fieldsets & Legends - <fieldset>, <legend> **************************************************************************************************/
+    fieldset {
+    }
+
+    legend {
+    }
+
+    /* Labels - <label> ****************************************************************************************************************************/
+    .label[for] {
+    }
+
+    /* Text Fields - <input type="color|date|datetime|datetime-local|email|month|number|password|search|tel|text|time|url|week">, <textarea> *******/
+    .text-field {
+
+        &.textarea {
+        }
+    }
+
+    /* Checkboxes & Radio Buttons - <input type="checkbox|radio"> **********************************************************************************/
+    input[type="checkbox"] {
+    }
+
+    input[type="radio"] {
+    }
+
+    /* Dropdown Lists - <select>, <datalist> *******************************************************************************************************/
+    select {
+    }
+
+    /* Buttons - <button>, <input type="button|image|reset|submit"> ********************************************************************************/
+    button {
+    }
+
+    /* Errors **************************************************************************************************************************************/
+    .validation-error {
+    }
+}
+
+
+

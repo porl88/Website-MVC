@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+
+@*
+    Conditional Comments - not used in IE 10+
+
+    http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+
+    <!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+    <!--[if IE 7 ]> <html class="ie7"> <![endif]-->
+    <!--[if IE 8 ]> <html class="ie8"> <![endif]-->
+    <!--[if IE 9 ]> <html class="ie9"> <![endif]-->
+    <!--[if (gt IE 9)|!(IE)]><!-->
+    <html>
+    <!--<![endif]-->
+
+*@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="@UICulture" dir="ltr" class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title> @*max length 70 characters*@
+    @*<title>@(ViewBag.Title ?? "Default Title")</title>*@
+
+    @*Mobile device settings*@
+    @*https://css-tricks.com/probably-use-initial-scale1/*@
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    @*www.phpied.com/conditional-comments-block-downloads - not needed if using the conditional stylesheets hack on the <html> tag /*@
+    <!--[if IE]><![endif]-->
+    @*
+        X-UA-Compatible header: http://msdn.microsoft.com/library/jj676915.aspx
+        http://stackoverflow.com/questions/6771258/whats-the-difference-if-meta-http-equiv-x-ua-compatible-content-ie-edge
+
+        In IIS 7.0+ it can be set in the web.config file:
+
+        <configuration>
+            <system.webServer>
+                <httpProtocol>
+                <customHeaders>
+                    <add name="X-UA-Compatible" value="IE=edge,chrome=1" />
+                </customHeaders>
+                </httpProtocol>
+            </system.webServer>
+        </configuration>
+    *@
+
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+    <meta name="Description" content="@ViewBag.Description" /> @*max length c. 155 characters*@
+    <meta name="Keywords" content="@ViewBag.Keywords" />
+    <meta name="Author" content="Paul Arnold" />
+
+    @Styles.Render("~/css/website")
+
+    @*Canonical URL*@
+    <link rel="canonical" href="http://website.com" />
+
+    @*
+    FAVICONS: minimum master favicon size: 260x260
+    http://css-tricks.com/favicon-quiz/
+    http://realfavicongenerator.net/
+    *@
+
+    @*ICO FAVICONS (deprecated): for IE10-
+    rel="shortcut icon" - for IE8+
+    rel="icon" type="image/x-icon" - for IE9+
+    rel="icon" - for IE11+
+    *@
+    <link rel="shortcut icon" href="~/content/images/favicons/favicon.ico" />
+
+    @*SVG FAVICONS: Firefox 41+ (4+), Safari (9)*@
+    <link rel="icon" type="image/svg+xml" sizes="any" href="~/content/images/favicons/favicon.svg" />
+
+    @*PNG FAVICONS: IE11, Edge, Firefox 2+, Chrome 4+, Safari 3.1+ (not IOS), Opera 10.1+*@
+    <link rel="icon" type="image/png" sizes="16x16" href="~/content/images/favicons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/content/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="~/content/images/favicons/favicon-96x96.png" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="~/content/images/favicons/favicon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/content/images/favicons/favicon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/content/images/favicons/favicon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/content/images/favicons/favicon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="~/content/images/favicons/favicon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/content/images/favicons/favicon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/content/images/favicons/favicon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/content/images/favicons/favicon-152x152.png" />
+
+    @*OPEN SEARCH
+    http://www.opensearch.org
+    https://developer.mozilla.org/en-US/Add-ons/Creating_OpenSearch_plugins_for_Firefox*@
+    <link rel="search" type="application/opensearchdescription+xml" href="~/content/xml/open-search/search.xml" title="Website Search" />
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" type="text/css" href="~/content/css/website_ie.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="~/content/images/favicon/favicon.ico" />
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="~/content/js/html5-shiv/html5shiv.min.js"></script>
+        <script src="~/content/js/html5-shiv/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+
+    @*For framebusting:*@
+    <base target="_top" />
+
+    @*no-js: http://www.paulirish.com/2009/avoiding-the-fouc-v3/ - also used in Modernizr*@
+    <script>(function (H) { H.className = H.className.replace(/\bno-js\b/, 'js') })(document.documentElement)</script>
+    @*<script>document.documentElement.classList.remove('no-js')</script>*@
+
+    @*WEB APPLICATION*@
+
+    @*The Web Manifest specification*@
+    @*https://developer.mozilla.org/en-US/docs/Web/Manifest
+    http://html5doctor.com/web-manifest-specification/*@
+    <link rel="manifest" href="/manifest.json" />
+    
+    @* IOS:
+    https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html*@
+    <link rel="apple-touch-startup-image" href="/content/images/web-app/startup.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    @*Hide URL bar on mobile devices - for iPhones up to IOS6 - does not work in IOS7+ *@
+    <script>
+        // <![CDATA[
+        if (document.addEventListener && /iPhone/i.test(navigator.userAgent) && !location.hash) {
+            addEventListener('DOMContentLoaded', function () {
+                setTimeout(function () {
+                    if (!pageYOffset) window.scrollTo(0, 1);
+                }, 1000);
+            });
+        }
+        //]]>
+    </script>
+
+    @RenderSection("Head", required: false)
+
+</head>
+<body>
+
+    @*http://webaim.org/techniques/skipnav/*@
+    <a class="skip" href="#main">Skip to main content</a>
+
+    @*http://www.enable-javascript.com/*@
+    <noscript>
+        <section class="alert error compact">
+            <h2>JavaScript has been disabled on your browser</h2>
+            @*<p>This site uses JavaScript and you will need to @Html.ActionLink("enable JavaScript on your browser", "javascript", "help") to use all its features.</p>*@
+            <p>This site uses JavaScript and you will need to <a href="http://www.enable-javascript.com/" target="_blank">enable JavaScript on your browser</a> to use all its features.</p>
+        </section>
+    </noscript>
+
+    @*ARIA: not needed http://html5doctor.com/on-html-belts-and-aria-braces/*@
+
+    @*page not usually needed nowadays*@
+    <div class="page">
+
+        <header class="page-header" role="banner">
+            <a href="/" title="Click here to return to the home page">
+                <img src="~/content/images/_layout/website-logo.png" alt="Website logo" width="50" height="50" />
+            </a>
+            <nav role="navigation">
+                <ul>
+                    <li>@Html.ActionLink("Home", "index", "home")</li>
+                </ul>
+            </nav>
+            <form action="/" method="get" role="search">
+                <input name="search" type="search" maxlength="100" accesskey="4" placeholder="Search..." required="required" pattern=".{3,100}" title="Your search must be between 3 and 100 characters long." />
+                <button>Search</button>
+            </form>
+            @Html.Action("Languages", "Base")
+        </header>
+
+        @*<nav role="navigation">
+            // navigation can go in <header> or not
+        </nav>*@
+
+        <main id="main" class="@ViewBag.PageClass" role="main">
+            @RenderBody()
+        </main>
+
+        <footer class="page-footer" role="contentinfo">
+            <nav>
+                <ul>
+                    <li>@Html.ActionLink("Home", "index", "home")</li>
+                    <li>@Html.ActionLink("Contact", "index", "contact")</li>
+                    <li>@Html.ActionLink("Sitemap", "sitemap", "home")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("My Account", "index", "account")</li>
+                        <li>@Html.ActionLink("Logout", "logout", "account")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "login", "account")</li>
+                        <li>@Html.ActionLink("Register", "register", "account")</li>
+                    }
+                </ul>
+            </nav>
+        </footer>
+
+    </div>
+
+    @* IE 9 and below do not support 'defer' attribute properly - and so you need to add <script> files to the bottom of the file
+       otherwise, add 'defer' attribute and put <script> files in <head>
+       browsers that support 'defer' properly: IE 10+, Edge, Firefox 3.5+, Chrome 8+, Opera 15+, Safari 5+, IOS Safari 5.1+ *@
+
+    <!--[if gte IE 9]><!-->
+    <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!--<![endif]-->
+
+    <script>
+        // <![CDATA[
+        if (!window.jQuery) document.write('<script src="/content/js/jquery/jquery-2.2.1.min.js"><\/script>');
+        // ]]>
+    </script>
+
+    <!--[if lte IE 8]>
+        <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+    <![endif]-->
+
+    @Scripts.RenderFormat("<script src=\"{0}\" async=\"async\"></script>", "~/js/website")
+
+    <!--[if lte IE 8]>
+        <script type="text/javascript" src="~/content/scripts/website_ie.js" defer="defer"></script>
+    <![endif]-->
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

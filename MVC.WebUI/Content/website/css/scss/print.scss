@@ -1,0 +1,96 @@
+﻿/*
+*****************************************************************************************************************************************
+ PRINT STYLE SHEET
+ (CSS2.1)
+*****************************************************************************************************************************************
+*/
+
+@media print {
+
+	/*
+=========================================================================================================================================
+ DEFAULT STYLES
+=========================================================================================================================================
+*/
+
+	*, *::before, *::after {
+		background-color: #FFF !important;
+		background-image: none !important;
+		border-color: #000 !important;
+		color: #000 !important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+	}
+
+	/*html {
+		font-size: 10pt !important;
+	}*/
+
+	noscript, template {
+		display: none !important;
+	}
+
+	main {
+		table th,
+		table td {
+			border: 1px dotted #000 !important;
+			border-collapse: collapse;
+		}
+
+		p a,
+		li a {
+			font-weight: bold;
+			text-decoration: none;
+		}
+
+		p a[href]::after,
+		li a[href]::after {
+			content: " [http://www.website.com" attr(href) "]";
+			font-family: 'Courier New', Courier, monospace !important;
+			font-size: 9pt !important;
+		}
+
+		p a[href^="http"]::after,
+		li a[href^="http"]::after {
+			content: " [" attr(href) "]";
+		}
+
+		p a[href^="#"]::after,
+		li a[href^="#"]::after {
+			content: none;
+		}
+
+		/*p a[href^="http"],
+		li a[href^="http"],
+		p a[href$=".doc"],
+		li a[href$=".doc"],
+		p a[href$=".pdf"],
+		li a[href$=".pdf"] {
+			padding: 0;
+		}*/
+
+		ul {
+			list-style-type: disc !important;
+			padding-left: 3em !important;
+		}
+
+		ul > li > ul {
+			list-style-type: circle !important;
+		}
+
+		kbd, tt, code, pre, samp {
+			font-size: 1em;
+		}
+	}
+
+
+	/*
+=========================================================================================================================================
+ CLASSES
+=========================================================================================================================================
+*/
+
+	/* no-print - hides markup that should not be printed */
+	.no-print {
+		display: none !important;
+	}
+}

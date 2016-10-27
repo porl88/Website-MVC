@@ -1,0 +1,36 @@
+﻿@model MVC.WebUI.Models.Shared.LanguageListViewModel
+
+@*IF THE LANGUAGE CODE IS NOT GOING TO BE STORED:*@
+@*<ul>
+    @foreach (var lang in Model.Languages)
+    {
+        if (lang.IsSelected)
+        {
+            <li>@lang.Name</li>
+        }
+        else
+        {
+            <li><a href="@lang.Url">@lang.Name</a></li>
+        }
+    }
+</ul>*@
+
+<form method="post">
+    @foreach (var lang in Model.Languages)
+    {
+        if (lang.IsSelected)
+        {
+            <span>@lang.Name</span>
+        }
+        else
+        {
+            <button formaction="@lang.Url" name="langCode" value="@lang.LanguageCode">@lang.Name</button>
+        }
+
+        if (lang.IsSelected)
+        {
+            <button formaction="@lang.Url" name="langCode" value="@lang.LanguageCode">@lang.Name</button>
+        }
+</form>
+
+

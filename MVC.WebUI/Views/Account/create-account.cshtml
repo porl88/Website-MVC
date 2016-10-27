@@ -1,0 +1,39 @@
+﻿@model MVC.WebUI.Models.Account.CreateAccountViewModel
+@using MVC.Core.Configuration
+@{
+    ViewBag.Title = "Register";
+}
+
+<section>
+    <h1>Register</h1>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false)
+
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName, new { autocomplete = "off", autofocus = "autofocus", maxlength = "30", required = "required" })
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { type = "email", autocomplete = "off", maxlength = "256", required = "required", size = "40" })
+                @Html.ValidationMessageFor(m => m.Email)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { autocomplete = "off", minlength = "8", pattern = FormPatterns.PasswordWeak, required = "required", title = Resources.ValidationErrorMessages.Password })
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword, new { autocomplete = "off", minlength = "8", pattern = FormPatterns.PasswordWeak, required = "required", title = Resources.ValidationErrorMessages.Password })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </li>
+        </ol>
+        <button>Register</button>
+    }
+</section>

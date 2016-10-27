@@ -1,0 +1,538 @@
+﻿/***********************************************************************************************************************/
+/* BACKGROUNDS */
+/***********************************************************************************************************************/
+
+@mixin gradient($startColour, $endColour, $startPercent: 0%, $endPercent: 100%) {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$startColour}', endColorstr='#{$endColour}', GradientType=0);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(top, $startColour $startPercent, $endColour $endPercent);
+    /* IE10 Consumer Preview */
+    background-image: -ms-linear-gradient(top, $startColour $startPercent, $endColour $endPercent);
+    /* Opera */
+    background-image: -o-linear-gradient(top, $startColour $startPercent, $endColour $endPercent);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(#{$startPercent / 100%}, $startColour), color-stop(#{$endPercent / 100%}, $endColour));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(top, $startColour $startPercent, $endColour $endPercent);
+    /* W3C - IE10+, Edge, Firefox 16+, Chrome 26+, Safari 6.1+, IOS Safari 7.1+, Opera 12.1+ */
+    background-image: linear-gradient(to bottom, $startColour $startPercent, $endColour $endPercent);
+}
+
+
+
+/***********************************************************************************************************************/
+/* BORDERS */
+/***********************************************************************************************************************/
+
+@mixin border-radius($px) {
+    /* Chrome 1-4, Safari 3.1-4 */
+    @include pxtorem(-webkit-border-radius, $px);
+    /* Firefox 2-3.6 */
+    @include pxtorem(-moz-border-radius, $px);
+    @include pxtorem(border-radius, $px);
+}
+
+
+
+/***********************************************************************************************************************/
+/* BOX SHADOW */
+/***********************************************************************************************************************/
+
+@mixin shadow($x, $y, $blur, $colour) {
+    -webkit-box-shadow: $x $y $blur $colour;
+    -moz-box-shadow: $x $y $blur $colour;
+    box-shadow: $x $y $blur $colour;
+}
+
+@mixin box-shadow ($string) {
+    -webkit-box-shadow: $string;
+    -moz-box-shadow: $string;
+    box-shadow: $string;
+}
+
+
+
+/***********************************************************************************************************************/
+/* BOX SIZING */
+/***********************************************************************************************************************/
+@mixin box-sizing($model: border-box) {
+    -moz-box-sizing: $model;
+    -webkit-box-sizing: $model;
+    box-sizing: $model;
+}
+
+
+
+/***********************************************************************************************************************/
+/* COLUMNS */
+/***********************************************************************************************************************/
+@mixin columns($columnCount, $columnGap) {
+    -moz-column-count: $columnCount;
+    -moz-column-gap: $columnGap;
+    -webkit-column-count: $columnCount;
+    -webkit-column-gap: $columnGap;
+    column-count: $columnCount;
+    column-gap: $columnGap;
+}
+
+
+
+/***********************************************************************************************************************/
+/* CSS Transforms, Transitions & Animation */
+/***********************************************************************************************************************/
+
+@mixin animation($animation) {
+    -moz-animation: $animation; /* Firefox 5-15 */
+    -o-animation: $animation; /* ??? */
+    -webkit-animation: $animation; /* Chrome 4-42, Safari 4-8, IOS Safari 3.2-8.4, Opera 15-29 */
+    animation: $animation; /* Firefox 16+, IE 10+, Edge, Chrome 43+, Opera 30+, Safari 9+, IOS Safari 9.2+ */
+}
+
+@mixin transform($transform) {
+    -moz-transform: $transform; /* Firefox 3.5-15 */
+    -ms-transform: $transform; /* IE 9 */
+    -o-transform: $transform; /* Opera 11.5 */
+    -webkit-transform: $transform; /* Chrome 4-35, Opera 15-22, Safari 3.1-8, IOS Safari 3.2-8.4 */
+    transform: $transform; /* Firefox 16+, IE 10+, Edge, Opera 12.1 + 23+, Safari 9+, IOS Safari 9.2+ */
+}
+
+@mixin transition($transition) {
+    -moz-transition: $transition; /* Firefox 4-15 */
+    -o-transition: $transition; /* Opera 11.5 */
+    -webkit-transition: $transition; /* Safari 3.1-6, IOS Safari 3.2-6.1 */
+    transition: $transition; /* Firefox 16+, IE 10+, Edge, Chrome 26+, Opera 12.1+, Safari 6.1+, IOS Safari 7.1+ */
+}
+
+
+
+/***********************************************************************************************************************/
+/* FLEXBOX */
+/***********************************************************************************************************************/
+
+/* Flex Container ******************************************************************************************************/
+
+@mixin display-flex {
+    display: -webkit-box; /* OLD - Chrome 4-20, iOS 6-, Safari 3.1-6 */
+    display: -moz-box; /* OLD - Firefox 2-21 */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Chrome 21-28 */
+    display: flex; /* NEW - Chrome 29+, Firefox 28+ (22+), IE (11), Edge, Opera 17+, Safari 9+, IOS Safari 9.2+ */
+}
+
+@mixin flex-flow {
+}
+
+@mixin flex-direction($value) {
+    -webkit-flex-direction: $value;
+    flex-direction: $value;
+}
+
+@mixin flex-wrap {
+}
+
+@mixin align-content {
+}
+
+@mixin align-items($value) {
+    -ms-flex-align: $value;
+    -webkit-align-items: $value;
+    align-items: $value;
+}
+
+@mixin justify-content {
+}
+
+
+/* Flex Items *********************************************************************************************************/
+
+@mixin flex($value) {
+    -webkit-box-flex: $value; /* OLD - Chrome 4-20, iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: $value; /* OLD - Firefox 2-21 */
+    -ms-flex: $value; /* TWEENER - IE 10 */
+    -webkit-flex: $value; /* NEW - Chrome 21-28 */
+    flex: $value; /* NEW - Chrome 29+, Firefox 28+ (22+), IE (11), Edge, Opera 17+, Safari 9+, IOS Safari 9.2+ */
+}
+
+@mixin flex-grow {
+}
+
+@mixin flex-shrink {
+}
+
+@mixin flex-basis {
+}
+
+@mixin align-self {
+}
+
+@mixin justify-self {
+}
+
+@mixin order($value) {
+    -webkit-box-ordinal-group: $value; /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-ordinal-group: $value; /* OLD - Firefox 19- */
+    -ms-flex-order: $value; /* TWEENER - IE 10 */
+    -webkit-order: $value; /* NEW - Chrome */
+    order: $value; /* NEW - Opera 12.1, Firefox 20+ */
+}
+
+
+
+/***********************************************************************************************************************/
+/* FONTS */
+/***********************************************************************************************************************/
+
+@mixin font-face($font-family, $font-path, $font-weight: normal, $font-style: normal, $font-stretch: normal) {
+    @font-face {
+        font-family: '#{$font-family}';
+        src: url('#{$font-path}.eot');
+        src: url('#{$font-path}.eot?#iefix') format('embedded-opentype'), url('#{$font-path}.woff') format('woff'), url('#{$font-path}.ttf') format('truetype'), url('#{$font-path}.svg##{$font-family}') format('svg');
+        font-weight: $font-weight;
+        font-style: $font-style;
+        font-stretch: $font-stretch;
+    }
+}
+
+
+/* Convert PX to REM *****************************************************************************************************/
+/*https://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/*/
+
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+@mixin rem($property, $values...) {
+    $max: length($values);
+    $pxValues: '';
+    $remValues: '';
+
+    @for $i from 1 through $max {
+        $value: strip-unit(nth($values, $i));
+        $pxValues: #{$pxValues + $value};
+
+        @if $value != 0 {
+            $pxValues: #{$pxValues}px;
+        }
+
+        @if $i < $max {
+            $pxValues: #{$pxValues + " "};
+        }
+    }
+
+    @for $i from 1 through $max {
+        $value: strip-unit(nth($values, $i));
+        $remValues: #{$remValues + $value/16};
+
+        @if $value != 0 {
+            $remValues: #{$remValues}rem;
+        }
+
+        @if $i < $max {
+            $remValues: #{$remValues + " "};
+        }
+    }
+
+    #{$property}: $pxValues;
+    #{$property}: $remValues;
+}
+
+
+
+/* Convert PX to REM only *****************************************************************************************************/
+
+/*https://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/*/
+
+@mixin rem-only($property, $values...) {
+    $max: length($values);
+    $remValues: '';
+
+    @for $i from 1 through $max {
+        $value: strip-unit(nth($values, $i));
+        $remValues: #{$remValues + $value/16};
+
+        @if $value != 0 {
+            $remValues: #{$remValues}rem;
+        }
+
+        @if $i < $max {
+            $remValues: #{$remValues + " "};
+        }
+    }
+
+    #{$property}: $remValues;
+}
+
+
+
+/***********************************************************************************************************************/
+/* FORMS */
+/***********************************************************************************************************************/
+
+/* https://css-tricks.com/almanac/selectors/p/placeholder/ */
+/* ::placeholder - styles placeholder text */
+@mixin placeholder($selector) {
+    /* Chrome, Opera 15+, Safari 5+, IOS Safari 4.3+ */
+    #{$selector}::-webkit-input-placeholder {
+        @content;
+    }
+    /* Firefox 1-18 */
+    #{$selector}:-moz-placeholder {
+        @content;
+    }
+    /* Firefox 19+ */
+    #{$selector}::-moz-placeholder {
+        @content;
+    }
+    /* IE 10+ */
+    #{$selector}:-ms-input-placeholder {
+        @content;
+    }
+    /* Edge */
+    #{$selector}::-ms-input-placeholder {
+        @content;
+    }
+    /* ::placeholder not yet fully finilised - may end up as ::input-placeholder or ::placeholder-text */
+    #{$selector}::placeholder {
+    }
+}
+
+
+
+/***********************************************************************************************************************/
+/* FULL SCREEN */
+/***********************************************************************************************************************/
+
+@mixin fullscreen($selector) {
+    :-webkit-full-screen #{$selector} {
+        @content;
+    }
+
+    :-moz-full-screen #{$selector} {
+        @content;
+    }
+
+    :-ms-fullscreen #{$selector} {
+        @content;
+    }
+
+    :fullscreen #{$selector} {
+        @content;
+    }
+}
+
+
+
+/***********************************************************************************************************************/
+/* HACKS */
+/***********************************************************************************************************************/
+@mixin hack-ie-10-plus {
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        @content;
+    }
+}
+
+@mixin hack-ie-11 {
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        *::-ms-backdrop, body {
+            @content;
+        }
+    }
+}
+
+/* N.B. There must be no space between 'and' and '(-webkit-min-device-pixel-ratio: 0)' */
+/* N.B. The space gets added back when compiled - so this is useless!!! */
+@mixin hack-safari-6-plus {
+    @media screen and (min-color-index: 0) and(-webkit-min-device-pixel-ratio: 0) {
+        @content;
+    }
+}
+
+/* hack for Safari 7.1+ */
+@mixin hack-safari-7-plus {
+    _::-webkit-full-page-media, _:future, :root {
+        @content;
+    }
+}
+
+@mixin chrome {
+    @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+        @content;
+    }
+}
+
+
+/***********************************************************************************************************************/
+/* IMAGES */
+/***********************************************************************************************************************/
+
+/*
+    - resizes an image within an image sprite
+    - use spritecow.com to get the original dimensions and position of images within the SVG sprite (works best in Chrome)
+    - all parameter units should be pixels
+
+params:
+    spriteWidth, spriteHeight - 'width' and 'height' attributes in pixels of the <svg> element in the SVG image sprite file
+    originalWidth, originalHeight - the actual width and height of the icon in pixels in the SVG file
+    bgPosLeft, bgPosTop - the left and top position in pixels of the image within the SVG image sprite
+    newWidth, newHeight - the height and width in pixels of the image as it will be displayed on the HTML page
+*/
+
+@mixin scaleImage($spriteWidth, $spriteHeight, $originalWidth, $originalHeight, $bgPosLeft, $bgPosTop, $newWidth: 0, $newHeight: 0) {
+    $scale: 1;
+
+    @if $newWidth > 0 {
+        $scale: $newWidth / $originalWidth;
+        width: #{$newWidth / 16}rem;
+        height: #{($originalHeight * $scale) / 16}rem;
+    }
+    @else {
+        $scale: $newHeight / $originalHeight;
+        width: #{($originalWidth * $scale) / 16}rem;
+        height: #{$newHeight / 16}rem;
+    }
+    
+    background-size: #{($spriteWidth * $scale) / 16}rem #{($spriteHeight * $scale) / 16}rem;
+    background-position: #{($bgPosLeft * $scale) / 16}rem #{($bgPosTop * $scale) / 16}rem;
+}
+
+
+
+/***********************************************************************************************************************/
+/* MEDIA QUERIES */
+/***********************************************************************************************************************/
+
+/*
+    should media be screen or all??? - or have desktop as @media (screen or print) and (min-width: 769px)???
+    is it easier to create a print style sheet from scratch???? or just adapt the default stylings????
+    phone/tablet/desktop or small/medium/large???
+    overrideable - can change if needed
+*/
+
+$phone-width: 450; /* max phone width in pixels */
+$tablet-width: 768; /* max tablet width in pixels */
+
+/* Phone - not needed if using mobile-first approach */
+@mixin phone($max-width: $phone-width) {
+    @media only screen and (max-width: #{$max-width / 16}rem) {
+        @content;
+    }
+}
+
+@mixin tablet($min-width: $phone-width + 1, $max-width: $tablet-width) {
+    @media only screen and (min-width: #{$min-width / 16}rem) and (max-width: #{$max-width / 16}rem) {
+        @content;
+    }
+}
+
+@mixin desktop($min-width: $tablet-width + 1) {
+    @media only screen and (min-width: #{$min-width / 16}rem) {
+        @content;
+    }
+}
+
+
+/* http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32 */
+
+/*$phone-max-width: 450px;
+$tablet-max-width: 768px;
+
+@mixin respond-to($media) {
+    @if $media == phone {
+        @media only screen and (max-width: $phone-max-width) {
+            @content;
+        }
+    }
+    @else if $media == phone-tablet {
+        @media only screen and (max-width: $tablet-max-width) {
+            @content;
+        }
+    }
+    @else if $media == tablet {
+        @media only screen and (min-width: $phone-max-width + 1) and (max-width: $tablet-max-width) {
+            @content;
+        }
+    }
+    @else if $media == desktop {
+        @media only screen and (min-width: $tablet-max-width + 1) {
+            @content;
+        }
+    }
+}*/
+
+
+
+@mixin retinise($file, $type, $width, $height) {
+    background-image: url("../img/" + $file + "." + $type);
+
+    @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+        & {
+            background-image: url("../img/" + $file + "-2x." + $type);
+        }
+    }
+}
+
+
+
+
+/***********************************************************************************************************************/
+/* TEXT */
+/***********************************************************************************************************************/
+
+@mixin hyphens($hyphens: auto) {
+    -moz-hyphens: $hyphens; /* Firefox 6-42 */
+    -webkit-hyphens: $hyphens; /* Safari 5.1+, IOS Safari 4.3+ */
+    -ms-hyphens: $hyphens; /* IE 10+, Edge 12+ */
+    hyphens: $hyphens; /* Firefox 43+ */
+}
+
+@mixin word-wrap() {
+    word-break: break-word;
+    @include hyphens;
+}
+
+
+
+
+/***********************************************************************************************************************/
+/* MISCELLANEOUS */
+/***********************************************************************************************************************/
+
+/* https://css-tricks.com/css-transparency-settings-for-all-broswers/ */
+/* https://css-tricks.com/snippets/css/cross-browser-opacity/ */
+@mixin opacity($opacity) {
+    -khtml-opacity: $opacity; /* Safari 1.x (pre-WebKit) */
+    -moz-opacity: $opacity; /* Firefox 0-0.9 */
+    zoom: 1; /* required for IE5-7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 100)"; /* IE8-9 - should come BEFORE 'filter' */
+    filter: alpha(opacity=$opacity * 100); /* IE5-9 */
+    opacity: $opacity;
+}
+
+@mixin ellipsis() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin cover() {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin centre() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+}
+
+@mixin unselectable() {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

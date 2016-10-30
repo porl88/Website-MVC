@@ -151,7 +151,6 @@
 
     @*page not usually needed nowadays*@
     <div class="page">
-
         <header class="page-header" role="banner">
             <a href="/" title="Click here to return to the home page">
                 <img src="~/content/images/_layout/website-logo.png" alt="Website logo" width="50" height="50" />
@@ -159,6 +158,16 @@
             <nav role="navigation">
                 <ul>
                     <li>@Html.ActionLink("Home", "index", "home")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("My Account", "Index", "Account")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                    }
                 </ul>
             </nav>
             <form action="/" method="get" role="search">
@@ -179,18 +188,18 @@
         <footer class="page-footer" role="contentinfo">
             <nav>
                 <ul>
-                    <li>@Html.ActionLink("Home", "index", "home")</li>
-                    <li>@Html.ActionLink("Contact", "index", "contact")</li>
-                    <li>@Html.ActionLink("Sitemap", "sitemap", "home")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
+                    <li>@Html.ActionLink("Sitemap", "Sitemap", "Home")</li>
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("My Account", "index", "account")</li>
-                        <li>@Html.ActionLink("Logout", "logout", "account")</li>
+                        <li>@Html.ActionLink("My Account", "Index", "Account")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Login", "login", "account")</li>
-                        <li>@Html.ActionLink("Register", "register", "account")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
                     }
                 </ul>
             </nav>

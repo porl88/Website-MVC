@@ -32,9 +32,11 @@
                     { "lang", preferredLang },
                     { "controller", context.RouteData.Values["controller"] },
                     { "action", context.RouteData.Values["action"] },
-                    { "id", context.RouteData.Values["id"] },
+                    { "id", context.RouteData.Values["id"] }
                 };
 
+                // 301 redirects are cached aggressively by browsers
+                context.HttpContext.Response.CacheControl = "no-cache";
                 context.Result = new RedirectToRouteResult("DefaultLocalized", routes, true);
             }
         }

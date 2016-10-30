@@ -3,10 +3,10 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using Core.Exceptions;
     using Models.Shared;
     using Services.Culture;
     using Services.Culture.Transfer;
-    using Services.Storage;
 
     public class BaseController : Controller
     {
@@ -40,22 +40,27 @@
         private LanguageListViewModel PopulateLanguageViewModel()
         {
             var response = this.languageService.GetLanguages();
+            var lang = this.RouteData.Values["lang"] as string;
 
-            var lang = this.RouteData.Values["lang"].ToString();
-            var url = this.Request.Url.AbsolutePath;
-
-            var model = new LanguageListViewModel
+            if (response.Status == StatusCode.OK && response.Languages.Any() && !string.IsNullOrWhiteSpace(lang))
             {
-                Languages = response.Languages.Select(x => new LanguageDto
-                {
-                    LanguageCode = x.LanguageCode,
-                    Name = x.Name,
-                    Url = url.Replace($"/{lang}/", $"/{x.LanguageCode}/"),
-                    IsSelected = x.LanguageCode.Equals(lang, StringComparison.InvariantCultureIgnoreCase)
-                }).ToList()
-            };
+                var url = this.Request.Url.AbsolutePath;
 
-            return model;
+                var model = new LanguageListViewModel
+                {
+                    Languages = response.Languages.Select(x => new LanguageDto
+                    {
+                        LanguageCode = x.LanguageCode,
+                        Name = x.Name,
+                        Url = url.Replace($"/{lang}/", $"/{x.LanguageCode}/"),
+                        IsSelected = x.LanguageCode.Equals(lang, StringComparison.InvariantCultureIgnoreCase)
+                    }).ToList()
+                };
+
+                return model;
+            }
+
+            return null;
         }
     }
 }

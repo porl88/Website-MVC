@@ -42,9 +42,9 @@
         private void SendEmail()
         {
             var domain = AppDomain.CurrentDomain.BaseDirectory;
-            var from = "errors@" + WebsiteConfig.WebsiteUrl;
-            var to = EmailConfig.TechSupportEmail;
-            var subject = string.Format("ERROR - {0}: {1}", WebsiteConfig.WebsiteUrl, this.exception.Message);
+            var from = "errors@" + Website.DomainName;
+            var to = Email.TechnicalSupport;
+            var subject = string.Format("ERROR - {0}: {1}", Website.DomainName, this.exception.Message);
             var body = this.CreateEmailBody();
             var mailMessage = new MailMessage(from, to, subject, body);
             mailMessage.IsBodyHtml = true;

@@ -1,12 +1,13 @@
 ﻿namespace MVC.Services.Account
 {
-    using MVC.Services.Account.Transfer;
+    using Microsoft.AspNet.Identity;
+    using Transfer;
 
     public interface IUserService
     {
         CreateUserResponse CreateUser(CreateUserRequest request);
 
-        // GetUserResponse GetUser(GetUserRequest request) - userId, userName, email
+        //GetUserResponse GetUser(GetUserRequest request); //- userId, userName, email
 
         GetUsersResponse GetUsers(GetUsersRequest request);
 

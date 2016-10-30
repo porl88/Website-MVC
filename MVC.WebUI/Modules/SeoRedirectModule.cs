@@ -38,7 +38,7 @@
 			if (request.RequestType == "GET" && response.ContentType.Contains("text/html") && absolutePath != "/" && !Path.HasExtension(absolutePath))
 			{
 				var requestedUrl = request.Url.Host + absolutePath;
-				var domain = request.IsLocal ? request.Url.Host : WebsiteConfig.WebsiteUrl;
+				var domain = request.IsLocal ? request.Url.Host : Website.DomainName;
 				if (requestedUrl.EndsWith("/") || Regex.IsMatch(requestedUrl, @"[A-Z]") || request.Url.Host != domain)
 				{
 					// create corrected URL

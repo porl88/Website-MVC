@@ -2,36 +2,31 @@
 {
     using System.ComponentModel.DataAnnotations;
     using Attributes;
-    using Core.Helpers;
 
     public class CreateAccountViewModel
 	{
-		private string email;
-
 		[Display(Name = "UserName", ResourceType = typeof(Resources.FormLabels))]
-		[Required, MaxLength(30)]
+        [Required, MaxLength(30)]
 		public string UserName { get; set; }
 
-        [Required, MaxLength(256), EmailAddress(ErrorMessageResourceName = "Email", ErrorMessageResourceType = typeof(Resources.ValidationErrorMessages))]
-        public string Email
-		{
-			get
-			{
-				return this.email;
-			}
-
-			set
-			{
-				this.email = FormatterHelper.Email(value);
-			}
-		}
+        [Display(Name = "Email", ResourceType = typeof(Resources.FormLabels))]
+        [Required, MaxLength(256), EmailAddress] // N.B. EmailAddress has built-in language support
+        public string Email { get; set; }
 
         [Display(Name = "Password", ResourceType = typeof(Resources.FormLabels))]
         [Required, Password(ErrorMessageResourceName = "Password", ErrorMessageResourceType = typeof(Resources.ValidationErrorMessages))]
         public string Password { get; set; }
 
         [Display(Name = "PasswordConfirm", ResourceType = typeof(Resources.FormLabels))]
-        [Compare("Password", ErrorMessageResourceName = "PasswordConfirm", ErrorMessageResourceType = typeof(Resources.ValidationErrorMessages))]
+        [Compare("Password")] // N.B. Compare has built-in language support
 		public string ConfirmPassword { get; set; }
-	}
+
+        [Display(Name = "FirstName", ResourceType = typeof(Resources.FormLabels))]
+        [Required, MaxLength(30)]
+        public string FirstName { get; set; }
+
+        [Display(Name = "LastName", ResourceType = typeof(Resources.FormLabels))]
+        [Required, MaxLength(50)]
+        public string LastName { get; set; }
+    }
 }

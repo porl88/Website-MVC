@@ -3,7 +3,6 @@
     using System.Linq;
     using System.Web.Mvc;
     using Core.Exceptions;
-    using Errors;
     using Models.Users;
     using Services.Account.Transfer;
     using Services.Account;
@@ -42,7 +41,7 @@
         [HttpPost]
         public ActionResult Create(UsersCreateViewModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var request = new CreateUserRequest
                 {
@@ -59,20 +58,47 @@
 
                 if (response.Status == StatusCode.OK)
                 {
-                    TempData["SuccessMessage"] = string.Format("You have successfully added '{0} {1}'.", request.User.FirstName, request.User.LastName);
+                    this.TempData["SuccessMessage"] = string.Format("You have successfully added '{0} {1}'.", request.User.FirstName, request.User.LastName);
                     return this.RedirectToAction("Index");
                 }
                 else if (response.Status == StatusCode.BadRequest)
                 {
-                    ModelState.AddModelError(string.Empty, ErrorMessageHelper.GetErrorMessage(response.CreateAccountStatus));
+                    this.ModelState.AddModelError(string.Empty, $"Your account was not created for the following reason: {this.GetErrorMessage(response.CreateAccountStatus)}");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, ErrorMessageHelper.GetErrorMessage(StatusCode.InternalServerError));
+                    this.ModelState.AddModelError(string.Empty, Resources.ErrorMessages.InternalServerError);
                 }
             }
 
             return View(model);
+        }
+
+        private string GetErrorMessage(CreateAccountStatus status)
+        {
+            switch (status)
+            {
+                case CreateAccountStatus.DuplicateUserName:
+                    return Resources.ErrorMessages.DuplicateUserName;
+                case CreateAccountStatus.DuplicateEmail:
+                    return Resources.ErrorMessages.DuplicateEmail;
+                case CreateAccountStatus.InvalidUserName:
+                    return Resources.ErrorMessages.InvalidUserName;
+                case CreateAccountStatus.InvalidPassword:
+                    return Resources.ErrorMessages.InvalidPassword;
+                case CreateAccountStatus.InvalidEmail:
+                    return Resources.ErrorMessages.InvalidEmail;
+                case CreateAccountStatus.InvalidAnswer:
+                    return Resources.ErrorMessages.InvalidAnswer;
+                case CreateAccountStatus.InvalidQuestion:
+                    return Resources.ErrorMessages.InvalidQuestion;
+                case CreateAccountStatus.ProviderError:
+                    return Resources.ErrorMessages.ProviderError;
+                case CreateAccountStatus.UserRejected:
+                    return Resources.ErrorMessages.UserRejected;
+                default:
+                    return Resources.ErrorMessages.UnknownError;
+            }
         }
     }
 }

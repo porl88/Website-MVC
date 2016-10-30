@@ -1,7 +1,7 @@
 ﻿namespace MVC.Services.Article
 {
     using System.Threading.Tasks;
-    using Article.Transfer;
+    using Transfer;
 
     public interface IArticleService
 	{

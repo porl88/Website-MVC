@@ -129,9 +129,6 @@
     <Content Include=".eslintrc.js" />
     <Content Include="Content\website\css\bootstrap.html" />
     <Content Include="Content\website\css\website.css" />
-    <Content Include="Content\website\html\emails\activate-account.html" />
-    <Content Include="Content\website\html\emails\password.html" />
-    <Content Include="Content\website\html\emails\standard.html" />
     <Content Include="Content\website\images\browser\chrome.png" />
     <Content Include="Content\website\images\browser\firefox.png" />
     <Content Include="Content\website\images\browser\ie.png" />
@@ -176,16 +173,15 @@
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Errors\ErrorMessageHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Config\FormValidation.cs" />
     <Compile Include="Helpers\BreadcrumbHelper.cs" />
     <Compile Include="Helpers\PagingHelpers.cs" />
     <Compile Include="Helpers\ValidationSummaryHelper.cs" />
@@ -207,6 +203,11 @@
     <Compile Include="Modules\ErrorModule.cs" />
     <Compile Include="Modules\SeoRedirectModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\FormLabels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -263,7 +264,7 @@
     <Content Include="Views\Account\change-password.cshtml" />
     <Content Include="Views\Account\index.cshtml" />
     <Content Include="Views\Account\login.cshtml" />
-    <Content Include="Views\Account\create-account.cshtml" />
+    <Content Include="Views\Account\create.cshtml" />
     <Content Include="Views\Account\request-password.cshtml" />
     <Content Include="Views\Account\reset-password.cshtml" />
     <Content Include="Views\Contact\email-confirm.cshtml" />
@@ -295,6 +296,9 @@
     <Content Include="Content\website\css\scss\_core\miscellaneous.scss" />
     <Content Include="Content\website\fonts\gliphicons-halflings.zip" />
     <Content Include="Content\website\css\scss\home\home-index.scss" />
+    <Content Include="Views\Email\_layout.cshtml" />
+    <Content Include="Views\Email\ActivateAccount.cshtml" />
+    <Content Include="Views\Email\Password.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -309,6 +313,7 @@
     <Folder Include="Content\jquery\" />
     <Folder Include="Content\modernizr\" />
     <Folder Include="Content\react\" />
+    <Folder Include="Content\website\html\" />
     <Folder Include="Content\website\images\favicons\" />
     <Folder Include="Models\Products\" />
   </ItemGroup>
@@ -323,6 +328,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\ErrorMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FormLabels.fr-fr.resx" />
     <EmbeddedResource Include="Resources\FormLabels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FormLabels.Designer.cs</LastGenOutput>

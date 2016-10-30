@@ -6,6 +6,8 @@
 	{
         CreateAccountResponse CreateAccount(CreateAccountRequest request);
 
+        //GetAccountActivationTokenResponse GetAccountActivationToken(GetAccountActivationTokenRequest request);
+
         ActivateAccountResponse ActivateAccount(ActivateAccountRequest request);
 
 		DeleteAccountResponse DeleteAccount(DeleteAccountRequest request);
@@ -13,6 +15,5 @@
 		ChangePasswordResponse ChangePassword(ChangePasswordRequest request);
 
         // UpdateAccount???
-        // GetAccountActivationToken???
 	}
 }

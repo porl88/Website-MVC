@@ -1,16 +1,15 @@
 ﻿namespace MVC.WebUI.Controllers
 {
     using System;
-    using System.Web;
     using System.Web.Mvc;
     using Attributes;
     using Core.Configuration;
     using Core.Exceptions;
-    using Errors;
     using Models.Account;
     using Services.Account;
     using Services.Account.Transfer;
     using Services.Message;
+    using Services.Message.Transfer;
 
     [Authorize]
     public class AccountController : Controller
@@ -32,10 +31,9 @@
             return this.View();
         }
 
-        // GET: /account/create-account
-        [ActionName("create-account")]
+        // GET: /account/create
         [AllowAnonymous]
-        public ActionResult CreateAccount()
+        public ActionResult Create()
         {
             if (this.authenticationService.IsAuthenticated)
             {
@@ -45,10 +43,9 @@
             return this.View();
         }
 
-        // POST: /account/create-account
-        [ActionName("create-account")]
+        // POST: /account/create
         [AllowAnonymous, HttpPost, ValidateAntiForgeryToken, ValidateHttpReferrer]
-        public ActionResult CreateAccount(CreateAccountViewModel model)
+        public ActionResult Create(CreateAccountViewModel model)
         {
             if (this.ModelState.IsValid)
             {
@@ -56,24 +53,33 @@
                 {
                     UserName = model.UserName,
                     Password = model.Password,
-                    Email = model.Email
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
                 };
 
                 var response = this.accountService.CreateAccount(request);
 
                 if (response.Status == StatusCode.OK)
                 {
-                    this.SendActivateAccountToken(model.Email, response.ActivateAccountToken);
-                    this.TempData["SuccessMessage"] = "You have successfully created a new account. An activation code has been sent to you by email. When you receive the this email, click on the link to activate your account.";
-                    return this.RedirectToAction("LogIn");
+                    var messageResponse = this.SendActivateAccountToken(model.Email, response.ActivateAccountToken, model.FirstName, model.LastName);
+                    if (messageResponse.Status == StatusCode.OK)
+                    {
+                        this.TempData["SuccessMessage"] = "You have successfully created a new account. An activation code has been sent to you by email. When you receive the this email, click on the link to activate your account.";
+                        return this.RedirectToAction("LogIn");
+                    }
+                    else
+                    {
+                        this.ModelState.AddModelError(string.Empty, Resources.ErrorMessages.InternalServerError);
+                    }
                 }
                 else if (response.Status == StatusCode.BadRequest)
                 {
-                    this.ModelState.AddModelError(string.Empty, "Your account was not created for the following reason: " + ErrorMessageHelper.GetErrorMessage(response.CreateAccountStatus));
+                    this.ModelState.AddModelError(string.Empty, $"Your account was not created for the following reason: {this.GetErrorMessage(response.CreateAccountStatus)}");
                 }
                 else
                 {
-                    this.ModelState.AddModelError(string.Empty, ErrorMessageHelper.GetErrorMessage(StatusCode.InternalServerError));
+                    this.ModelState.AddModelError(string.Empty, Resources.ErrorMessages.InternalServerError);
                 }
             }
 
@@ -117,7 +123,7 @@
                 }
                 else
                 {
-                    this.ModelState.AddModelError(string.Empty, ErrorMessageHelper.GetErrorMessage(StatusCode.InternalServerError));
+                    this.ModelState.AddModelError(string.Empty, Resources.ErrorMessages.InternalServerError);
                 }
             }
 
@@ -195,7 +201,7 @@
                 {
                     var message = new MessageRequest
                     {
-                        ToAddress = string.Empty,
+                        //ToAddress = string.Empty,
                         Subject = "You have requested to reset your password",
                         Message = response.ResetPasswordToken
                     };
@@ -264,29 +270,52 @@
             }
         }
 
-        private void SendActivateAccountToken(string email, string activateAccountToken)
+        private MessageResponse SendActivateAccountToken(string email, string activateAccountToken, string firstName, string lastName)
         {
-            var activateUrl = new UriBuilder
+            var fullName = $"{firstName} {lastName}".Trim();
+
+            var emailUrl = Url.Action("ActivateAccount", "Email", new
             {
-                Scheme = "https",
-                Host = this.Request.Url.DnsSafeHost,
-                Path = "/account/login",
-                Query = "id=" + HttpUtility.UrlEncode(activateAccountToken)
+                name = firstName,
+                token = activateAccountToken
+            });
+
+            var message = new MessageRequest(email, fullName)
+            {
+                FromAddress = "donotreply@" + Website.DomainName,
+                FromName = Website.Name,
+                Subject = "Please activate your account with " + Website.Name,
+                MessageUrl = new Uri(emailUrl)
             };
 
-            var filePath = "/content/html/emails/activate-account.html";
-            var message = System.IO.File.ReadAllText(Server.MapPath(filePath));
-            message = message
-                .Replace("##Name##", "XXX")
-                .Replace("##DomainName##", WebsiteConfig.WebsiteUrl)
-                .Replace("##ActivateUrl##", activateUrl.ToString());
+            return this.messageService.SendMessage(message);
+        }
 
-            this.messageService.SendMessage(new MessageRequest
+        private string GetErrorMessage(CreateAccountStatus status)
+        {
+            switch (status)
             {
-                ToAddress = email,
-                Subject = "Please activate your account with " + WebsiteConfig.WebsiteUrl,
-                Message = message
-            });
+                case CreateAccountStatus.DuplicateUserName:
+                    return Resources.ErrorMessages.DuplicateUserName;
+                case CreateAccountStatus.DuplicateEmail:
+                    return Resources.ErrorMessages.DuplicateEmail;
+                case CreateAccountStatus.InvalidUserName:
+                    return Resources.ErrorMessages.InvalidUserName;
+                case CreateAccountStatus.InvalidPassword:
+                    return Resources.ErrorMessages.InvalidPassword;
+                case CreateAccountStatus.InvalidEmail:
+                    return Resources.ErrorMessages.InvalidEmail;
+                case CreateAccountStatus.InvalidAnswer:
+                    return Resources.ErrorMessages.InvalidAnswer;
+                case CreateAccountStatus.InvalidQuestion:
+                    return Resources.ErrorMessages.InvalidQuestion;
+                case CreateAccountStatus.ProviderError:
+                    return Resources.ErrorMessages.ProviderError;
+                case CreateAccountStatus.UserRejected:
+                    return Resources.ErrorMessages.UserRejected;
+                default:
+                    return Resources.ErrorMessages.UnknownError;
+            }
         }
     }
 }

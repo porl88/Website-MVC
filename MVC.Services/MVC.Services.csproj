@@ -152,6 +152,10 @@
     <Compile Include="Culture\Transfer\GetLanguagesRequest.cs" />
     <Compile Include="Culture\Transfer\GetLanguagesResponse.cs" />
     <Compile Include="Culture\Transfer\LanguageDto.cs" />
+    <Compile Include="HTMLTemplate\HtmlTemplateService.cs" />
+    <Compile Include="HTMLTemplate\IHtmlTemplateService.cs" />
+    <Compile Include="HTMLTemplate\Transfer\GetHtmlRequest.cs" />
+    <Compile Include="HTMLTemplate\Transfer\GetHtmlResponse.cs" />
     <Compile Include="Location\ICountryService.cs" />
     <Compile Include="Crawler\CrawlerService.cs" />
     <Compile Include="Crawler\ICrawlerService.cs" />
@@ -172,8 +176,10 @@
     <Compile Include="Map\IMapService.cs" />
     <Compile Include="Message\EmailService.cs" />
     <Compile Include="Message\IMessageService.cs" />
-    <Compile Include="Message\MessageRequest.cs" />
+    <Compile Include="Message\Transfer\MessageAddress.cs" />
+    <Compile Include="Message\Transfer\MessageRequest.cs" />
     <Compile Include="Message\NullMessageService.cs" />
+    <Compile Include="Message\Transfer\MessageResponse.cs" />
     <Compile Include="Minification\IMinificationService.cs" />
     <Compile Include="Minification\MinificationService.cs" />
     <Compile Include="Page\IPageService.cs" />

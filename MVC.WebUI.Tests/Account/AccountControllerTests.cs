@@ -10,6 +10,7 @@
     using Moq;
     using Services.Account;
     using Services.Account.Transfer;
+    using Services.Message;
 
     // http://www.asp.net/mvc/overview/older-versions-1/unit-testing/creating-unit-tests-for-asp-net-mvc-applications-cs
 
@@ -22,6 +23,133 @@
         public void Init()
         {
             this.mockContext = new Mock<HttpContextBase>();
+        }
+
+        [TestMethod]
+        public void Create()
+        {
+            // arrange
+            var mockAuthenticationService = new Mock<IAuthenticationService>();
+            var controller = new AccountController(mockAuthenticationService.Object, null, null);
+
+            // act
+            var result = controller.Create() as ViewResult;
+
+            // assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(string.Empty, result.ViewName);
+        }
+
+        [TestMethod]
+        public void Create_Redirect()
+        {
+            // arrange
+            var mockAuthenticationService = new Mock<IAuthenticationService>();
+            mockAuthenticationService.SetupGet(m => m.IsAuthenticated).Returns(true);
+            var controller = new AccountController(mockAuthenticationService.Object, null, null);
+
+            // act
+            var result = controller.Create() as RedirectToRouteResult;
+
+            // assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+            Assert.AreEqual("Home", result.RouteValues["controller"]);
+        }
+
+        [TestMethod]
+        public void Create_Post_OK()
+        {
+            // arrange
+            var mockAuthenticationService = new Mock<IAuthenticationService>();
+
+            var mockAccountService = new Mock<IAccountService>();
+            mockAccountService.Setup(m => m.CreateAccount(It.IsAny<CreateAccountRequest>()))
+                .Returns(new CreateAccountResponse
+                {
+                    Status = StatusCode.OK,
+                    ActivateAccountToken = "YYYYYYYYYYYY",
+                    CreateAccountStatus = CreateAccountStatus.Success
+                });
+
+            var mockMessagingService = new Mock<IMessageService>();
+
+            var controller = new AccountController(mockAuthenticationService.Object, mockAccountService.Object, mockMessagingService.Object);
+
+            var model = new CreateAccountViewModel
+            {
+                Email = "email@email.com",
+                Password = "XXXXXXXX",
+                ConfirmPassword = "XXXXXXXX"
+            };
+
+            // act
+            var result = controller.Create(model) as RedirectToRouteResult;
+
+            // assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("LogIn", result.RouteValues["action"]);
+            Assert.AreEqual(null, result.RouteValues["controller"]);
+            Assert.IsNotNull(controller.TempData["SuccessMessage"]);
+        }
+
+        [TestMethod]
+        public void Create_Post_BadRequest()
+        {
+            // arrange
+            var mockAuthenticationService = new Mock<IAuthenticationService>();
+
+            var mockAccountService = new Mock<IAccountService>();
+            mockAccountService.Setup(m => m.CreateAccount(It.IsAny<CreateAccountRequest>()))
+                .Returns(new CreateAccountResponse
+                {
+                    Status = StatusCode.BadRequest
+                });
+
+            var controller = new AccountController(mockAuthenticationService.Object, mockAccountService.Object, null);
+
+            var model = new CreateAccountViewModel
+            {
+                Email = "email@email.com",
+                Password = "XXXXXXXX",
+                ConfirmPassword = "XXXXXXXX"
+            };
+
+            // act
+            var result = controller.Create(model) as ViewResult;
+
+            // assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(string.Empty, result.ViewName);
+            Assert.IsFalse(result.ViewData.ModelState.IsValid);
+            Assert.AreEqual(1, result.ViewData.ModelState.Count);
+        }
+
+        [TestMethod]
+        public void Create_Post_InternalServerErrror()
+        {
+            // arrange
+            var mockAuthenticationService = new Mock<IAuthenticationService>();
+
+            var mockAccountService = new Mock<IAccountService>();
+            mockAccountService.Setup(m => m.CreateAccount(It.IsAny<CreateAccountRequest>()))
+                .Returns(new CreateAccountResponse
+                {
+                    Status = StatusCode.InternalServerError
+                });
+
+            var controller = new AccountController(mockAuthenticationService.Object, mockAccountService.Object, null);
+
+            var model = new CreateAccountViewModel();
+
+            // act
+            var result = controller.Create(model) as ViewResult;
+
+            // assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(string.Empty, result.ViewName);
+            Assert.IsFalse(result.ViewData.ModelState.IsValid);
+            Assert.AreEqual(1, result.ViewData.ModelState.Count);
         }
 
         [TestMethod]

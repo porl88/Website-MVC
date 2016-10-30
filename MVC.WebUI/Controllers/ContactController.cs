@@ -1,11 +1,14 @@
 ﻿namespace MVC.WebUI.Controllers
 {
-	using System.Web.Mvc;
-	using Core.Configuration;
-	using MVC.Services.Message;
-	using MVC.WebUI.Models.Shared;
+    using System.Web.Mvc;
+    using Config = Core.Configuration;
+    using Services.Message;
+    using Models.Shared;
+    using Services.Message.Transfer;
+    using System.Collections.Generic;
+    using System.Net.Mail;
 
-	public class ContactController : Controller
+    public class ContactController : Controller
     {
         private readonly IMessageService messageService;
 
@@ -17,7 +20,7 @@
         // GET: /contact
         public ViewResult Index()
         {
-			return this.View();
+            return this.View();
         }
 
         // GET: /contact/email
@@ -31,32 +34,33 @@
         [ChildActionOnly, HttpPost, ValidateAntiForgeryToken]
         public PartialViewResult Email(EmailViewModel model)
         {
-			if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-				if (!Request.IsLocal)
-				{
-					var message = new MessageRequest
-					{
-						SenderFirstName = model.FirstName,
-						SenderLastName = model.LastName,
-						FromAddress = model.Email,
-						Subject = model.Subject,
-						Message = model.Message
-					};
+                var fullName = $"{model.FirstName} {model.LastName}".Trim();
 
-					this.messageService.SendMessage(message);
+                var message = new MessageRequest(Config.Email.TechnicalSupport)
+                {
+                    FromName = fullName,
+                    FromAddress = model.Email,
+                    Subject = model.Subject,
+                    Message = model.Message
+                };
 
-					// send copy to user
-					message.ToAddress = model.Email;
-					message.FromAddress = "donotreply@" + WebsiteConfig.WebsiteUrl;
-					message.Subject = string.Format("Copy of message sent to {0}: {1}", WebsiteConfig.WebsiteUrl, message.Subject);
-					this.messageService.SendMessage(message);
-				}
+                this.messageService.SendMessage(message);
 
-				return this.PartialView("email-confirm");
+                // send copy to user
+                message = new MessageRequest(model.Email, fullName)
+                {
+                    FromAddress = "donotreply@" + Config.Website.DomainName,
+                    Subject = $"Copy of message sent to {Config.Website.DomainName}: {message.Subject}"
+                };
+
+                this.messageService.SendMessage(message);
+
+                return this.PartialView("email-confirm");
             }
 
-			return this.PartialView();
+            return this.PartialView();
         }
     }
 }

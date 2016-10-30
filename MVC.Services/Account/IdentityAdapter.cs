@@ -1,4 +1,5 @@
-﻿namespace MVC.Services.Account
+﻿// https://www.asp.net/identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity
+namespace MVC.Services.Account
 {
     using System;
     using System.Threading.Tasks;

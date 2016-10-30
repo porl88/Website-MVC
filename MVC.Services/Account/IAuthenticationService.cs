@@ -1,6 +1,6 @@
 ﻿namespace MVC.Services.Account
 {
-    using MVC.Services.Account.Transfer;
+    using Transfer;
 
     public interface IAuthenticationService
     {

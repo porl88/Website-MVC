@@ -177,4 +177,7 @@
   <data name="UserName" xml:space="preserve">
     <value>Nom d'utilisateur</value>
   </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
 </root>

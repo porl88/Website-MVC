@@ -175,6 +175,9 @@
     <value>Town/City</value>
   </data>
   <data name="UserName" xml:space="preserve">
-    <value>User name</value>
+    <value>User Name</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Create Account</value>
   </data>
 </root>

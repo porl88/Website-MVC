@@ -2,4 +2,5 @@
 Sitemap: http://www.WebSite.com/sitemap.xml
 Disallow: /Account/
 Disallow: /Content/
+Disallow: /Email/
 Disallow: /Error/

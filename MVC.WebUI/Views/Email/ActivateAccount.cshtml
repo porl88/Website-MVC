@@ -1,0 +1,10 @@
+﻿@using MVC.Core.Configuration
+@{
+    Layout = "~/views/email/_layout.cshtml";
+    ViewBag.Title = "Activate Account";
+}
+
+<p>Hello @ViewBag.Name,</p>
+<p>You have successfully created a new account at @Website.DomainName.</p>
+<p>@Html.ActionLink("text", "Activate", "Account")</p>
+<p>Please <a href="@Url.Action("Activate", "Account", new { token = ViewBag.Token }, this.Request.Url.Scheme)" target="_blank">click on this link to activate your new account</a>.</p>

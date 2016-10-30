@@ -1,9 +1,12 @@
 ﻿namespace MVC.Services.Message
 {
+    using Transfer;
+
     public class NullMessageService : IMessageService
     {
-        public void SendMessage(MessageRequest message)
+        public MessageResponse SendMessage(MessageRequest message)
         {
+            return null;
         }
     }
 }

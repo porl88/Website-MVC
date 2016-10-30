@@ -1,7 +1,9 @@
 ﻿namespace MVC.Services.Message
 {
+    using Transfer;
+
     public interface IMessageService
     {
-        void SendMessage(MessageRequest message);
+        MessageResponse SendMessage(MessageRequest message);
     }
 }

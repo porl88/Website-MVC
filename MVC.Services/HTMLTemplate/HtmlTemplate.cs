@@ -6,6 +6,7 @@
     using System.Text.RegularExpressions;
     using ClassLibrary.Text;
 
+    [Obsolete("Use WebClient to get HTML from an email template razor page instead")]
     public abstract class HtmlTemplate : IHtmlTemplate
     {
         protected abstract string BaseTemplatePath { get; }

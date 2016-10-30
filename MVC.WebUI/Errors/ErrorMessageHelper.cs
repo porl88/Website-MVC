@@ -5,17 +5,6 @@
 
     public static class ErrorMessageHelper
     {
-        public static string GetErrorMessage(StatusCode statusCode)
-        {
-            switch (statusCode)
-            {
-                case StatusCode.InternalServerError:
-                    return "<p>An error has occurred on the server. This might be a temporary issue. Please verify your entry and try again.</p><p>If the problem persists, <a href=\"/contact/technical\">click here to contact technical support</a>.</p>";
-                default:
-                    return "<p>An unknown error has occurred. Please verify your entry and try again.</p><p>If the problem persists, please contact your system administrator.</p>";
-            }
-        }
-
         public static string GetErrorMessage(CreateAccountStatus status)
         {
             switch (status)

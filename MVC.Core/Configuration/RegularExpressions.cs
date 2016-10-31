@@ -9,6 +9,8 @@
 
         public static string UkPostCode => @"^[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2}$";
 
+        public static string UserName => @"^\w*$";
+
         public static string Name => @"^(?=.*\w{2})[a-zA-Z '-]+$"; // must contain at least 2 consecutive letters
 
         public static string DomainName => @"^(https?://\.)?(www\.)?(?!www\.)[a-z0-9-]+(\.[a-z]+)+$";

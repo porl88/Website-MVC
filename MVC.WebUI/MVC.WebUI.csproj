@@ -166,6 +166,7 @@
     <Compile Include="Attributes\GlobalErrorAttribute.cs" />
     <Compile Include="Attributes\LanguageRedirectAttribute.cs" />
     <Compile Include="Attributes\LocalizationAttribute.cs" />
+    <Compile Include="Attributes\UserNameAttribute.cs" />
     <Compile Include="Attributes\NameAttribute.cs" />
     <Compile Include="Attributes\PasswordAttribute.cs" />
     <Compile Include="Attributes\ValidateHttpReferrerAttribute.cs" />

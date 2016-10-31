@@ -6,7 +6,7 @@
     public class CreateAccountViewModel
 	{
 		[Display(Name = "UserName", ResourceType = typeof(Resources.FormLabels))]
-        [Required, MaxLength(30)]
+        [Required, MaxLength(30), UserName]
 		public string UserName { get; set; }
 
         [Display(Name = "Email", ResourceType = typeof(Resources.FormLabels))]
@@ -22,11 +22,11 @@
 		public string ConfirmPassword { get; set; }
 
         [Display(Name = "FirstName", ResourceType = typeof(Resources.FormLabels))]
-        [Required, MaxLength(30)]
+        [Required, MaxLength(30), Name]
         public string FirstName { get; set; }
 
         [Display(Name = "LastName", ResourceType = typeof(Resources.FormLabels))]
-        [Required, MaxLength(50)]
+        [Required, MaxLength(50), Name]
         public string LastName { get; set; }
     }
 }

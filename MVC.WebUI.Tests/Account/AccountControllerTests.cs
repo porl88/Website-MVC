@@ -73,8 +73,20 @@
                 });
 
             var mockMessagingService = new Mock<IMessageService>();
-
             var controller = new AccountController(mockAuthenticationService.Object, mockAccountService.Object, mockMessagingService.Object);
+
+
+            //controller.Url = new UrlHelper(
+            //    new RequestContext(this.mockContext.Object, new RouteData()),
+            //    new RouteCollection()
+            //);
+
+
+            // mock url needed to mock the call to Url.Action
+            //var mockUrl = new Mock<UrlHelper>();
+            //mockUrl.Setup(x => x.Action("ActivateAccount", "Email", new { name = "FirstName", token = "token" })).Returns("/email/activateaccount?name=XXX&token=YYY");
+            //controller.Url = mockUrl.Object;
+
 
             var model = new CreateAccountViewModel
             {

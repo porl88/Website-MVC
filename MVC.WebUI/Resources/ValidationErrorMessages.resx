@@ -134,4 +134,7 @@
   <data name="PostCode" xml:space="preserve">
     <value>Must be a valid UK post code</value>
   </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Your user name can only consist of letters and numbers</value>
+  </data>
 </root>

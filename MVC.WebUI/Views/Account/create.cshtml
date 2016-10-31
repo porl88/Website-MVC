@@ -16,7 +16,7 @@
         <ol>
             <li>
                 @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName, new { autocomplete = "off", autofocus = "autofocus", maxlength = "30", required = "required" })
+                @Html.TextBoxFor(m => m.UserName, new { autocomplete = "off", autofocus = "autofocus", maxlength = "30", pattern = RegularExpressions.UserName, required = "required", title = Resources.ValidationErrorMessages.UserName })
                 @Html.ValidationMessageFor(m => m.UserName)
             </li>
             <li>

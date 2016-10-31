@@ -274,7 +274,7 @@
         {
             var fullName = $"{firstName} {lastName}".Trim();
 
-            var emailUrl = Url.Action("ActivateAccount", "Email", new
+            var emailUrl = this.Url.Action("ActivateAccount", "Email", new
             {
                 name = firstName,
                 token = activateAccountToken

@@ -104,5 +104,14 @@ namespace Resources {
                 return ResourceManager.GetString("PostCode", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your user name can only consist of letters and numbers.
+        /// </summary>
+        public static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
+            }
+        }
     }
 }

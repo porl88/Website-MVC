@@ -129,13 +129,13 @@
 						versionMatch = Regex.Match(this.userAgent, @"Opera/(\d+\.\d+)");
 					}
 				}
-				else if (this.userAgent.Contains("MSIE"))
+                else if (this.userAgent.Contains("Trident"))
+                {
+                    versionMatch = Regex.Match(this.userAgent, @"rv:(\d+(\.\d+)?)");
+                }
+                else if (this.userAgent.Contains("MSIE"))
 				{
 					versionMatch = Regex.Match(this.userAgent, @"MSIE (\d+\.\d+)");
-				}
-				else if (this.userAgent.Contains("Trident"))
-				{
-					versionMatch = Regex.Match(this.userAgent, @"rv:(\d+(\.\d+)?)");
 				}
 				else if (this.userAgent.Contains("Safari"))
 				{
@@ -156,13 +156,7 @@
 			}
 		}
 
-		public int BrowserMajorVersion
-		{
-			get
-			{
-				return (int)Math.Floor(this.BrowserVersion);
-			}
-		}
+		public int BrowserMajorVersion => (int)Math.Floor(this.BrowserVersion);
 
 		#endregion
 
@@ -174,7 +168,7 @@
 			{
 				if (string.IsNullOrWhiteSpace(this.userAgent)) return RenderingEngine.Unknown;
 
-				Match match = Regex.Match(this.userAgent, @"(WebKit|Gecko|Trident|Presto)");
+				var match = Regex.Match(this.userAgent, @"(WebKit|Gecko|Trident|MSIE|Presto)");
 
 				switch (match.Groups[1].Value)
 				{
@@ -183,7 +177,8 @@
 					case "Gecko":
 						return RenderingEngine.Gecko;
 					case "Trident":
-						return RenderingEngine.Trident;
+                    case "MSIE":
+                        return RenderingEngine.Trident;
 					case "Presto":
 						return RenderingEngine.Presto;
 				}
@@ -257,7 +252,7 @@
 					if (this.userAgent.Contains("Windows CE")) return "Windows CE";
 
 					// Windows Phone
-					Match match = Regex.Match(this.userAgent, @"(Windows Phone( OS)? \d+\.\d+)");
+					var match = Regex.Match(this.userAgent, @"(Windows Phone( OS)? \d+\.\d+)");
 					if (match.Success) return match.Groups[1].Value;
 				}
 				else if (this.userAgent.Contains("Mac OS X"))
@@ -272,7 +267,7 @@
 					//Version 10.7: "Lion"
 					//Version 10.8: "Mountain Lion"
 
-					Match match = Regex.Match(this.userAgent, @"(Mac OS X \d+_\d+)");
+					var match = Regex.Match(this.userAgent, @"(Mac OS X \d+_\d+)");
 
 					if (match.Success)
 					{

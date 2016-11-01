@@ -219,7 +219,7 @@
         }
 
         [TestMethod]
-        public async Task AddArticleAsync()
+        public async Task CreateArticleAsync()
         {
             // arrange
             var unitOfWork = this.CreateMockUnitOfWork();
@@ -234,7 +234,7 @@
             };
 
             // act
-            var result = await this.articleService.AddArticleAsync(request);
+            var result = await this.articleService.CreateArticleAsync(request);
 
             // assert
             Assert.IsNotNull(result);

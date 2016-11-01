@@ -1,7 +1,6 @@
 ﻿namespace MVC.WebUI.Helpers
 {
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
     using System.Xml.Linq;
@@ -17,7 +16,7 @@
             {
                 var msgHtml = XElement.Parse(html.ToHtmlString());
                 var list = msgHtml.Element("ul").Elements("li");
-                if (list.Count() == 1 && list.First().Value == "")
+                if (list.Count() == 1 && list.First().Value == string.Empty)
                 {
                     return null;
                 }

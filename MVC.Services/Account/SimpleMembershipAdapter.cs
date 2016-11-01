@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Web;
     using System.Web.Security; // in System.Web.ApplicationServices
-    using Core.Data.EntityFramework;
+    using Core.Data;
     using Core.Exceptions;
     using Transfer;
     using WebMatrix.WebData;
@@ -37,29 +37,11 @@
             this.unitOfWork = unitOfWork;
         }
 
-        public bool IsAuthenticated
-        {
-            get
-            {
-                return WebSecurity.IsAuthenticated;
-            }
-        }
+        public bool IsAuthenticated => WebSecurity.IsAuthenticated;
 
-        public int CurrentUserId
-        {
-            get
-            {
-                return WebSecurity.CurrentUserId;
-            }
-        }
+        public int CurrentUserId => WebSecurity.CurrentUserId;
 
-        public string CurrentUserName
-        {
-            get
-            {
-                return WebSecurity.CurrentUserName;
-            }
-        }
+        public string CurrentUserName => WebSecurity.CurrentUserName;
 
         public LoginResponse LogIn(LoginRequest request)
         {
@@ -93,10 +75,7 @@
             return response;
         }
 
-        public void LogOut()
-        {
-            WebSecurity.Logout();
-        }
+        public void LogOut() => WebSecurity.Logout();
 
         public RequestPasswordResponse ResetPasswordRequest(RequestPasswordRequest request)
         {

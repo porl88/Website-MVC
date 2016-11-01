@@ -1,8 +1,9 @@
 ﻿namespace MVC.Core.Entities
 {
-	using System;
+    using System;
+    using Data;
 
-	public abstract class BaseEntity
+    public abstract class BaseEntity : IEntity
 	{
 		public int Id { get; set; }
 

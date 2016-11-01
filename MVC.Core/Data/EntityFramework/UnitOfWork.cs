@@ -3,9 +3,7 @@
 namespace MVC.Core.Data.EntityFramework
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using System.Diagnostics;
     using System.Threading.Tasks;
     using Entities.Account;
     using Entities.Article;
@@ -31,7 +29,7 @@ namespace MVC.Core.Data.EntityFramework
             // http://www.codeproject.com/Tips/814618/Use-of-Database-SetInitializer-method-in-Code-Firs
             //this.context.Database.Initialize(false);
             // https://blog.oneunicorn.com/2013/05/08/ef6-sql-logging-part-1-simple-logging/
-            this.context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+            this.context.Database.Log = s => Debug.WriteLine(s);
 #endif
             this.articleRepository = new EntityFrameworkRepository<Article>(this.context);
             this.articleVersionRepository = new EntityFrameworkRepository<ArticleVersion>(this.context);
@@ -43,45 +41,21 @@ namespace MVC.Core.Data.EntityFramework
             this.userRepository = new EntityFrameworkRepository<User>(this.context);
         }
 
-        public IRepository<Article> ArticleRepository
-        {
-            get { return this.articleRepository; }
-        }
+        public IRepository<Article> ArticleRepository => this.articleRepository;
 
-        public IRepository<ArticleVersion> ArticleVersionRepository
-        {
-            get { return this.articleVersionRepository; }
-        }
+        public IRepository<ArticleVersion> ArticleVersionRepository => this.articleVersionRepository;
 
-        public IRepository<Language> LanguageRepository
-        {
-            get { return this.languageRepository; }
-        }
+        public IRepository<Language> LanguageRepository => this.languageRepository;
 
-        public IRepository<Page> PageRepository
-        {
-            get { return this.pageRepository; }
-        }
+        public IRepository<Page> PageRepository => this.pageRepository;
 
-        public IRepository<PageVersion> PageVersionRepository
-        {
-            get { return this.pageVersionRepository; }
-        }
+        public IRepository<PageVersion> PageVersionRepository => this.pageVersionRepository;
 
-        public IRepository<PlainText> PlainTextRepository
-        {
-            get { return this.plainTextRepository; }
-        }
+        public IRepository<PlainText> PlainTextRepository => this.plainTextRepository;
 
-        public IRepository<RichText> RichTextRepository
-        {
-            get { return this.richTextRepository; }
-        }
+        public IRepository<RichText> RichTextRepository => this.richTextRepository;
 
-        public IRepository<User> UserRepository
-        {
-            get { return this.userRepository; }
-        }
+        public IRepository<User> UserRepository => this.userRepository;
 
         public void Commit()
         {

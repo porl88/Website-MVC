@@ -1,8 +1,8 @@
-﻿namespace MVC.Core.Data.EntityFramework
+﻿namespace MVC.Core.Data
 {
     using System;
     using System.Threading.Tasks;
-    using Core.Entities.Article;
+    using Entities.Article;
     using Entities.Account;
     using Entities.Culture;
     using Entities.Website;

@@ -135,7 +135,7 @@
   <data name="FirstName" xml:space="preserve">
     <value>Prénom</value>
   </data>
-  <data name="ForgottonPassword" xml:space="preserve">
+  <data name="ForgottenPassword" xml:space="preserve">
     <value>Mot de passe oublié</value>
   </data>
   <data name="LastName" xml:space="preserve">

@@ -101,7 +101,7 @@
             if (ModelState.IsValid)
             {
                 model.Article.LanguageId = 1;
-                var response = await this.articleService.AddArticleAsync(model.Article);
+                var response = await this.articleService.CreateArticleAsync(model.Article);
                 if (response.Status == StatusCode.OK)
                 {
                     TempData["SuccessMessage"] = string.Format("You have successfully added '{0}' as a new article.", response.Article.Title);

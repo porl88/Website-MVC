@@ -25,7 +25,7 @@
 #if DEBUG
             //Database.SetInitializer(new DatabaseInitializer()); // Recreates database with test data. A call needs to be made to the database before this will run. N.B. This can alternatively be configured in the configuration/entityFramework/contexts section of the web.config file
             // does not work if Database.SetInitializer is set in Global.asax.cs as well
-            //this.InitialiseWebSecurity();
+            this.InitialiseWebSecurity();
 #endif
         }
 
@@ -60,8 +60,8 @@
                         Email = "admin@admin.com",
                         FirstName = "Paul",
                         LastName = "Cheese",
-                        Created = DateTimeOffset.Now,
-                        Updated = DateTimeOffset.Now
+                        Created = DateTimeOffset.UtcNow,
+                        Updated = DateTimeOffset.UtcNow
                     };
 
                     WebSecurity.CreateUserAndAccount("admin", "hello", properties);
@@ -69,7 +69,7 @@
 
                 if (!Roles.GetRolesForUser("admin").Contains("Admin"))
                 {
-                    Roles.AddUsersToRoles(new[] { "admin" }, new[] { "Admin" });
+                    Roles.AddUserToRole("admin", "Admin");
                 }
             }
         }

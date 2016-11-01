@@ -1,8 +1,8 @@
-﻿namespace MVC.Core.Data.EntityFramework
+﻿namespace MVC.Core.Data
 {
     using System.Threading.Tasks;
 
-    public interface IRepository<T> : IReadOnlyRepository<T> where T : class
+    public interface IRepository<T> : IReadOnlyRepository<T> where T : class, IEntity
     {
         T Insert(T entityToInsert);
 

@@ -13,7 +13,7 @@
 
         Task<EditArticleResponse> GetEditArticleAsync(GetArticleRequest request);
 
-        Task<EditArticleResponse> AddArticleAsync(ArticleEditDto article);
+        Task<EditArticleResponse> CreateArticleAsync(ArticleEditDto article);
 
         Task<EditArticleResponse> UpdateArticleAsync(ArticleEditDto article);
 

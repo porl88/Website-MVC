@@ -1,4 +1,4 @@
-﻿namespace MVC.Core.Data.EntityFramework
+﻿namespace MVC.Core.Data
 {
     using System;
     using System.Collections.Generic;

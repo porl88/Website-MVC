@@ -1,16 +1,11 @@
 ﻿namespace MVC.Services.Page
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
-    using Core.Data.EntityFramework;
-    using Core.Exceptions;
+    using Core.Data;
     using Core.Entities.Website;
+    using Core.Exceptions;
     using Transfer;
-    using System.Text.RegularExpressions;
-    using System.Data.Entity;
 
     public class PageService : IPageService
     {

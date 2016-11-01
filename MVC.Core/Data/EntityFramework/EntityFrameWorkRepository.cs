@@ -4,12 +4,13 @@
 
 namespace MVC.Core.Data.EntityFramework
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Validation;
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class EntityFrameworkRepository<T> : EntityFrameworkReadOnlyRepository<T>, IRepository<T> where T : class
+    public class EntityFrameworkRepository<T> : EntityFrameworkReadOnlyRepository<T>, IRepository<T> where T : class, IEntity
     {
         public EntityFrameworkRepository(DbContext context) : base (context)
         {
@@ -17,6 +18,9 @@ namespace MVC.Core.Data.EntityFramework
 
         public virtual T Insert(T entityToInsert)
         {
+            var now = DateTimeOffset.UtcNow;
+            entityToInsert.Created = now;
+            entityToInsert.Updated = now;
             this.dbSet.Add(entityToInsert);
             this.context.Entry(entityToInsert).State = EntityState.Added;
             return entityToInsert;
@@ -24,6 +28,7 @@ namespace MVC.Core.Data.EntityFramework
 
         public virtual T Update(T entityToUpdate)
         {
+            entityToUpdate.Updated = DateTimeOffset.UtcNow;
             this.dbSet.Attach(entityToUpdate);
             this.context.Entry(entityToUpdate).State = EntityState.Modified;
             return entityToUpdate;

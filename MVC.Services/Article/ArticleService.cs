@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Core.Data.EntityFramework;
+    using Core.Data;
     using Core.Entities.Article;
     using Core.Exceptions;
     using Transfer;
@@ -164,7 +164,7 @@
             return response;
         }
 
-        public async Task<EditArticleResponse> AddArticleAsync(ArticleEditDto article)
+        public async Task<EditArticleResponse> CreateArticleAsync(ArticleEditDto article)
         {
             var response = new EditArticleResponse();
 

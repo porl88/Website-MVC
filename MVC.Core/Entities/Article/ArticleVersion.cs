@@ -1,8 +1,6 @@
 ﻿namespace MVC.Core.Entities.Article
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
-    using Culture;
 
     public class ArticleVersion : BaseEntity
     {

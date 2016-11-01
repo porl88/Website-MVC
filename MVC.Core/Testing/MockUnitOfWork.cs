@@ -2,12 +2,12 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Data;
     using Entities.Account;
     using Entities.Culture;
     using Entities.Website;
     using Entities.Website.PageItem;
-    using MVC.Core.Data.EntityFramework;
-    using MVC.Core.Entities.Article;
+    using Entities.Article;
 
     public class MockUnitOfWork : IUnitOfWork
 	{
@@ -32,45 +32,21 @@
             this.userRepository = new MockRepository<User>();
         }
 
-        public IRepository<Article> ArticleRepository
-		{
-			get { return this.articleRepository; }
-		}
+        public IRepository<Article> ArticleRepository => this.articleRepository;
 
-        public IRepository<ArticleVersion> ArticleVersionRepository
-        {
-            get { return this.articleVersionRepository; }
-        }
+        public IRepository<ArticleVersion> ArticleVersionRepository => this.articleVersionRepository;
 
-        public IRepository<Language> LanguageRepository
-        {
-            get { return this.languageRepository; }
-        }
+        public IRepository<Language> LanguageRepository => this.languageRepository;
 
-        public IRepository<Page> PageRepository
-        {
-            get { return this.pageRepository; }
-        }
+        public IRepository<Page> PageRepository => this.pageRepository;
 
-        public IRepository<PageVersion> PageVersionRepository
-        {
-            get { return this.pageVersionRepository; }
-        }
+        public IRepository<PageVersion> PageVersionRepository => this.pageVersionRepository;
 
-        public IRepository<PlainText> PlainTextRepository
-        {
-            get { return this.plainTextRepository; }
-        }
+        public IRepository<PlainText> PlainTextRepository => this.plainTextRepository;
 
-        public IRepository<RichText> RichTextRepository
-        {
-            get { return this.richTextRepository; }
-        }
+        public IRepository<RichText> RichTextRepository => this.richTextRepository;
 
-        public IRepository<User> UserRepository
-        {
-            get { return this.userRepository; }
-        }
+        public IRepository<User> UserRepository => this.userRepository;
 
         public void Commit()
 		{

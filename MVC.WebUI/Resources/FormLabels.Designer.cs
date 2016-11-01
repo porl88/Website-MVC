@@ -124,11 +124,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forgotton Password.
+        ///   Looks up a localized string similar to Forgotten Password.
         /// </summary>
-        public static string ForgottonPassword {
+        public static string ForgottenPassword {
             get {
-                return ResourceManager.GetString("ForgottonPassword", resourceCulture);
+                return ResourceManager.GetString("ForgottenPassword", resourceCulture);
             }
         }
         
@@ -151,7 +151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remain Signed In.
+        ///   Looks up a localized string similar to Remain Signed In For 7 Days.
         /// </summary>
         public static string LoginPersist {
             get {

@@ -127,6 +127,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".eslintrc.js" />
+    <Content Include="App_Data\mvc-database.mdf" />
+    <Content Include="App_Data\mvc-database_log.ldf">
+      <DependentUpon>mvc-database.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\website\css\bootstrap.html" />
     <Content Include="Content\website\css\website.css" />
     <Content Include="Content\website\images\browser\chrome.png" />
@@ -308,7 +312,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\angularjs\" />
     <Folder Include="Content\jquery-ui\" />
     <Folder Include="Content\jquery\" />

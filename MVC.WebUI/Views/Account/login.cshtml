@@ -6,8 +6,8 @@
     ViewBag.Title = "Log In";
 }
 
-<article>
-    <h1>Login</h1>
+<section>
+    <h1>@Resources.FormLabels.LogIn</h1>
 
     @if (TempData["SuccessMessage"] != null)
     {
@@ -40,10 +40,10 @@
             </li>
             <li>
                 @Html.CheckBoxFor(m => m.Persist)
-                @Html.LabelFor(m => m.Persist, "Remain logged in for 7 days")
+                @Html.LabelFor(m => m.Persist, Resources.FormLabels.LoginPersist)
             </li>
         </ol>
-        @Html.ActionLink("Forgotten Password", "request-password")
-        <button>Login</button>
+        @Html.ActionLink(Resources.FormLabels.ForgottenPassword, "request-password")
+        <button>@Resources.FormLabels.LogIn</button>
     }
-</article>
+</section>

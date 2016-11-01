@@ -2,18 +2,19 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Web;
     using System.Web.Mvc;
     using Core.Configuration;
-    using MVC.Core.Data.EntityFramework;
-    using MVC.Core.Exceptions;
-    using MVC.Services.Account;
-    using Services.Storage;
+    using Core.Data;
+    using Core.Data.EntityFramework;
+    using Core.Exceptions;
     using Ninject;
+    using Services.Account;
     using Services.Article;
+    using Services.Culture;
     using Services.Message;
     using Services.Page;
-    using Services.Culture;
-    using System.Web;
+    using Services.Storage;
 
     public class NinjectDependencyResolver : IDependencyResolver
 	{

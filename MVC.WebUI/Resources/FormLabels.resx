@@ -135,8 +135,8 @@
   <data name="FirstName" xml:space="preserve">
     <value>First Name</value>
   </data>
-  <data name="ForgottonPassword" xml:space="preserve">
-    <value>Forgotton Password</value>
+  <data name="ForgottenPassword" xml:space="preserve">
+    <value>Forgotten Password</value>
   </data>
   <data name="LastName" xml:space="preserve">
     <value>Last Name</value>
@@ -145,7 +145,7 @@
     <value>Sign In</value>
   </data>
   <data name="LoginPersist" xml:space="preserve">
-    <value>Remain Signed In</value>
+    <value>Remain Signed In For 7 Days</value>
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>Sign Out</value>

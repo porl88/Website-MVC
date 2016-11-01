@@ -8,11 +8,9 @@
 <section>
     <h1>@Resources.FormLabels.CreateAccount</h1>
 
-    @using (Html.BeginForm())
-    {
+    <form action="@Url.Action()" method="post">
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(false)
-
         <ol>
             <li>
                 @Html.LabelFor(m => m.UserName)
@@ -46,5 +44,5 @@
             </li>
         </ol>
         <button>@Resources.FormLabels.CreateAccount</button>
-    }
+    </form>
 </section>

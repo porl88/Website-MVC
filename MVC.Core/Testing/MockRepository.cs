@@ -8,22 +8,14 @@
     using Data;
     using Entities;
 
+#pragma warning disable CS1998 // ignore 'async lacks await' errors
     public class MockRepository<T> : IRepository<T> where T : BaseEntity
     {
         private List<T> entities = new List<T>();
 
-        protected List<T> Entities
-        {
-            get
-            {
-                return this.entities;
-            }
-        }
+        protected List<T> Entities => this.entities;
 
-        public T GetById(object id)
-        {
-            return this.entities.FirstOrDefault(x => x.Id == (int)id);
-        }
+        public T GetById(object id) => this.entities.FirstOrDefault(x => x.Id == (int)id);
 
         public List<TResult> Get<TResult>(Func<IQueryable<T>, IQueryable<TResult>> query, params string[] includes)
         {
@@ -105,10 +97,7 @@
             return entityToUpdate;
         }
 
-        public void Delete(T entityToDelete)
-        {
-            this.entities.Remove(entityToDelete);
-        }
+        public void Delete(T entityToDelete) => this.entities.Remove(entityToDelete);
 
         public void Delete(object id)
         {
@@ -136,10 +125,7 @@
             throw new NotImplementedException();
         }
 
-        public async Task<T> GetByIdAsync(object id)
-        {
-            return this.GetById(id);
-        }
+        public async Task<T> GetByIdAsync(object id) => this.GetById(id);
 
         public async Task<List<TResult>> GetAsync<TResult>(Func<IQueryable<T>, IQueryable<TResult>> query, params string[] includes)
         {
@@ -156,10 +142,7 @@
             return this.GetFirst(query);
         }
 
-        public async Task<int> GetCountAsync(Expression<Func<T, bool>> where = null)
-        {
-            return this.GetCount(where);
-        }
+        public async Task<int> GetCountAsync(Expression<Func<T, bool>> where = null) => this.GetCount(where);
 
         public void Save()
         {
@@ -171,4 +154,5 @@
             throw new NotImplementedException();
         }
     }
+#pragma warning restore CS1998
 }

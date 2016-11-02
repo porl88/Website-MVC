@@ -1,10 +1,10 @@
-﻿namespace MVC.Core.Testing
+﻿namespace MVC.WebUI
 {
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Text;
-    using Entities.Culture;
+    using Core.Entities.Culture;
     using MVC.Core.Data.EntityFramework;
     using MVC.Core.Entities.Article;
 

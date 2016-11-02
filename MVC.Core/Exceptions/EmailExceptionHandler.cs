@@ -14,9 +14,22 @@
         private const int EmailLimit = 30;
         private static int counter;
         private static DateTime timeStamp;
+        private readonly ISystemSettings systemSettings;
         private Exception exception;
 
-        public void HandleException(Exception ex)
+        public EmailExceptionHandler(ISystemSettings systemSettings)
+        {
+            this.systemSettings = systemSettings;
+        }
+
+        public void HandleException
+        (
+            Exception ex,
+            string message = null,
+            [CallerMemberName] string memberName = null,
+            [CallerFilePath] string filePath = null,
+            [CallerLineNumber] int lineNumber = 0
+        )
         {
             if (timeStamp != DateTime.Today)
             {
@@ -30,8 +43,11 @@
             {
                 try
                 {
-                    this.exception = ex;
-                    this.SendEmail();
+                    if (this.systemSettings.IsProductionEnviroment)
+                    {
+                        this.exception = ex;
+                        this.SendEmail(message, memberName, filePath, lineNumber);
+                    }
                 }
                 catch
                 {
@@ -39,67 +55,65 @@
             }
         }
 
-        private void SendEmail()
+        private void SendEmail(string message, string memberName, string filePath, int lineNumber)
         {
             var domain = AppDomain.CurrentDomain.BaseDirectory;
-            var from = "errors@" + Website.DomainName;
+            var from = "donotreply@" + Website.DomainName;
             var to = Email.TechnicalSupport;
-            var subject = string.Format("ERROR - {0}: {1}", Website.DomainName, this.exception.Message);
-            var body = this.CreateEmailBody();
+            var subject = $"ERROR - {Website.DomainName}: {this.exception.Message} in {domain}, {memberName}, Line {lineNumber}";
+            var body = this.CreateEmailBody(message, memberName, filePath, lineNumber);
             var mailMessage = new MailMessage(from, to, subject, body);
-            mailMessage.IsBodyHtml = true;
             var client = new SmtpClient();
             client.Send(mailMessage);
         }
 
-        private string CreateEmailBody()
+        private string CreateEmailBody(string message, string memberName, string filePath, int lineNumber)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            // exception-email.html - 'Build Action' property needs to be set to 'Embedded Resource'
-            using (var stream = assembly.GetManifestResourceStream("MVC.Core.Exceptions.exception-email.html"))
+            var emailFilePath = AppDomain.CurrentDomain.BaseDirectory + @"\exceptions\exception-email.html";
+
+            if (File.Exists(emailFilePath))
             {
-                using (var reader = new StreamReader(stream))
+                var body = File.ReadAllText(emailFilePath);
+
+                var context = HttpContext.Current;
+
+                if (context != null)
                 {
-                    var body = reader.ReadToEnd();
-                    if (!string.IsNullOrWhiteSpace(body))
+                    var request = context.Request;
+                    body = body
+                        .Replace("##Url##", request.Url.AbsoluteUri)
+                        .Replace("##UrlReferrer##", request.UrlReferrer == null ? "None" : request.UrlReferrer.AbsoluteUri)
+                        .Replace("##UserAgent##", request.UserAgent)
+                        .Replace("##RequestType##", request.RequestType)
+                        .Replace("##IpAddress##", request.UserHostAddress);
+
+                    var user = context.User;
+                    if (user != null)
                     {
-                        var context = HttpContext.Current;
-
-                        if (context != null)
-                        {
-                            var request = context.Request;
-                            body = body
-                                .Replace("##URL##", request.Url.AbsoluteUri)
-                                .Replace("##URLREFERRER##", request.UrlReferrer == null ? "None" : string.Format("<a href=\"{0}\">{0}</a>", request.UrlReferrer.AbsoluteUri))
-                                .Replace("##USERAGENT##", request.UserAgent)
-                                .Replace("##METHOD##", request.RequestType)
-                                .Replace("##IPADDRESS##", request.UserHostAddress);
-
-                            var user = context.User;
-                            if (user != null)
-                            {
-                                body = body
-                                .Replace("##USERNAME##", user.Identity.Name);
-                            }
-                        }
-
-                        if (this.exception != null)
-                        {
-                            body = body
-                                .Replace("##EXCEPTIONTYPE##", this.exception.GetType().ToString())
-                                .Replace("##EXCEPTION##", this.exception.Message)
-                                .Replace("##SOURCE##", this.exception.Source)
-                                .Replace("##STACKTRACE##", this.exception.StackTrace)
-                                .Replace("##INNEREXCEPTIONS##", this.CreateInnerExceptionHtml())
-                                .Replace("##ERROR##", this.exception.ToString());
-                        }
-
                         body = body
-                            .Replace("##SERVERNAME##", Environment.MachineName);
-
-                        return body;
+                        .Replace("##UserName##", user.Identity.Name);
                     }
                 }
+
+                if (this.exception != null)
+                {
+                    body = body
+                        .Replace("##ExceptionType##", this.exception.GetType().ToString())
+                        .Replace("##Exception##", this.exception.Message)
+                        .Replace("##Source##", this.exception.Source)
+                        .Replace("##StackTrace##", this.exception.StackTrace)
+                        .Replace("##InnerExceptions##", this.CreateInnerExceptionHtml())
+                        .Replace("##Error##", this.exception.ToString());
+                }
+
+                body = body
+                      .Replace("##CallerMemberName##", memberName)
+                      .Replace("##CallerLineNumber##", lineNumber.ToString())
+                      .Replace("##CallerFilePath##", filePath)
+                      .Replace("##CustomMessage##", message)
+                      .Replace("##ServerName##", Environment.MachineName);
+
+                return body;
             }
 
             return string.Empty;

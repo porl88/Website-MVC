@@ -65,13 +65,14 @@
             try
             {
                 response.Languages = await this.unitOfWork.LanguageRepository.GetAsync(q => q
-                    .Where(x => x.Active)
+                    .Where(x => x.IsSupported)
                     .OrderBy(x => x.LocalName)
                     .Select(x => new LanguageDto
                     {
                         Id = x.Id,
                         LanguageCode = x.LanguageCode,
-                        Name = x.LocalName
+                        Name = x.LocalName,
+                        Region = x.LocalRegionName
                     })
                 );
 

@@ -142,7 +142,8 @@
     <value>Nom</value>
   </data>
   <data name="LogIn" xml:space="preserve">
-    <value>Se connecter</value>
+    <value>Connexion</value>
+    <comment>Connexion - "login", Se Connecter = to "log in"</comment>
   </data>
   <data name="LoginPersist" xml:space="preserve">
     <value>Rester connecté</value>
@@ -179,5 +180,11 @@
   </data>
   <data name="CreateAccount" xml:space="preserve">
     <value>Create Account</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Suivante</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Précédente</value>
   </data>
 </root>

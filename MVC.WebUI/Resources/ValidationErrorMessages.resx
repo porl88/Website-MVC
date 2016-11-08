@@ -119,7 +119,7 @@
   </resheader>
   <data name="Email" xml:space="preserve">
     <value>Must be a valid email address</value>
-    <comment>The EmailAddress attribute already has built-in language support.</comment>
+    <comment>OBSOLETE: The EmailAddress attribute already has built-in language support.</comment>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Must be a valid name. Special characters and numbers are not allowed (apart from apostrophes(') and hyphens (-))</value>
@@ -129,7 +129,7 @@
   </data>
   <data name="PasswordConfirm" xml:space="preserve">
     <value>The password and confirmation password do not match</value>
-    <comment>The Compare attribute already has built-in lanugage support.</comment>
+    <comment>OBSOLETE: The Compare attribute already has built-in lanugage support.</comment>
   </data>
   <data name="PostCode" xml:space="preserve">
     <value>Must be a valid UK post code</value>

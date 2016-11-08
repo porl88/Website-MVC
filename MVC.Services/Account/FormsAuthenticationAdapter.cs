@@ -44,6 +44,7 @@
                     this.context.Response.Cookies[0].Expires = DateTime.Now.Add((TimeSpan)request.Persistence);
                 }
 
+#pragma warning disable CS0618
                 if (FormsAuthentication.Authenticate(request.UserName, request.Password))
                 {
                     FormsAuthentication.SetAuthCookie(request.UserName, persist);
@@ -53,6 +54,7 @@
                 {
                     response.Status = StatusCode.Unauthorized;
                 }
+#pragma warning restore CS0618
             }
             catch (Exception ex)
             {

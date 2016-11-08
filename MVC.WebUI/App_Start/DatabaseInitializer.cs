@@ -3,10 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Linq;
     using System.Text;
+    using System.Web.Security;
     using Core.Entities.Culture;
-    using MVC.Core.Data.EntityFramework;
-    using MVC.Core.Entities.Article;
+    using Core.Data.EntityFramework;
+    using Core.Entities.Article;
+    using WebMatrix.WebData;
 
     // http://www.codeproject.com/Tips/814618/Use-of-Database-SetInitializer-method-in-Code-Firs
 
@@ -65,6 +68,8 @@
             //    Html = "<p>Ici est du <strong>riche texte</strong> pour la page d'acceuil!</p>"
             //});
 
+            this.InitialiseWebSecurity();
+
             base.Seed(context);
         }
 
@@ -77,9 +82,9 @@
                 Id = 1,
                 LanguageCode = "en-gb",
                 Name = "English",
-                DialectName = "British",
+                RegionName = "United Kingdom",
                 LocalName = "English",
-                LocalDialectName = "British",
+                LocalRegionName = "United Kingdom",
                 Created = now,
                 Updated = now
             });
@@ -89,7 +94,9 @@
                 Id = 2,
                 LanguageCode = "fr-fr",
                 Name = "French",
+                RegionName = "France",
                 LocalName = "Français",
+                LocalRegionName = "France",
                 Created = now,
                 Updated = now
             });
@@ -99,7 +106,9 @@
                 Id = 3,
                 LanguageCode = "de-de",
                 Name = "German",
+                RegionName = "Germany",
                 LocalName = "Deutsche",
+                LocalRegionName = "Deutschland",
                 Created = now,
                 Updated = now
             });
@@ -109,7 +118,9 @@
                 Id = 4,
                 LanguageCode = "es-es",
                 Name = "Spanish",
+                RegionName = "Spain",
                 LocalName = "Español",
+                LocalRegionName = "España",
                 Created = now,
                 Updated = now
             });
@@ -175,6 +186,38 @@
                 Created = now,
                 Updated = now
             });
+        }
+
+        private void InitialiseWebSecurity()
+        {
+            if (!WebSecurity.Initialized)
+            {
+                WebSecurity.InitializeDatabaseConnection("WebsiteMvcDatabase", "Users", "Id", "UserName", true);
+
+                if (!Roles.RoleExists("Admin"))
+                {
+                    Roles.CreateRole("Admin");
+                }
+
+                if (!WebSecurity.UserExists("admin"))
+                {
+                    var properties = new
+                    {
+                        Email = "admin@admin.com",
+                        FirstName = "Paul",
+                        LastName = "Cheese",
+                        Created = DateTimeOffset.UtcNow,
+                        Updated = DateTimeOffset.UtcNow
+                    };
+
+                    WebSecurity.CreateUserAndAccount("admin", "hello", properties);
+                }
+
+                if (!Roles.GetRolesForUser("admin").Contains("Admin"))
+                {
+                    Roles.AddUserToRole("admin", "Admin");
+                }
+            }
         }
     }
 }

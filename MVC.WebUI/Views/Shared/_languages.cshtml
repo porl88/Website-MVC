@@ -5,36 +5,35 @@
 
     @*IF THE LANGUAGE CODE IS NOT GOING TO BE STORED:*@
     @*<ul>
-            @foreach (var lang in Model.Languages)
-            {
-                if (lang.IsSelected)
-                {
-                    <li>@lang.Name</li>
-                }
-                else
-                {
-                    <li><a href="@lang.Url">@lang.Name</a></li>
-                }
-            }
-        </ul>*@
-
-    <form method="post">
         @foreach (var lang in Model.Languages)
         {
             if (lang.IsSelected)
             {
-                <span>@lang.Name</span>
+                <li lang="@lang.LanguageCode">@lang.Name (@lang.Region)</li>
             }
             else
             {
-                <button formaction="@lang.Url" name="langCode" value="@lang.LanguageCode">@lang.Name</button>
-            }
-
-            if (lang.IsSelected)
-            {
-                <button formaction="@lang.Url" name="langCode" value="@lang.LanguageCode">@lang.Name</button>
+                <li lang="@lang.LanguageCode"><a href="@lang.Url">@lang.Name (@lang.Region)</a></li>
             }
         }
+    </ul>*@
+
+    <form method="post">
+        <ul>
+            @foreach (var lang in Model.Languages)
+            {
+                if (lang.IsSelected)
+                {
+                    <li lang="@lang.LanguageCode">@lang.Name (@lang.Region)</li>
+                }
+                else
+                {
+                    <li lang="@lang.LanguageCode">
+                        <button formaction="@lang.Url" name="langCode" value="@lang.LanguageCode">@lang.Name (@lang.Region)</button>
+                    </li>
+                }
+            }
+        </ul>
     </form>
 }
 

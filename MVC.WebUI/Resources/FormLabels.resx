@@ -180,4 +180,10 @@
   <data name="CreateAccount" xml:space="preserve">
     <value>Create Account</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
 </root>

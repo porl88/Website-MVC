@@ -32,10 +32,11 @@
 			// remove alternative paths for SEO purposes
 			routes.IgnoreRoute("home");
 			routes.IgnoreRoute("home/{action}");
-			routes.IgnoreRoute("{controller}/index");
+            routes.IgnoreRoute("{controller}/index");
+            routes.IgnoreRoute("{controller}/index/{id}");
 
-			// create all routes in lower case
-			routes.LowercaseUrls = true;
+            // create all routes in lower case
+            routes.LowercaseUrls = true;
 			routes.AppendTrailingSlash = false;
 		}
 	}

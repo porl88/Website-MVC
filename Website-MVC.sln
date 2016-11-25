@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC.Core.Tests", "MVC.Core.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC.WebUI.Tests", "MVC.WebUI.Tests\MVC.WebUI.Tests.csproj", "{487FC379-FF70-458B-9414-FC32857CE3FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "..\..\..\..\Dropbox\Websites\ClassLibrary\ClassLibrary\ClassLibrary.csproj", "{BA423F36-50F0-4B17-9903-BF592996E7C7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,10 +63,6 @@ Global
 		{487FC379-FF70-458B-9414-FC32857CE3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{487FC379-FF70-458B-9414-FC32857CE3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{487FC379-FF70-458B-9414-FC32857CE3FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA423F36-50F0-4B17-9903-BF592996E7C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA423F36-50F0-4B17-9903-BF592996E7C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA423F36-50F0-4B17-9903-BF592996E7C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA423F36-50F0-4B17-9903-BF592996E7C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

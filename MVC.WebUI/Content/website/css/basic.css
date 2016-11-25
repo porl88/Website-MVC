@@ -1,0 +1,546 @@
+﻿/***********************************************************************************************************************************************/
+/* BASIC STYLE SHEET - GIVES A SITE BASIC DEFAULT STYLING WHILST IN DEVELOPMENT */
+/***********************************************************************************************************************************************/
+
+:root {
+    box-sizing: border-box;
+    font-family: Verdana, sans-serif;
+    color: #000;
+    background-color: #EEE;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 62.5rem;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #FFF;
+}
+
+    body > header {
+        position: relative;
+        flex: 0 0 auto;
+        padding: 1em;
+        background-color: #000;
+        color: #FFF;
+    }
+
+        body > header a[href="/"] {
+            font-size: 1.5em;
+        }
+
+        body > header ul {
+            position: absolute;
+            top: 1em;
+            right: 1em;
+            margin: 0;
+            padding: 0;
+            font-size: 0.9em;
+        }
+
+        body > header li {
+            display: inline;
+        }
+
+main {
+    flex: 1 0 auto;
+    padding: 1em;
+}
+
+body > footer {
+    flex: 0 0 auto;
+    padding: 1em;
+    background-color: #000;
+    color: #FFF;
+}
+
+    body > footer ul {
+        margin: 0;
+        padding: 0;
+        font-size: 0.9em;
+        text-align: center;
+    }
+
+    body > footer li {
+        display: inline;
+    }
+
+section > h1,
+article > h1,
+header > h1 {
+    margin: 0;
+    margin-bottom: 1em;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    font-weight: normal;
+    color: #FFF;
+    background-color: #000;
+}
+
+section > h2,
+article > h2 {
+    font-size: 1em;
+}
+
+section p,
+article p {
+    text-align: justify;
+}
+
+table {
+    margin: 1em auto;
+    font-size: 1rem;
+    border-spacing: 0.3em;
+    empty-cells: show;
+}
+
+th, td {
+    padding: 0.3em 0.4em;
+    border: 1px solid black;
+    vertical-align: top;
+}
+
+form {
+    display: table;
+    margin: 1em auto;
+    padding: 1em;
+    border: 1px solid #000;
+    font-size: 1rem;
+    text-align: right;
+}
+
+    form input,
+    form textarea,
+    form select {
+        width: 15em;
+        border: 1px solid #000;
+        font: inherit;
+    }
+
+    form input,
+    form textarea {
+        padding: 0.2em 0.3em;
+    }
+
+        form input:not([id]),
+        form input:not([name]) {
+            border-color: red;
+        }
+
+    form > ol {
+        margin: 0;
+        margin-bottom: 1em;
+        padding: 0;
+        text-align: left;
+    }
+
+        form > ol li {
+            display: flex;
+            margin-bottom: 0.4em;
+        }
+
+            form > ol li label,
+            form > ol li input,
+            form > ol li textarea,
+            form > ol li select {
+                flex: 0 0 auto;
+            }
+
+            form > ol li label {
+                padding-top: 0.3em;
+                padding-right: 1em;
+            }
+
+        form > ol label:not([for]) {
+            color: red;
+        }
+
+        form > ol li input,
+        form > ol li textarea,
+        form > ol li select {
+            margin-left: auto;
+        }
+
+        form > ol textarea {
+            resize: vertical;
+        }
+
+    form > button {
+        display: inline-block;
+        margin: 0;
+        padding: 0.3em 0.5em;
+        border: none;
+        font: inherit;
+        color: #FFF;
+        background: #000;
+        cursor: pointer;
+    }
+
+        form > button:focus,
+        form > button:hover {
+            background-color: gray;
+        }
+
+        form > button::-moz-focus-inner {
+            padding: 0;
+            border: 0;
+        }
+
+    form > h1, form > h2, form > h3, form > ul, form > ol {
+        text-align: left;
+    }
+
+    form > p {
+        text-align: justify;
+    }
+
+a {
+    color: red;
+    text-decoration: underline;
+}
+
+    a:link, a:visited {
+        color: inherit;
+        text-decoration: underline;
+    }
+
+    a:focus,
+    a:hover {
+        text-decoration: none;
+    }
+
+sup, sub {
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    bottom: 1ex;
+}
+
+sub {
+    bottom: -1ex;
+}
+
+
+/*******************************************************************************************************************************/
+/* BREADCRUMBS */
+/*******************************************************************************************************************************/
+
+/************************************************************************************************************************************************************************************/
+/* Standard Breadcrumb */
+
+ol.breadcrumb {
+    font-size: 0.9rem;
+    margin: 0;
+    margin-bottom: 1em;
+    padding: 0;
+    text-transform: capitalize;
+}
+
+    ol.breadcrumb li {
+        position: relative;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+    }
+
+        ol.breadcrumb li::before {
+            display: inline-block;
+            margin: 0 0.5em;
+            content: "";
+            border: 0.3125em solid transparent;
+            border-right: none;
+            border-left-color: black;
+        }
+
+        ol.breadcrumb li:first-child::before {
+            content: none;
+        }
+
+
+
+/*******************************************************************************************************************************/
+/* BUTTONS & LINKS */
+/*******************************************************************************************************************************/
+
+/************************************************************************************************************************************************************************************/
+/* Close Button - for closing dialogs, etc. */
+
+.btn-close {
+    position: relative;
+    width: 1em;
+    height: 1em;
+    border: none;
+    font-size: 1rem;
+    text-indent: -99em;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+}
+
+    .btn-close:focus,
+    .btn-close:hover {
+        transform: scale(1.3);
+    }
+
+    .btn-close::before,
+    .btn-close::after {
+        position: absolute;
+        display: block;
+        background-color: currentColor;
+        content: "";
+        transform: rotate(45deg);
+    }
+
+    .btn-close::before {
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 0.125em;
+        margin-left: -0.0625em;
+    }
+
+    .btn-close::after {
+        top: 50%;
+        right: 0;
+        left: 0;
+        height: 0.125em;
+        margin-top: -0.0625em;
+    }
+
+
+/*******************************************************************************************************************************/
+/* MESSAGES */
+/*******************************************************************************************************************************/
+:root {
+    --ok-colour: #336633;
+    --warning-colour: yellow;
+    --error-colour: #CC0000;
+}
+
+/*******************************************************************************************************************************/
+/* Alert Colours */
+.ok {
+    color: var(--ok-colour) !important;
+}
+
+.warning {
+    color: var(--warning-colour) !important;
+}
+
+.error {
+    color: var(--error-colour) !important;
+}
+
+.bg-ok {
+    border-color: currentColor !important;
+    color: #FFF !important;
+    background-color: var(--ok-colour) !important;
+}
+
+.bg-warning {
+    border-color: currentColor !important;
+    color: #FFF !important;
+    background-color: var(--warning-colour) !important;
+}
+
+.bg-error {
+    border-color: currentColor !important;
+    color: #FFF !important;
+    background-color: var(--error-colour) !important;
+}
+
+
+
+/*******************************************************************************************************************************/
+/* Alerts */
+
+.alert {
+    margin: 1em 0;
+    padding: 0.8em 1em;
+    border: 2px solid currentColor;
+    font-size: 1rem;
+    color: #000;
+    background-color: #FFF;
+}
+
+    .alert h1,
+    .alert h2,
+    .alert h3,
+    .alert h4 {
+        margin: 0;
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+
+    .alert p {
+        margin-top: 0.8em;
+        margin-bottom: 0;
+        line-height: 1.2;
+    }
+
+        .alert p:first-child {
+            margin-top: 0;
+        }
+
+    /* success alerts - shown when something has succeeded - e.g. when a form has been submitted properly, when an email has been sent successfully */
+    .alert.ok {
+        background-color: #EEFFEE;
+    }
+
+    /* success alerts - shown when something has succeeded - e.g. when a form has been submitted properly, when an email has been sent successfully */
+    .alert.warning {
+        background-color: #FFFACD;
+    }
+
+    /* error alerts - shown when something has failed - e.g. form validation, 404 error, etc. */
+    .alert.error {
+        background-color: #FFEEEE;
+    }
+
+    /* compact alert - puts all the text on to one line to save vertical space */
+    .alert.compact {
+        text-align: center;
+    }
+
+        .alert.compact h1,
+        .alert.compact h2,
+        .alert.compact h3,
+        .alert.compact h4,
+        .alert.compact p {
+            display: inline;
+        }
+
+            .alert.compact h1::after,
+            .alert.compact h2::after,
+            .alert.compact h3::after,
+            .alert.compact h4::after {
+                content: ": ";
+            }
+
+
+
+
+/*******************************************************************************************************************************/
+/* Badges */
+
+.badge {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 2em;
+    text-align: center;
+    letter-spacing: 0;
+    color: #FFF;
+    background-color: #000;
+}
+
+    /* fixes vertical align for empty badges */
+    .badge:empty::before {
+        content: "X";
+        visibility: hidden;
+    }
+
+
+/***********************************************************************************************************************************/
+/* Loading */
+
+/* CSS only loading image - adds loading image to centre of page with backdrop */
+.loading::before,
+.loading dialog::before {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+    content: "";
+    background-color: #000;
+    opacity: 0.6;
+}
+
+.loading::after,
+.loading dialog::after {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 2005;
+    display: block;
+    box-sizing: border-box;
+    width: 5rem;
+    height: 5rem;
+    margin-left: -2.5rem;
+    margin-top: -2.5rem;
+    border: 0.625rem solid rgba(14, 68, 70, 0.5);
+    border-top-color: #16b0b5;
+    border-radius: 100%;
+    content: "";
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/* adds loading image to centre of a given block-level element */
+.block-loading {
+    position: relative;
+    font-size: 1rem;
+    min-height: 6em;
+}
+
+    .block-loading::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        content: "";
+        background-color: #000;
+        opacity: 0.6;
+    }
+
+    .block-loading::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        box-sizing: border-box;
+        width: 5em;
+        height: 5em;
+        margin-left: -2.5em;
+        margin-top: -2.5em;
+        border: 0.625em solid rgba(14, 68, 70, 0.5);
+        border-top-color: #16b0b5;
+        border-radius: 100%;
+        content: "";
+        animation: spin 1s infinite linear;
+    }

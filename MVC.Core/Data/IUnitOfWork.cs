@@ -14,7 +14,7 @@
 
         IRepository<ArticleVersion> ArticleVersionRepository { get; }
 
-        IRepository<Language> LanguageRepository { get; }
+        IReadOnlyRepository<Language> LanguageRepository { get; }
 
         IRepository<Page> PageRepository { get; }
 

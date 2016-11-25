@@ -131,6 +131,7 @@
     <Content Include="App_Data\mvc-database_log.ldf">
       <DependentUpon>mvc-database.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\website\css\basic.css" />
     <Content Include="Content\website\css\bootstrap.html" />
     <Content Include="Content\website\css\website.css" />
     <Content Include="Content\website\images\browser\chrome.png" />
@@ -305,6 +306,7 @@
     <Content Include="Views\Email\_layout.cshtml" />
     <Content Include="Views\Email\ActivateAccount.cshtml" />
     <Content Include="Views\Email\Password.cshtml" />
+    <Content Include="Views\Shared\_alert.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -39,6 +39,7 @@
 
         private LanguageListViewModel PopulateLanguageViewModel()
         {
+            // BETTER TO SIMPLY HARD-CODE LANGUAGE LIST!!!
             var response = this.languageService.GetLanguages();
             var lang = this.RouteData.Values["lang"] as string;
 

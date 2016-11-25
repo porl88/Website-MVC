@@ -109,6 +109,7 @@
     <Content Include="Data\XML\Countries.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Data\XML\Languages.xml" />
     <EmbeddedResource Include="Exceptions\exception-email.html" />
   </ItemGroup>
   <ItemGroup>

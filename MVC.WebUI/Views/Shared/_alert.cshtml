@@ -1,0 +1,14 @@
+﻿@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert ok">
+        <p>@TempData["SuccessMessage"]</p>
+    </div>
+}
+
+@if (TempData["FailureMessage"] != null)
+{
+    <div class="alert error">
+        <p>@TempData["FailureMessage"]</p>
+        <p>If the problem persists, <a href="@Url.Action("Technical-Support", "Contact")">click here to contact technical support.</a></p>
+    </div>
+}

@@ -16,7 +16,7 @@ namespace MVC.Core.Data.EntityFramework
         private readonly WebsiteDbContext context = new WebsiteDbContext();
         private readonly IRepository<Article> articleRepository;
         private readonly IRepository<ArticleVersion> articleVersionRepository;
-        private readonly IRepository<Language> languageRepository;
+        private readonly IReadOnlyRepository<Language> languageRepository;
         private readonly IRepository<Page> pageRepository;
         private readonly IRepository<PageVersion> pageVersionRepository;
         private readonly IRepository<PlainText> plainTextRepository;
@@ -33,7 +33,7 @@ namespace MVC.Core.Data.EntityFramework
 #endif
             this.articleRepository = new EntityFrameworkRepository<Article>(this.context);
             this.articleVersionRepository = new EntityFrameworkRepository<ArticleVersion>(this.context);
-            this.languageRepository = new EntityFrameworkRepository<Language>(this.context);
+            this.languageRepository = new EntityFrameworkReadOnlyRepository<Language>(this.context);
             this.pageRepository = new EntityFrameworkRepository<Page>(this.context);
             this.pageVersionRepository = new EntityFrameworkRepository<PageVersion>(this.context);
             this.plainTextRepository = new EntityFrameworkRepository<PlainText>(this.context);
@@ -45,7 +45,7 @@ namespace MVC.Core.Data.EntityFramework
 
         public IRepository<ArticleVersion> ArticleVersionRepository => this.articleVersionRepository;
 
-        public IRepository<Language> LanguageRepository => this.languageRepository;
+        public IReadOnlyRepository<Language> LanguageRepository => this.languageRepository;
 
         public IRepository<Page> PageRepository => this.pageRepository;
 

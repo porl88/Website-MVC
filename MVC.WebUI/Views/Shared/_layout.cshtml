@@ -226,7 +226,7 @@
         <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
     <![endif]-->
 
-    @Scripts.RenderFormat("<script src=\"{0}\" async=\"async\"></script>", "~/js/website")
+    @Scripts.RenderFormat("<script src=\"{0}\" defer=\"defer\"></script>", "~/js/website")
 
     <!--[if lte IE 8]>
         <script type="text/javascript" src="~/content/scripts/website_ie.js" defer="defer"></script>

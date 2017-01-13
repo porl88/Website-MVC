@@ -51,14 +51,14 @@
             {
                 var persist = false;
 
-                if (request.Persistence != null)
-                {
-                    persist = true;
-                    this.context.Response.Cookies[0].Expires = DateTime.Now.Add((TimeSpan)request.Persistence);
-                }
-
                 if (WebSecurity.Login(request.UserName, request.Password, persist))
                 {
+                    if (request.Persistence != null)
+                    {
+                        persist = true;
+                        this.context.Response.Cookies[0].Expires = DateTime.Now.Add((TimeSpan)request.Persistence);
+                    }
+
                     response.Status = StatusCode.OK;
                 }
                 else

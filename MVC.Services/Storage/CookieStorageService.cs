@@ -21,7 +21,10 @@
         {
             var response = new GetValueResponse<T>();
 
-            if (!string.IsNullOrWhiteSpace(key))
+            try
+            {
+
+                if (!string.IsNullOrWhiteSpace(key))
             {
                 var cookie = this.GetCookie(key);
                 if (cookie != null && !string.IsNullOrWhiteSpace(cookie.Value))
@@ -51,6 +54,11 @@
             else
             {
                 response.Status = StatusCode.BadRequest;
+            }
+            catch (Exception ex)
+            {
+                response.Status = StatusCode.InternalServerError;
+                this.exceptionHandler.HandleException(ex);
             }
 
             return response;

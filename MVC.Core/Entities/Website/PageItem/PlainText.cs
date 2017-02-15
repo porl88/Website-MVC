@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class PlainText : BaseEntity, IPageItem
+    public class PlainText : BaseEntity<int>, IPageItem
     {
         [Required]
         public string Label { get; set; }

@@ -9,13 +9,14 @@
     using Entities;
 
 #pragma warning disable CS1998 // ignore 'async lacks await' errors
-    public class MockRepository<T> : IRepository<T> where T : BaseEntity
+    public class MockRepository<T, Key> : IRepository<T, Key> where T : class, IEntity<Key> where Key : IConvertible
+    //public class MockRepository<T> : IRepository<T> where T : BaseEntity
     {
         private List<T> entities = new List<T>();
 
         protected List<T> Entities => this.entities;
 
-        public T GetById(object id) => this.entities.FirstOrDefault(x => x.Id == (int)id);
+        public T GetById(Key id) => this.entities.FirstOrDefault(x => x.Id == id);
 
         public List<TResult> Get<TResult>(Func<IQueryable<T>, IQueryable<TResult>> query, params string[] includes)
         {
@@ -99,7 +100,7 @@
 
         public void Delete(T entityToDelete) => this.entities.Remove(entityToDelete);
 
-        public void Delete(object id)
+        public void Delete(Key id)
         {
             var entityToRemove = this.GetById(id);
             if (entityToRemove != null)
@@ -125,7 +126,7 @@
             throw new NotImplementedException();
         }
 
-        public async Task<T> GetByIdAsync(object id) => this.GetById(id);
+        public async Task<T> GetByIdAsync(Key id) => this.GetById(id);
 
         public async Task<List<TResult>> GetAsync<TResult>(Func<IQueryable<T>, IQueryable<TResult>> query, params string[] includes)
         {

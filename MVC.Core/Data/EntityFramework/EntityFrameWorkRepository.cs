@@ -10,7 +10,8 @@ namespace MVC.Core.Data.EntityFramework
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class EntityFrameworkRepository<T> : EntityFrameworkReadOnlyRepository<T>, IRepository<T> where T : class, IEntity
+    //public class EntityFrameworkRepository<T> : EntityFrameworkReadOnlyRepository<T>, IRepository<T> where T : class, IEntity
+    public class EntityFrameworkRepository<T, Key> : EntityFrameworkReadOnlyRepository<T, Key>, IRepository<T, Key> where T : class, IEntity<Key> where Key : IConvertible
     {
         public EntityFrameworkRepository(DbContext context) : base (context)
         {
@@ -34,7 +35,7 @@ namespace MVC.Core.Data.EntityFramework
             return entityToUpdate;
         }
 
-        public virtual void Delete(object id)
+        public virtual void Delete(Key id)
         {
             T entityToDelete = this.dbSet.Find(id);
             this.Delete(entityToDelete);

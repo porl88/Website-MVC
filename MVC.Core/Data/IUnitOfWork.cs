@@ -7,24 +7,27 @@
     using Entities.Culture;
     using Entities.Website;
     using Entities.Website.PageItem;
+    using Entities.Location;
 
     public interface IUnitOfWork : IDisposable
 	{
-		IRepository<Article> ArticleRepository { get; }
+		IRepository<Article, int> ArticleRepository { get; }
 
-        IRepository<ArticleVersion> ArticleVersionRepository { get; }
+        IRepository<ArticleVersion, int> ArticleVersionRepository { get; }
 
-        IReadOnlyRepository<Language> LanguageRepository { get; }
+        IReadOnlyRepository<Country, string> CountryRepository { get; }
 
-        IRepository<Page> PageRepository { get; }
+        IReadOnlyRepository<Language, string> LanguageRepository { get; }
 
-        IRepository<PageVersion> PageVersionRepository { get; }
+        IRepository<Page, int> PageRepository { get; }
 
-        IRepository<PlainText> PlainTextRepository { get; }
+        IRepository<PageVersion, int> PageVersionRepository { get; }
 
-        IRepository<RichText> RichTextRepository { get; }
+        IRepository<PlainText, int> PlainTextRepository { get; }
 
-        IRepository<User> UserRepository { get; }
+        IRepository<RichText, int> RichTextRepository { get; }
+
+        IRepository<User, int> UserRepository { get; }
 
         void Commit();
 

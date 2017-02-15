@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class User : BaseEntity
+    public class User : BaseEntity<int>
     {
         [Required, MaxLength(256)]
         public string UserName { get; set; }

@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class Article : BaseEntity
+    public class Article : BaseEntity<int>
     {
         public Article()
         {

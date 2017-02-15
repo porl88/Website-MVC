@@ -2,10 +2,10 @@
 <!--http://www.lingoes.net/en/translator/langcode.htm-->
 
 <Languages>
-  <Language name="Afrikaans" localName="Afrikaans" languageCode="af" family="">
-    <Region name="South Africa" localName="South Africa" regionCode="ZA" />
+  <Language name="Afrikaans" localName="Afrikaans" languageCode="af" family="Indo-European">
+    <Region name="South Africa" localName="Suid-Afrika" regionCode="ZA" />
   </Language>
-  <Language name="Arabic" localName="Arabic" languageCode="ar" family="">
+  <Language name="Arabic" localName="عربى" languageCode="ar" family="Afro-Asiatic">
     <Region name="U.A.E." localName="U.A.E." regionCode="AE" />
     <Region name="Bahrain" localName="Bahrain" regionCode="BH" />
     <Region name="Algeria" localName="Algeria" regionCode="DZ" />
@@ -23,11 +23,11 @@
     <Region name="Tunisia" localName="Tunisia" regionCode="TN" />
     <Region name="Yemen" localName="Yemen" regionCode="YE" />
   </Language>
-  <Language name="Azeri" localName="Azeri" languageCode="az" family="">
+  <Language name="Azeri" localName="Azeri" languageCode="az" family="Turkic">
     <Region name="Azerbaijan" localName="Azerbaijan" regionCode="AZ" />
   </Language>
-  <Language name="Belarusian" localName="Belarusian" languageCode="be" family="">
-    <Region name="Belarus" localName="Belarus" regionCode="BY" />
+  <Language name="Belarusian" localName="беларуская мова" languageCode="be" family="Indo-European">
+    <Region name="Belarus" localName="Fehéroroszország" regionCode="BY" />
   </Language>
   <Language name="Bulgarian" localName="Bulgarian" languageCode="bg" family="">
     <Region name="Bulgaria" localName="Bulgaria" regionCode="BG" />
@@ -39,24 +39,24 @@
   <Language name="Czech" localName="Czech" languageCode="cs" family="">
     <Region name="Czech Republic" localName="Czech Republic" regionCode="CZ" />
   </Language>
-  <Language name="Welsh" localName="Welsh" languageCode="cy" family="">
+  <Language name="Welsh" localName="Cymraeg" languageCode="cy" family="Indo-European">
     <Region name="United Kingdom" localName="United Kingdom" regionCode="GB" />
   </Language>
   <Language name="Danish" localName="Danish" languageCode="da" family="">
     <Region name="Denmark" localName="Denmark" regionCode="DK" />
   </Language>
   <Language name="German" localName="Deutsch" languageCode="de" family="Indo-European">
-    <Region name="Austria" localName="Austria" regionCode="AT" />
-    <Region name="Switzerland" localName="Switzerland" regionCode="CH" />
-    <Region name="Germany" localName="Germany" regionCode="DE" />
+    <Region name="Austria" localName="Österreich" regionCode="AT" />
+    <Region name="Switzerland" localName="Schweiz" regionCode="CH" />
+    <Region name="Germany" localName="Deutschland" regionCode="DE" />
     <Region name="Liechtenstein" localName="Liechtenstein" regionCode="LI" />
-    <Region name="Luxembourg" localName="Luxembourg" regionCode="LU" />
+    <Region name="Luxembourg" localName="Luxemburg" regionCode="LU" />
   </Language>
   <Language name="Divehi" localName="Divehi" languageCode="dv" family="">
     <Region name="Maldives" localName="Maldives" regionCode="MV" />
   </Language>
-  <Language name="Greek" localName="Greek" languageCode="el" family="">
-    <Region name="Greece" localName="Greece" regionCode="GR" />
+  <Language name="Greek" localName="Ελληνικά" languageCode="el" family="">
+    <Region name="Greece" localName="Ελλάς" regionCode="GR" />
   </Language>
   <Language name="English" localName="English" languageCode="en" family="Indo-European">
     <Region name="Australia" localName="Australia" regionCode="AU" />
@@ -81,10 +81,10 @@
     <Region name="Chile" localName="Chile" regionCode="CL" />
     <Region name="Colombia" localName="Colombia" regionCode="CO" />
     <Region name="Costa Rica" localName="Costa Rica" regionCode="CR" />
-    <Region name="Dominican Republic" localName="Dominican Republic" regionCode="DO" />
+    <Region name="Dominican Republic" localName="República Dominicana" regionCode="DO" />
     <Region name="Ecuador" localName="Ecuador" regionCode="EC" />
-    <Region name="Castilian" localName="Castilian" regionCode="ES" />
-    <Region name="Spain" localName="Spain" regionCode="ES" />
+    <Region name="Castilian" localName="Castellano" regionCode="ES" />
+    <Region name="Spain" localName="España" regionCode="ES" />
     <Region name="Guatemala" localName="Guatemala" regionCode="GT" />
     <Region name="Honduras" localName="Honduras" regionCode="HN" />
     <Region name="Mexico" localName="Mexico" regionCode="MX" />
@@ -113,12 +113,12 @@
     <Region name="Faroe Islands" localName="Faroe Islands" regionCode="FO" />
   </Language>
   <Language name="French" localName="Français" languageCode="fr" family="Indo-European">
-    <Region name="Belgium" localName="Belgium" regionCode="BE" />
+    <Region name="Belgium" localName="Belgique" regionCode="BE" />
     <Region name="Canada" localName="Canada" regionCode="CA" />
-    <Region name="Switzerland" localName="Switzerland" regionCode="CH" />
+    <Region name="Switzerland" localName="Suisse" regionCode="CH" />
     <Region name="France" localName="France" regionCode="FR" />
     <Region name="Luxembourg" localName="Luxembourg" regionCode="LU" />
-    <Region name="Principality of Monaco" localName="Principality of Monaco" regionCode="MC" />
+    <Region name="Principality of Monaco" localName="Monaco" regionCode="MC" />
   </Language>
   <Language name="Galician" localName="Galician" languageCode="gl" family="">
     <Region name="Spain" localName="Spain" regionCode="ES" />
@@ -126,8 +126,8 @@
   <Language name="Gujarati" localName="Gujarati" languageCode="gu" family="">
     <Region name="India" localName="India" regionCode="IN" />
   </Language>
-  <Language name="Hebrew" localName="Hebrew" languageCode="he" family="">
-    <Region name="Israel" localName="Israel" regionCode="IL" />
+  <Language name="Hebrew" localName="עִברִית" languageCode="he" family="">
+    <Region name="Israel" localName="ישראל" regionCode="IL" />
   </Language>
   <Language name="Hindi" localName="Hindi" languageCode="hi" family="">
     <Region name="India" localName="India" regionCode="IN" />
@@ -136,8 +136,8 @@
     <Region name="Bosnia and Herzegovina" localName="Bosnia and Herzegovina" regionCode="BA" />
     <Region name="Croatia" localName="Croatia" regionCode="HR" />
   </Language>
-  <Language name="Hungarian" localName="Hungarian" languageCode="hu" family="">
-    <Region name="Hungary" localName="Hungary" regionCode="HU" />
+  <Language name="Hungarian" localName="Magyar" languageCode="hu" family="Uralic">
+    <Region name="Hungary" localName="Magyarország" regionCode="HU" />
   </Language>
   <Language name="Armenian" localName="Armenian" languageCode="hy" family="">
     <Region name="Armenia" localName="Armenia" regionCode="AM" />
@@ -152,8 +152,8 @@
     <Region name="Switzerland" localName="Switzerland" regionCode="CH" />
     <Region name="Italy" localName="Italy" regionCode="IT" />
   </Language>
-  <Language name="Japanese" localName="Japanese" languageCode="ja" family="">
-    <Region name="Japan" localName="Japan" regionCode="JP" />
+  <Language name="Japanese" localName="日本語" languageCode="ja" family="">
+    <Region name="Japan" localName="日本" regionCode="JP" />
   </Language>
   <Language name="Georgian" localName="Georgian" languageCode="ka" family="">
     <Region name="Georgia" localName="Georgia" regionCode="GE" />
@@ -167,23 +167,23 @@
   <Language name="Korean" localName="Korean" languageCode="ko" family="">
     <Region name="Korea" localName="Korea" regionCode="KR" />
   </Language>
-  <Language name="Konkani" localName="Konkani" languageCode="kok" family="">
+  <!--<Language name="Konkani" localName="Konkani" languageCode="kok" family="">
     <Region name="India" localName="India" regionCode="IN" />
-  </Language>
+  </Language>-->
   <Language name="Kyrgyz" localName="Kyrgyz" languageCode="ky" family="">
     <Region name="Kyrgyzstan" localName="Kyrgyzstan" regionCode="KG" />
   </Language>
   <Language name="Lithuanian" localName="Lithuanian" languageCode="lt" family="">
     <Region name="Lithuania" localName="Lithuania" regionCode="LT" />
   </Language>
-  <Language name="Latvian" localName="Latvian" languageCode="lv" family="">
-    <Region name="Latvia" localName="Latvia" regionCode="LV" />
+  <Language name="Latvian" localName="Latviešu valoda" languageCode="lv" family="Indo-European">
+    <Region name="Latvia" localName="Latvija" regionCode="LV" />
   </Language>
-  <Language name="Maori" localName="Maori" languageCode="mi" family="">
+  <Language name="Maori" localName="Māori" languageCode="mi" family="Austronesian">
     <Region name="New Zealand" localName="New Zealand" regionCode="NZ" />
   </Language>
-  <Language name="FYRO Macedonian" localName="FYRO Macedonian" languageCode="mk" family="">
-    <Region name="Former Yugoslav Republic of Macedonia" localName="Former Yugoslav Republic of Macedonia" regionCode="MK" />
+  <Language name="Macedonian" localName="македонски" languageCode="mk" family="Indo-European">
+    <Region name="Macedonia" localName="Macedonia" regionCode="MK" />
   </Language>
   <Language name="Mongolian" localName="Mongolian" languageCode="mn" family="">
     <Region name="Mongolia" localName="Mongolia" regionCode="MN" />
@@ -247,8 +247,8 @@
   <Language name="Slovenian" localName="Slovenian" languageCode="sl" family="">
     <Region name="Slovenia" localName="Slovenia" regionCode="SI" />
   </Language>
-  <Language name="Albanian" localName="Albanian" languageCode="sq" family="">
-    <Region name="Albania" localName="Albania" regionCode="AL" />
+  <Language name="Albanian" localName="Shqip" languageCode="sq" family="">
+    <Region name="Albania" localName="Shqipëri" regionCode="AL" />
   </Language>
   <Language name="Serbian" localName="Serbian" languageCode="sr" family="">
     <Region name="Bosnia and Herzegovina" localName="Bosnia and Herzegovina" regionCode="BA" />
@@ -261,9 +261,9 @@
   <Language name="Swahili" localName="Swahili" languageCode="sw" family="">
     <Region name="Kenya" localName="Kenya" regionCode="KE" />
   </Language>
-  <Language name="Syriac" localName="Syriac" languageCode="syr" family="">
+  <!--<Language name="Syriac" localName="Syriac" languageCode="syr" family="">
     <Region name="Syria" localName="Syria" regionCode="SY" />
-  </Language>
+  </Language>-->
   <Language name="Tamil" localName="Tamil" languageCode="ta" family="">
     <Region name="India" localName="India" regionCode="IN" />
   </Language>
@@ -302,7 +302,7 @@
   <Language name="Xhosa" localName="Xhosa" languageCode="xh" family="">
     <Region name="South Africa" localName="South Africa" regionCode="ZA" />
   </Language>
-  <Language name="Chinese" localName="Chinese" languageCode="zh" family="">
+  <Language name="Chinese" localName="中文" languageCode="zh" family="Sino-Tibetan">
     <Region name="S" localName="S" regionCode="CN" />
     <Region name="Hong Kong" localName="Hong Kong" regionCode="HK" />
     <Region name="Macau" localName="Macau" regionCode="MO" />
@@ -310,6 +310,6 @@
     <Region name="T" localName="T" regionCode="TW" />
   </Language>
   <Language name="Zulu" localName="Zulu" languageCode="zu" family="">
-    <Region name="South Africa" localName="South Africa" regionCode="ZA" />
+    <Region name="South Africa" localName="Iningizimu Afrika" regionCode="ZA" />
   </Language>
 </Languages>

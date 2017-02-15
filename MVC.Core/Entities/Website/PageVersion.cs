@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class PageVersion : BaseEntity
+    public class PageVersion : BaseEntity<int>
 	{
         [Required]
         public int PageId { get; set; }

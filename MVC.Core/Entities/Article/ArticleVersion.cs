@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class ArticleVersion : BaseEntity
+    public class ArticleVersion : BaseEntity<int>
     {
         [Required]
         public int ArticleId { get; set; }

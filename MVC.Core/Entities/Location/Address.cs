@@ -1,6 +1,6 @@
 ﻿namespace MVC.Core.Entities.Location
 {
-    public class Address : BaseEntity
+    public class Address : BaseEntity<int>
     {
 		public string Number { get; set; }
 

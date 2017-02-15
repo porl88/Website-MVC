@@ -8,20 +8,22 @@ namespace MVC.Core.Data.EntityFramework
     using Entities.Account;
     using Entities.Article;
     using Entities.Culture;
+    using Entities.Location;
     using Entities.Website;
     using Entities.Website.PageItem;
 
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly WebsiteDbContext context = new WebsiteDbContext();
-        private readonly IRepository<Article> articleRepository;
-        private readonly IRepository<ArticleVersion> articleVersionRepository;
-        private readonly IReadOnlyRepository<Language> languageRepository;
-        private readonly IRepository<Page> pageRepository;
-        private readonly IRepository<PageVersion> pageVersionRepository;
-        private readonly IRepository<PlainText> plainTextRepository;
-        private readonly IRepository<RichText> richTextRepository;
-        private readonly IRepository<User> userRepository;
+        private readonly IRepository<Article, int> articleRepository;
+        private readonly IRepository<ArticleVersion, int> articleVersionRepository;
+        private readonly IReadOnlyRepository<Country, string> countryRepository;
+        private readonly IReadOnlyRepository<Language, string> languageRepository;
+        private readonly IRepository<Page, int> pageRepository;
+        private readonly IRepository<PageVersion, int> pageVersionRepository;
+        private readonly IRepository<PlainText, int> plainTextRepository;
+        private readonly IRepository<RichText, int> richTextRepository;
+        private readonly IRepository<User, int> userRepository;
 
         public UnitOfWork()
         {
@@ -31,31 +33,34 @@ namespace MVC.Core.Data.EntityFramework
             // https://blog.oneunicorn.com/2013/05/08/ef6-sql-logging-part-1-simple-logging/
             this.context.Database.Log = s => Debug.WriteLine(s);
 #endif
-            this.articleRepository = new EntityFrameworkRepository<Article>(this.context);
-            this.articleVersionRepository = new EntityFrameworkRepository<ArticleVersion>(this.context);
-            this.languageRepository = new EntityFrameworkReadOnlyRepository<Language>(this.context);
-            this.pageRepository = new EntityFrameworkRepository<Page>(this.context);
-            this.pageVersionRepository = new EntityFrameworkRepository<PageVersion>(this.context);
-            this.plainTextRepository = new EntityFrameworkRepository<PlainText>(this.context);
-            this.richTextRepository = new EntityFrameworkRepository<RichText>(this.context);
-            this.userRepository = new EntityFrameworkRepository<User>(this.context);
+            this.articleRepository = new EntityFrameworkRepository<Article, int>(this.context);
+            this.articleVersionRepository = new EntityFrameworkRepository<ArticleVersion, int>(this.context);
+            this.countryRepository = new EntityFrameworkReadOnlyRepository<Country, string>(this.context);
+            this.languageRepository = new EntityFrameworkReadOnlyRepository<Language, string>(this.context);
+            this.pageRepository = new EntityFrameworkRepository<Page, int>(this.context);
+            this.pageVersionRepository = new EntityFrameworkRepository<PageVersion, int>(this.context);
+            this.plainTextRepository = new EntityFrameworkRepository<PlainText, int>(this.context);
+            this.richTextRepository = new EntityFrameworkRepository<RichText, int>(this.context);
+            this.userRepository = new EntityFrameworkRepository<User, int>(this.context);
         }
 
-        public IRepository<Article> ArticleRepository => this.articleRepository;
+        public IRepository<Article, int> ArticleRepository => this.articleRepository;
 
-        public IRepository<ArticleVersion> ArticleVersionRepository => this.articleVersionRepository;
+        public IRepository<ArticleVersion, int> ArticleVersionRepository => this.articleVersionRepository;
 
-        public IReadOnlyRepository<Language> LanguageRepository => this.languageRepository;
+        public IReadOnlyRepository<Country, string> CountryRepository => this.countryRepository;
 
-        public IRepository<Page> PageRepository => this.pageRepository;
+        public IReadOnlyRepository<Language, string> LanguageRepository => this.languageRepository;
 
-        public IRepository<PageVersion> PageVersionRepository => this.pageVersionRepository;
+        public IRepository<Page, int> PageRepository => this.pageRepository;
 
-        public IRepository<PlainText> PlainTextRepository => this.plainTextRepository;
+        public IRepository<PageVersion, int> PageVersionRepository => this.pageVersionRepository;
 
-        public IRepository<RichText> RichTextRepository => this.richTextRepository;
+        public IRepository<PlainText, int> PlainTextRepository => this.plainTextRepository;
 
-        public IRepository<User> UserRepository => this.userRepository;
+        public IRepository<RichText, int> RichTextRepository => this.richTextRepository;
+
+        public IRepository<User, int> UserRepository => this.userRepository;
 
         public void Commit()
         {
@@ -71,13 +76,11 @@ namespace MVC.Core.Data.EntityFramework
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!this.disposed && disposing)
             {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
+                this.context.Dispose();
             }
+
             this.disposed = true;
         }
 

@@ -2,6 +2,23 @@
 // http://cpratt.co/truly-generic-repository/
 // http://blogs.msdn.com/b/mrtechnocal/archive/2014/03/16/asynchronous-repositories.aspx
 
+/*
+public interface IGenericRepository<T> : where T : class
+{
+    IQueryable<T> AsQueryable();
+
+    IEnumerable<T> GetAll();
+    IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
+    T Single(Expression<Func<T, bool>>  predicate);
+    T SingleOrDefault(Expression<Func<T, bool>> predicate);
+    T First(Expression<Func<T, bool>> predicate);
+    T GetById(int id);
+
+    void Add(T entity);
+    void Delete(T entity);
+    void Attach(T entity);
+}
+ */
 namespace MVC.Core.Data.EntityFramework
 {
     using System;
@@ -12,7 +29,8 @@ namespace MVC.Core.Data.EntityFramework
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    public class EntityFrameworkReadOnlyRepository<T> : IReadOnlyRepository<T> where T : class
+    //public class EntityFrameworkReadOnlyRepository<T> : IReadOnlyRepository<T> where T : class
+    public class EntityFrameworkReadOnlyRepository<T, Key> : IReadOnlyRepository<T, Key> where T : class, IEntity<Key> where Key : IConvertible
     {
         protected readonly DbContext context;
         protected readonly DbSet<T> dbSet;
@@ -33,7 +51,7 @@ namespace MVC.Core.Data.EntityFramework
 #endif
         }
 
-        public virtual T GetById(object id)
+        public virtual T GetById(Key id)
         {
             return this.dbSet.Find(id);
         }
@@ -77,7 +95,7 @@ namespace MVC.Core.Data.EntityFramework
             return this.GetQueryable(where).Any();
         }
 
-        public virtual async Task<T> GetByIdAsync(object id)
+        public virtual async Task<T> GetByIdAsync(Key id)
         {
             return await this.dbSet.FindAsync(id);
         }

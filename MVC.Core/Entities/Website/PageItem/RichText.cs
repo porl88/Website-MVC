@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class RichText : BaseEntity, IPageItem
+    public class RichText : BaseEntity<int>, IPageItem
     {
         [Required]
         public string Label { get; set; }

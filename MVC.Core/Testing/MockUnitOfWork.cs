@@ -8,45 +8,50 @@
     using Entities.Website;
     using Entities.Website.PageItem;
     using Entities.Article;
+    using Entities.Location;
 
     public class MockUnitOfWork : IUnitOfWork
 	{
-		private readonly IRepository<Article> articleRepository;
-        private readonly IRepository<ArticleVersion> articleVersionRepository;
-        private readonly IRepository<Language> languageRepository;
-        private readonly IRepository<Page> pageRepository;
-        private readonly IRepository<PageVersion> pageVersionRepository;
-        private readonly IRepository<PlainText> plainTextRepository;
-        private readonly IRepository<RichText> richTextRepository;
-        private readonly IRepository<User> userRepository;
+		private readonly IRepository<Article, int> articleRepository;
+        private readonly IRepository<ArticleVersion, int> articleVersionRepository;
+        private readonly IRepository<Country, string> countryRepository;
+        private readonly IRepository<Language, string> languageRepository;
+        private readonly IRepository<Page, int> pageRepository;
+        private readonly IRepository<PageVersion, int> pageVersionRepository;
+        private readonly IRepository<PlainText, int> plainTextRepository;
+        private readonly IRepository<RichText, int> richTextRepository;
+        private readonly IRepository<User, int> userRepository;
 
         public MockUnitOfWork()
 		{
-			this.articleRepository = new MockRepository<Article>();
-            this.articleVersionRepository = new MockRepository<ArticleVersion>();
-            this.languageRepository = new MockRepository<Language>();
-            this.pageRepository = new MockRepository<Page>();
-            this.pageVersionRepository = new MockRepository<PageVersion>();
-            this.plainTextRepository = new MockRepository<PlainText>();
-            this.richTextRepository = new MockRepository<RichText>();
-            this.userRepository = new MockRepository<User>();
+			this.articleRepository = new MockRepository<Article, int>();
+            this.articleVersionRepository = new MockRepository<ArticleVersion, int>();
+            this.countryRepository = new MockRepository<Country, string>();
+            this.languageRepository = new MockRepository<Language, string>();
+            this.pageRepository = new MockRepository<Page, int>();
+            this.pageVersionRepository = new MockRepository<PageVersion, int>();
+            this.plainTextRepository = new MockRepository<PlainText, int>();
+            this.richTextRepository = new MockRepository<RichText, int>();
+            this.userRepository = new MockRepository<User, int>();
         }
 
-        public IRepository<Article> ArticleRepository => this.articleRepository;
+        public IRepository<Article, int> ArticleRepository => this.articleRepository;
 
-        public IRepository<ArticleVersion> ArticleVersionRepository => this.articleVersionRepository;
+        public IRepository<ArticleVersion, int> ArticleVersionRepository => this.articleVersionRepository;
 
-        public IRepository<Language> LanguageRepository => this.languageRepository;
+        public IReadOnlyRepository<Country, string> CountryRepository => this.countryRepository;
 
-        public IRepository<Page> PageRepository => this.pageRepository;
+        public IReadOnlyRepository<Language, string> LanguageRepository => this.languageRepository;
 
-        public IRepository<PageVersion> PageVersionRepository => this.pageVersionRepository;
+        public IRepository<Page, int> PageRepository => this.pageRepository;
 
-        public IRepository<PlainText> PlainTextRepository => this.plainTextRepository;
+        public IRepository<PageVersion, int> PageVersionRepository => this.pageVersionRepository;
 
-        public IRepository<RichText> RichTextRepository => this.richTextRepository;
+        public IRepository<PlainText, int> PlainTextRepository => this.plainTextRepository;
 
-        public IRepository<User> UserRepository => this.userRepository;
+        public IRepository<RichText, int> RichTextRepository => this.richTextRepository;
+
+        public IRepository<User, int> UserRepository => this.userRepository;
 
         public void Commit()
 		{

@@ -1,6 +1,6 @@
 ﻿namespace MVC.Core.Entities.Website
 {
-	public class Page : BaseEntity
+	public class Page : BaseEntity<int>
 	{
 	}
 }

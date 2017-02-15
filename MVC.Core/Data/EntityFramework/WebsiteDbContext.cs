@@ -4,6 +4,7 @@
     using Entities.Account;
     using Entities.Article;
     using Entities.Culture;
+    using Entities.Location;
     using Entities.Website;
     using Entities.Website.PageItem;
 
@@ -18,6 +19,8 @@
         public DbSet<Article> Articles { get; set; }
 
         public DbSet<ArticleVersion> ArticleVersions { get; set; }
+
+        public DbSet<Country> Countries { get; set; }
 
         public DbSet<Language> Languages { get; set; }
 

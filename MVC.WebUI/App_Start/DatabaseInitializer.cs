@@ -10,6 +10,9 @@
     using Core.Data.EntityFramework;
     using Core.Entities.Article;
     using WebMatrix.WebData;
+    using System.Xml.Linq;
+    using Core.Entities.Location;
+    using System.Xml;
 
     // http://www.codeproject.com/Tips/814618/Use-of-Database-SetInitializer-method-in-Code-Firs
 
@@ -17,7 +20,10 @@
     {
         protected override void Seed(WebsiteDbContext context)
         {
-            this.CreateLanguages(context);
+            this.AddCountries(context);
+            this.AddLanguages(context);
+            this.InitialiseWebSecurity();
+
             this.CreateArticles(context);
 
             //context.Pages.Add(new Page());
@@ -73,57 +79,61 @@
             base.Seed(context);
         }
 
-        private void CreateLanguages(WebsiteDbContext context)
+        private void AddLanguages(WebsiteDbContext context)
         {
-            var now = DateTimeOffset.Now;
+            var settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+            var filePath = System.Web.HttpContext.Current.Server.MapPath("/App_Data/Languages.xml");
 
-            context.Languages.Add(new Language
+            using (var r = XmlReader.Create(filePath, settings))
             {
-                Id = 1,
-                LanguageCode = "en-gb",
-                Name = "English",
-                RegionName = "United Kingdom",
-                LocalName = "English",
-                LocalRegionName = "United Kingdom",
-                Created = now,
-                Updated = now
-            });
+                r.ReadStartElement("Languages");
 
-            context.Languages.Add(new Language
-            {
-                Id = 2,
-                LanguageCode = "fr-fr",
-                Name = "French",
-                RegionName = "France",
-                LocalName = "Français",
-                LocalRegionName = "France",
-                Created = now,
-                Updated = now
-            });
+                while (r.Name == "Language")
+                {
+                    var element = (XElement)XNode.ReadFrom(r);
+                    var language = new Language
+                    {
+                        Id = (string)element.Attribute("languageCode"),
+                        Name = (string)element.Attribute("name"),
+                        LocalName = (string)element.Attribute("localName"),
+                        Created = DateTimeOffset.UtcNow,
+                        Updated = DateTimeOffset.UtcNow
+                    };
 
-            context.Languages.Add(new Language
-            {
-                Id = 3,
-                LanguageCode = "de-de",
-                Name = "German",
-                RegionName = "Germany",
-                LocalName = "Deutsche",
-                LocalRegionName = "Deutschland",
-                Created = now,
-                Updated = now
-            });
+                    context.Languages.Add(language);
+                }
 
-            context.Languages.Add(new Language
+                r.ReadEndElement();
+            }
+        }
+
+        private void AddCountries(WebsiteDbContext context)
+        {
+            var settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+            var filePath = System.Web.HttpContext.Current.Server.MapPath("/App_Data/Countries.xml");
+
+            using (var r = XmlReader.Create(filePath, settings))
             {
-                Id = 4,
-                LanguageCode = "es-es",
-                Name = "Spanish",
-                RegionName = "Spain",
-                LocalName = "Español",
-                LocalRegionName = "España",
-                Created = now,
-                Updated = now
-            });
+                r.ReadStartElement("Countries");
+
+                while (r.Name == "Country")
+                {
+                    var element = (XElement)XNode.ReadFrom(r);
+                    var country = new Country
+                    {
+                        Id = (string)element.Attribute("isoCode"),
+                        Name = (string)element.Attribute("name"),
+                        Created = DateTimeOffset.UtcNow,
+                        Updated = DateTimeOffset.UtcNow
+                    };
+
+                    context.Countries.Add(country);
+                }
+
+                r.ReadEndElement();
+            }
         }
 
         private void CreateArticles(WebsiteDbContext context)

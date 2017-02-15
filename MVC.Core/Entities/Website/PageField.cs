@@ -1,6 +1,6 @@
 ﻿namespace MVC.Core.Entities.Website
 {
-    public class PageField : BaseEntity
+    public class PageField : BaseEntity<int>
     {
         public int PageId { get; set; }
 

@@ -49,13 +49,13 @@
 
             try
             {
-                var persist = false;
+                var persist = request.Persistence != null;
 
                 if (WebSecurity.Login(request.UserName, request.Password, persist))
                 {
-                    if (request.Persistence != null)
+                    if (persist)
                     {
-                        persist = true;
+                        // this does not work, as the expiration date gets overridden by the timeout value of the <form> section in the web.config file and there is no way of programmatically changing/overriding it
                         this.context.Response.Cookies[0].Expires = DateTime.Now.Add((TimeSpan)request.Persistence);
                     }
 

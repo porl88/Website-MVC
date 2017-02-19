@@ -26,13 +26,13 @@
 
     public class SimpleMembershipAdapter : IAuthenticationService, IAccountService, IUserService
     {
-        private readonly HttpContext context;
-        private readonly IUnitOfWork unitOfWork;
+        private readonly HttpContextBase context;
         private readonly IExceptionHandler exceptionHandler;
+        private readonly IUnitOfWork unitOfWork;
 
-        public SimpleMembershipAdapter(IUnitOfWork unitOfWork, IExceptionHandler exceptionHandler)
+        public SimpleMembershipAdapter(HttpContextBase context, IUnitOfWork unitOfWork, IExceptionHandler exceptionHandler)
         {
-            this.context = HttpContext.Current;
+            this.context = context;
             this.exceptionHandler = exceptionHandler;
             this.unitOfWork = unitOfWork;
         }
@@ -59,17 +59,17 @@
                         this.context.Response.Cookies[0].Expires = DateTime.Now.Add((TimeSpan)request.Persistence);
                     }
 
-                    response.Status = StatusCode.OK;
+                    response.Success = true;
                 }
                 else
                 {
-                    response.Status = StatusCode.Unauthorized;
+                    response.Message = Resources.Account.InvalidUserNameOrPassword;
                 }
             }
             catch (Exception ex)
             {
-                response.Status = StatusCode.InternalServerError;
                 this.exceptionHandler.HandleException(ex);
+                response.Message = Resources.Account.InternalServerError;
             }
 
             return response;
@@ -86,17 +86,17 @@
                 if (WebSecurity.UserExists(request.UserName))
                 {
                     response.ResetPasswordToken = WebSecurity.GeneratePasswordResetToken(request.UserName, (int)request.Expires.TotalMinutes);
-                    response.Status = StatusCode.OK;
+                    response.Success = true;
                 }
                 else
                 {
-                    response.Status = StatusCode.Unauthorized;
+                    response.Message = Resources.Account.InvalidUserName;
                 }
             }
             catch (Exception ex)
             {
-                response.Status = StatusCode.InternalServerError;
                 this.exceptionHandler.HandleException(ex);
+                response.Message = Resources.Account.InternalServerError;
             }
 
             return response;
@@ -110,17 +110,17 @@
             {
                 if (WebSecurity.ResetPassword(request.ResetPasswordToken, request.NewPassword))
                 {
-                    response.Status = StatusCode.OK;
+                    response.Success = true;
                 }
                 else
                 {
-                    response.Status = StatusCode.Unauthorized;
+                    response.Message = Resources.Account.InvalidToken;
                 }
             }
             catch (Exception ex)
             {
-                response.Status = StatusCode.InternalServerError;
                 this.exceptionHandler.HandleException(ex);
+                response.Message = Resources.Account.InternalServerError;
             }
 
             return response;
@@ -134,17 +134,17 @@
             {
                 if (WebSecurity.ConfirmAccount(request.ActivateAccountToken))
                 {
-                    response.Status = StatusCode.OK;
+                    response.Success = true;
                 }
                 else
                 {
-                    response.Status = StatusCode.Unauthorized;
+                    response.Message = Resources.Account.InvalidToken;
                 }
             }
             catch (Exception ex)
             {
-                response.Status = StatusCode.InternalServerError;
                 this.exceptionHandler.HandleException(ex);
+                response.Message = Resources.Account.InternalServerError;
             }
 
             return response;
@@ -158,17 +158,17 @@
             {
                 if (WebSecurity.ChangePassword(request.UserName, request.OldPassword, request.NewPassword))
                 {
-                    response.Status = StatusCode.OK;
+                    response.Success = true;
                 }
                 else
                 {
-                    response.Status = StatusCode.Unauthorized;
+                    response.Message = Resources.Account.InvalidUserNameOrPassword;
                 }
             }
             catch (Exception ex)
             {
-                response.Status = StatusCode.InternalServerError;
                 this.exceptionHandler.HandleException(ex);
+                response.Message = Resources.Account.InternalServerError;
             }
 
             return response;
@@ -186,18 +186,17 @@
                 };
 
                 response.ActivateAccountToken = WebSecurity.CreateUserAndAccount(request.UserName, request.Password, propertyValues, requireConfirmationToken: request.RequireActivation);
-                response.Status = StatusCode.OK;
+                response.Success = true;
             }
             // https://msdn.microsoft.com/en-us/library/system.web.security.membershipcreateuserexception.statuscode(v=vs.110).aspx
             catch (MembershipCreateUserException ex)
             {
-                response.Status = StatusCode.BadRequest;
-                response.CreateAccountStatus = this.MapCreateAccountStatus(ex.StatusCode);
+                response.Message = this.GetErrorMessage(ex.StatusCode);
             }
             catch (Exception ex)
             {
-                response.Status = StatusCode.InternalServerError;
                 this.exceptionHandler.HandleException(ex);
+                response.Message = Resources.Account.InternalServerError;
             }
 
             return response;
@@ -219,11 +218,13 @@
                 var membership = (SimpleMembershipProvider)Membership.Provider;
                 membership.DeleteAccount(userName); // deletes record from webpages_Membership table
                 membership.DeleteUser(userName, true); // deletes record from UserProfile table
+
+                response.Success = true;
             }
             catch (Exception ex)
             {
-                response.Status = StatusCode.InternalServerError;
                 this.exceptionHandler.HandleException(ex);
+                response.Message = Resources.Account.InternalServerError;
             }
 
             return response;
@@ -250,18 +251,17 @@
 
                 WebSecurity.CreateUserAndAccount(user.UserName.Trim(), password, propertyValues, requireConfirmationToken: false);
                 response.Password = password;
-                response.Status = StatusCode.OK;
+                response.Success = true;
             }
             // https://msdn.microsoft.com/en-us/library/system.web.security.membershipcreateuserexception.statuscode(v=vs.110).aspx
             catch (MembershipCreateUserException ex)
             {
-                response.Status = StatusCode.BadRequest;
-                response.CreateAccountStatus = this.MapCreateAccountStatus(ex.StatusCode);
+                response.Message = this.GetErrorMessage(ex.StatusCode);
             }
             catch (Exception ex)
             {
-                response.Status = StatusCode.InternalServerError;
                 this.exceptionHandler.HandleException(ex);
+                response.Message = Resources.Account.InternalServerError;
             }
 
             return response;
@@ -281,41 +281,41 @@
                     Email = x.Email
                 }));
 
-                response.Status = StatusCode.OK;
+                response.Success = true;
             }
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Status = StatusCode.InternalServerError;
+                response.Message = Resources.Account.InternalServerError;
             }
 
             return response;
         }
 
-        private CreateAccountStatus MapCreateAccountStatus(MembershipCreateStatus status)
+        private string GetErrorMessage(MembershipCreateStatus status)
         {
             switch (status)
             {
                 case MembershipCreateStatus.DuplicateUserName:
-                    return CreateAccountStatus.DuplicateUserName;
+                    return Resources.Account.DuplicateUserName;
                 case MembershipCreateStatus.DuplicateEmail:
-                    return CreateAccountStatus.DuplicateEmail;
+                    return Resources.Account.DuplicateEmail;
                 case MembershipCreateStatus.InvalidUserName:
-                    return CreateAccountStatus.InvalidUserName;
-                case MembershipCreateStatus.InvalidEmail:
-                    return CreateAccountStatus.InvalidEmail;
+                    return Resources.Account.InvalidUserName;
                 case MembershipCreateStatus.InvalidPassword:
-                    return CreateAccountStatus.InvalidPassword;
+                    return Resources.Account.InvalidPassword;
+                case MembershipCreateStatus.InvalidEmail:
+                    return Resources.Account.InvalidEmail;
                 case MembershipCreateStatus.InvalidAnswer:
-                    return CreateAccountStatus.InvalidAnswer;
+                    return Resources.Account.InvalidAnswer;
                 case MembershipCreateStatus.InvalidQuestion:
-                    return CreateAccountStatus.InvalidQuestion;
+                    return Resources.Account.InvalidQuestion;
                 case MembershipCreateStatus.ProviderError:
-                    return CreateAccountStatus.ProviderError;
+                    return Resources.Account.ProviderError;
                 case MembershipCreateStatus.UserRejected:
-                    return CreateAccountStatus.UserRejected;
+                    return Resources.Account.UserRejected;
                 default:
-                    return CreateAccountStatus.Unknown;
+                    return Resources.Account.UnknownError;
             }
         }
     }

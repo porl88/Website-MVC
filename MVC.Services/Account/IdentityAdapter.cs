@@ -1,196 +1,95 @@
-﻿// https://www.asp.net/identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity
+﻿/*
+ * TO INSTALL - NuGet packages:
+ * Microsoft ASP.NET Identity Core
+ * Microsoft ASP.NET Identity Framework (if using Entity Framework)
+ * Microsoft ASP.NET Identity Owin
+ * Microsoft.Owin.Security.Cookies ???
+ */
+
+// https://www.asp.net/identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity
+
+// http://tektutorialshub.com/asp-net-identity-tutorial-user-login-and-registration/
+
+// http://www.binaryintellect.net/articles/b957238b-e2dd-4401-bfd7-f0b8d984786d.aspx
+
 namespace MVC.Services.Account
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Text;
     using System.Threading.Tasks;
     using System.Web;
-    using Core.Data.EntityFramework;
-    using Core.Entities.Account;
+    using Core.Data;
     using Core.Exceptions;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.Owin;
     using Microsoft.Owin.Security;
-    using Microsoft.Owin.Security.DataProtection;
     using Transfer;
 
-    public class IdentityAdapter : IAuthenticationService, IAccountService
+    public class IdentityAdapter : IAuthenticationServiceAsync
     {
         private readonly IExceptionHandler exceptionHandler;
-        private readonly IDataProtectionProvider protectionProvider;
-        private readonly IOwinContext context;
+        private readonly IUnitOfWork unitOfWork;
 
-        public IdentityAdapter(IExceptionHandler exceptionHandler)
+        public IdentityAdapter(IUnitOfWork unitOfWork, IExceptionHandler exceptionHandler)
         {
             this.exceptionHandler = exceptionHandler;
-            this.protectionProvider = new DpapiDataProtectionProvider("WebsiteMVC");
-            this.context = HttpContext.Current.GetOwinContext();
+            this.unitOfWork = unitOfWork;
         }
 
-        public bool IsAuthenticated
-        {
-            get
-            {
-                return this.context.Authentication.User.Identity.IsAuthenticated;
-            }
-        }
-
-        public LoginResponse LogIn(LoginRequest request)
+        public async Task<LoginResponse> LogInAsync(LoginRequest request)
         {
             var response = new LoginResponse();
-            //var user = await UserManager.FindAsync(model.UserName, model.Password);
-
-            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            //var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            //AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
-
-            //var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-            //var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-            //authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
-
-            var authenticationProperties = new AuthenticationProperties();
-
-            if (request.Persistence != null)
-            {
-                authenticationProperties.ExpiresUtc = DateTimeOffset.UtcNow.Add((TimeSpan)request.Persistence);
-            }
-
-            this.context.Authentication.SignIn(authenticationProperties);
-            // SignInStatus 
-
-            return response;
-        }
-
-        //public bool LogIn(string userName, string password)
-        //{
-        //    using (var userStore = new UserStore<IdentityUser>())
-        //    {
-        //        using (var userManager = new UserManager<IdentityUser>(userStore))
-        //        {
-        //            var user = userManager.Find(userName, password);
-        //            if (user != null)
-        //            {
-        //                //var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-        //                return true;
-        //            }
-        //        }
-        //    }
-
-        //    return false;
-        //    //var userStore = new UserStore<IdentityUser>();
-        //    //var userManager = new UserManager<IdentityUser>(userStore);
-        //    //var user = userManager.Find(UserName.Text, Password.Text);
-
-        //    //if (user != null)
-        //    //{
-        //    //    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-        //    //    var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-
-        //    //    authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
-        //    //    Response.Redirect("~/Login.aspx");
-        //    //}
-        //    //else
-        //    //{
-        //    //    StatusText.Text = "Invalid username or password.";
-        //    //    LoginStatus.Visible = true;
-        //    //}
-
-        //    throw new NotImplementedException();
-        //}
-
-        public void LogOut()
-        {
-            this.context.Authentication.SignOut();
-        }
-
-        public bool ActivateAccount(string activateAccountToken)
-        {
-            // http://bitoftech.net/2015/02/03/asp-net-identity-2-accounts-confirmation-password-user-policy-configuration/
-            // http://www.asp.net/identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity
-            throw new NotImplementedException();
-        }
-
-        public bool ChangePassword(string oldPassword, string newPassword)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CreateAccountResponse CreateAccount(CreateAccountRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<CreateAccountResponse> CreateAccountAsync(CreateAccountRequest request)
-        {
-            var response = new CreateAccountResponse();
-
-            //var user = new ApplicationUser() { UserName = model.UserName };
-            //var result = await UserManager.CreateAsync(user, model.Password);
 
             try
             {
-                using (var context = new WebsiteDbContext())
+                var userStore = new UserStore<IdentityUser>();
+                var userManager = new UserManager<IdentityUser>(userStore);
+                var user = await userManager.FindAsync(request.UserName, request.Password);
+
+                if (user != null)
                 {
-                    using (var userStore = new UserStore<IdentityUser>(context))
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    var authenticationProperties = new AuthenticationProperties();
+
+                    if (request.Persistence != null)
                     {
-                        using (var userManager = new UserManager<IdentityUser>(userStore))
-                        {
-                            var user = new IdentityUser
-                            {
-                                UserName = request.UserName,
-                                Email = request.Email
-                            };
-
-                            var result = await userManager.CreateAsync(user, request.Password);
-
-                            if (result.Succeeded)
-                            {
-                                userManager.UserTokenProvider = new DataProtectorTokenProvider<IdentityUser>(this.protectionProvider.Create("EmailConfirmation"));
-                                response.ActivateAccountToken = await userManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                                response.Status = StatusCode.OK;
-                            }
-                            else
-                            {
-                                response.Status = StatusCode.BadRequest;
-                                //response.Message = string.Join(". ", result.Errors);
-                            }
-                        }
+                        authenticationProperties.IsPersistent = true;
+                        authenticationProperties.ExpiresUtc = DateTimeOffset.Now.Add((TimeSpan)request.Persistence);
                     }
+
+                    // ASYNC????
+                    authenticationManager.SignIn(authenticationProperties, userIdentity);
+                    response.Success = true;
+                }
+                else
+                {
+                    response.Message = Resources.Account.InvalidUserNameOrPassword;
                 }
             }
             catch (Exception ex)
             {
-                response.Status = StatusCode.InternalServerError;
                 this.exceptionHandler.HandleException(ex);
+                response.Message = Resources.Account.InternalServerError;
             }
 
             return response;
         }
 
-        public ResetPasswordRequestResponse ResetPasswordRequest(ResetPasswordRequestRequest request)
+        public void LogOut()
         {
-            throw new NotImplementedException();
-        }
+            //var x = new SignInManager<IdentityUser>();
+            //x.SignInAsync();
+            //x.PasswordSignInAsync();
 
-        public ResetPasswordResponse ResetPassword(ResetPasswordRequest request)
-        {
-            throw new NotImplementedException();
-        }
 
-        public ActivateAccountResponse ActivateAccount(ActivateAccountRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DeleteAccountResponse DeleteAccount(DeleteAccountRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ChangePasswordResponse ChangePassword(ChangePasswordRequest request)
-        {
-            throw new NotImplementedException();
+            var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+            // ASYNC????
+            authenticationManager.SignOut();
         }
     }
 }

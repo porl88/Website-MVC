@@ -127,6 +127,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".eslintrc.js" />
+    <Content Include="App_Data\Countries.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\Currencies.xml" />
+    <Content Include="App_Data\Languages.xml" />
     <Content Include="App_Data\mvc-database.mdf" />
     <Content Include="App_Data\mvc-database_log.ldf">
       <DependentUpon>mvc-database.mdf</DependentUpon>
@@ -143,10 +148,21 @@
     <Content Include="Content\html5-shiv\html5shiv-printshiv.min.js" />
     <Content Include="Content\html5-shiv\html5shiv.js" />
     <Content Include="Content\html5-shiv\html5shiv.min.js" />
+    <Content Include="Content\website\js\core\ajax.js" />
+    <Content Include="Content\website\js\website.js" />
     <Content Include="Content\website\js\_core\drag-and-drop.js" />
-    <Content Include="Content\website\js\account\account-index.js" />
-    <Content Include="Content\website\js\account\account-login.js" />
-    <Content Include="Content\website\js\home\home-index.js" />
+    <Content Include="Content\website\views\account\login\account-login.js" />
+    <Content Include="Content\website\views\account\index\account-index.js" />
+    <Content Include="Content\website\views\home\index\home-index.js" />
+    <Content Include="Content\website\views\_layout\footer\footer.js" />
+    <Content Include="Content\website\views\_layout\header\header.js" />
+    <Content Include="Content\website\views\_layout\layout.js" />
+    <Content Include="Content\website\views\_layout\menu\menu.js" />
+    <Content Include="Content\website\web-components\image-carousel\image-carousel.html" />
+    <Content Include="Content\website\web-components\image-carousel\image-carousel.js" />
+    <Content Include="Content\website\web-components\tabs\tabs.html" />
+    <Content Include="Content\website\web-components\tabs\tabs.js" />
+    <Content Include="Content\website\website.min.js" />
     <Content Include="Content\website\xml\open-search\search.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -210,11 +226,6 @@
     <Compile Include="Modules\ErrorModule.cs" />
     <Compile Include="Modules\SeoRedirectModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\ErrorMessages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ErrorMessages.resx</DependentUpon>
-    </Compile>
     <Compile Include="Resources\FormLabels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -307,6 +318,37 @@
     <Content Include="Views\Email\ActivateAccount.cshtml" />
     <Content Include="Views\Email\Password.cshtml" />
     <Content Include="Views\Shared\_alert.cshtml" />
+    <Content Include="Content\website\web-components\image-carousel\image-carousel.scss" />
+    <Content Include="Content\website\scss\accordions\accordions.scss" />
+    <Content Include="Content\website\scss\animation\animation.scss" />
+    <Content Include="Content\website\scss\breadcrumbs\breadcrumbs.scss" />
+    <Content Include="Content\website\scss\buttons-links\buttons-links.scss" />
+    <Content Include="Content\website\scss\code\code.scss" />
+    <Content Include="Content\website\scss\dialogs\dialogs.scss" />
+    <Content Include="Content\website\scss\forms\forms.scss" />
+    <Content Include="Content\website\scss\grid-layout\grid-layout.scss" />
+    <Content Include="Content\website\scss\headers-sections\headers-sections.scss" />
+    <Content Include="Content\website\scss\lists\lists.scss" />
+    <Content Include="Content\website\scss\menus\menus.scss" />
+    <Content Include="Content\website\scss\messages\messages.scss" />
+    <Content Include="Content\website\scss\miscellaneous.scss" />
+    <Content Include="Content\website\scss\tables\tables.scss" />
+    <Content Include="Content\website\scss\tabs\tabs.scss" />
+    <Content Include="Content\website\scss\_mixins.scss" />
+    <Content Include="Content\website\scss\_variables.scss" />
+    <Content Include="Content\website\scss\default.scss" />
+    <Content Include="Content\website\scss\fonts.scss" />
+    <Content Include="Content\website\scss\print.scss" />
+    <Content Include="Content\website\scss\reset.scss" />
+    <Content Include="Content\website\scss\website.scss" />
+    <Content Include="Content\website\views\_layout\footer\footer.scss" />
+    <Content Include="Content\website\views\_layout\header\header.scss" />
+    <Content Include="Content\website\views\_layout\layout.scss" />
+    <Content Include="Content\website\views\_layout\menu\menu.scss" />
+    <Content Include="Content\website\views\home\index\home-index.scss" />
+    <Content Include="Content\website\views\account\index\account-index.scss" />
+    <Content Include="Content\website\views\account\login\account-login.scss" />
+    <Content Include="Content\website\web-components\tabs\tabs.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -316,12 +358,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\angularjs\" />
+    <Folder Include="Content\bootstrap\" />
     <Folder Include="Content\jquery-ui\" />
     <Folder Include="Content\jquery\" />
     <Folder Include="Content\modernizr\" />
     <Folder Include="Content\react\" />
     <Folder Include="Content\website\html\" />
     <Folder Include="Content\website\images\favicons\" />
+    <Folder Include="Content\website\js\polyfills\" />
+    <Folder Include="Content\website\scss\buttons-links\images\" />
+    <Folder Include="Content\website\views\home\images\" />
+    <Folder Include="Content\website\views\_layout\images\" />
+    <Folder Include="Content\website\web-components\image-carousel\images\" />
+    <Folder Include="Content\website\web-components\tabs\images\" />
+    <Folder Include="Content\website\xsd\" />
+    <Folder Include="Content\website\xslt\" />
     <Folder Include="Models\Products\" />
   </ItemGroup>
   <ItemGroup>
@@ -335,11 +386,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\ErrorMessages.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Resources</CustomToolNamespace>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\FormLabels.fr-fr.resx" />
     <EmbeddedResource Include="Resources\FormLabels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -4,7 +4,6 @@
     using System.Web.Mvc;
     using Attributes;
     using Core.Configuration;
-    using Core.Exceptions;
     using Models.Account;
     using Services.Account;
     using Services.Account.Transfer;
@@ -14,14 +13,17 @@
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly IAuthenticationService authenticationService;
         private readonly IAccountService accountService;
+        private readonly IAuthenticationService authenticationService;
         private readonly IMessageService messageService;
 
-        public AccountController(IAuthenticationService authenticationService, IAccountService accountService, IMessageService messageService)
+        public AccountController(
+            IAccountService accountService,
+            IAuthenticationService authenticationService,
+            IMessageService messageService)
         {
-            this.authenticationService = authenticationService;
             this.accountService = accountService;
+            this.authenticationService = authenticationService;
             this.messageService = messageService;
         }
 
@@ -60,26 +62,26 @@
 
                 var response = this.accountService.CreateAccount(request);
 
-                if (response.Status == StatusCode.OK)
+                if (response.Success)
                 {
                     var messageResponse = this.SendActivateAccountToken(model.Email, response.ActivateAccountToken, model.FirstName, model.LastName);
-                    if (messageResponse.Status == StatusCode.OK)
+                    if (messageResponse.Success)
                     {
                         this.TempData["SuccessMessage"] = "You have successfully created a new account. An activation code has been sent to you by email. When you receive the this email, click on the link to activate your account.";
                         return this.RedirectToAction("LogIn");
                     }
                     else
                     {
-                        this.ModelState.AddModelError(string.Empty, Resources.ErrorMessages.InternalServerError);
+                        this.ModelState.AddModelError(string.Empty, response.Message);
                     }
                 }
-                else if (response.Status == StatusCode.BadRequest)
-                {
-                    this.ModelState.AddModelError(string.Empty, $"Your account was not created for the following reason: {this.GetErrorMessage(response.CreateAccountStatus)}");
-                }
+                //else if (response.Status == StatusCode.BadRequest)
+                //{
+                //    this.ModelState.AddModelError(string.Empty, $"Your account was not created for the following reason: {this.GetErrorMessage(response.CreateAccountStatus)}");
+                //}
                 else
                 {
-                    this.ModelState.AddModelError(string.Empty, Resources.ErrorMessages.InternalServerError);
+                    this.ModelState.AddModelError(string.Empty, response.Message);
                 }
             }
 
@@ -113,17 +115,13 @@
 
                 var response = this.authenticationService.LogIn(request);
 
-                if (response.Status == StatusCode.OK)
+                if (response.Success)
                 {
                     return this.SecureRedirect(returnUrl);
                 }
-                else if (response.Status == StatusCode.Unauthorized)
-                {
-                    this.ModelState.AddModelError(string.Empty, "Your user name and/or password are incorrect.");
-                }
                 else
                 {
-                    this.ModelState.AddModelError(string.Empty, Resources.ErrorMessages.InternalServerError);
+                    this.ModelState.AddModelError(string.Empty, response.Message);
                 }
             }
 
@@ -160,7 +158,7 @@
                 };
 
                 var response = this.accountService.ChangePassword(request);
-                if (response.Status == StatusCode.OK)
+                if (response.Success)
                 {
                     this.TempData["SuccessMessage"] = "You have successfully changed your password.";
                     return this.RedirectToAction("Index");
@@ -168,7 +166,7 @@
                 else
                 {
                     this.ViewBag.DisplaySummary = "yes";
-                    this.ModelState.AddModelError(string.Empty, "Your old password has not been recognised. Please try again.");
+                    this.ModelState.AddModelError(string.Empty, response.Message);
                 }
             }
 
@@ -197,7 +195,7 @@
                 };
 
                 var response = this.authenticationService.ResetPasswordRequest(request);
-                if (response.Status == StatusCode.OK)
+                if (response.Success)
                 {
                     var message = new MessageRequest
                     {
@@ -243,7 +241,7 @@
 
                 var response = this.authenticationService.ResetPassword(request);
 
-                if (response.Status == StatusCode.OK)
+                if (response.Success)
                 {
                     this.TempData["SuccessMessage"] = "You have successfully reset your password. Please login with your new credentials.";
                     return this.RedirectToAction("login");
@@ -289,33 +287,6 @@
             };
 
             return this.messageService.SendMessage(message);
-        }
-
-        private string GetErrorMessage(CreateAccountStatus status)
-        {
-            switch (status)
-            {
-                case CreateAccountStatus.DuplicateUserName:
-                    return Resources.ErrorMessages.DuplicateUserName;
-                case CreateAccountStatus.DuplicateEmail:
-                    return Resources.ErrorMessages.DuplicateEmail;
-                case CreateAccountStatus.InvalidUserName:
-                    return Resources.ErrorMessages.InvalidUserName;
-                case CreateAccountStatus.InvalidPassword:
-                    return Resources.ErrorMessages.InvalidPassword;
-                case CreateAccountStatus.InvalidEmail:
-                    return Resources.ErrorMessages.InvalidEmail;
-                case CreateAccountStatus.InvalidAnswer:
-                    return Resources.ErrorMessages.InvalidAnswer;
-                case CreateAccountStatus.InvalidQuestion:
-                    return Resources.ErrorMessages.InvalidQuestion;
-                case CreateAccountStatus.ProviderError:
-                    return Resources.ErrorMessages.ProviderError;
-                case CreateAccountStatus.UserRejected:
-                    return Resources.ErrorMessages.UserRejected;
-                default:
-                    return Resources.ErrorMessages.UnknownError;
-            }
         }
     }
 }

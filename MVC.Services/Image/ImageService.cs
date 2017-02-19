@@ -2,7 +2,6 @@
 {
     using System;
     using System.Drawing;
-    using ClassLibrary.Extensions.Image;
     using Core.Exceptions;
     using Services.Images.Transfer;
 

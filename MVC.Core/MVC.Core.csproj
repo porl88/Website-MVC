@@ -77,8 +77,8 @@
     <Compile Include="Entities\Article\ArticleVersion.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Culture\Currency.cs" />
-    <Compile Include="Entities\Culture\Language.cs" />
     <Compile Include="Data\IEntity.cs" />
+    <Compile Include="Entities\Culture\Language.cs" />
     <Compile Include="Entities\Location\Address.cs" />
     <Compile Include="Entities\Location\Country.cs" />
     <Compile Include="Entities\Media\ImageData.cs" />
@@ -106,10 +106,6 @@
     <Compile Include="Testing\MockUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\XML\Countries.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Data\XML\Languages.xml" />
     <EmbeddedResource Include="Exceptions\exception-email.html" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +117,9 @@
       <Project>{abde2804-fa69-4a8e-8518-d2917af913f4}</Project>
       <Name>ClassLibraryOLD</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\XML\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

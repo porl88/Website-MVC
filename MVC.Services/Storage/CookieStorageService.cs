@@ -25,35 +25,36 @@
             {
 
                 if (!string.IsNullOrWhiteSpace(key))
-            {
-                var cookie = this.GetCookie(key);
-                if (cookie != null && !string.IsNullOrWhiteSpace(cookie.Value))
                 {
-                    try
+                    var cookie = this.GetCookie(key);
+                    if (cookie != null && !string.IsNullOrWhiteSpace(cookie.Value))
                     {
-                        var json = new JavaScriptSerializer();
-                        var value =  json.Deserialize<T>(cookie.Value);
-                        response.Status = StatusCode.OK;
-                        response.Value = value;
+                        try
+                        {
+                            var json = new JavaScriptSerializer();
+                            var value = json.Deserialize<T>(cookie.Value);
+                            response.Status = StatusCode.OK;
+                            response.Value = value;
+                        }
+                        catch (ArgumentException)
+                        {
+                            response.Status = StatusCode.BadRequest;
+                        }
+                        catch (Exception ex)
+                        {
+                            response.Status = StatusCode.InternalServerError;
+                            this.exceptionHandler.HandleException(ex);
+                        }
                     }
-                    catch (ArgumentException)
+                    else
                     {
-                        response.Status = StatusCode.BadRequest;
-                    }
-                    catch (Exception ex)
-                    {
-                        response.Status = StatusCode.InternalServerError;
-                        this.exceptionHandler.HandleException(ex);
+                        response.Status = StatusCode.NotFound;
                     }
                 }
                 else
                 {
-                    response.Status = StatusCode.NotFound;
+                    response.Status = StatusCode.BadRequest;
                 }
-            }
-            else
-            {
-                response.Status = StatusCode.BadRequest;
             }
             catch (Exception ex)
             {

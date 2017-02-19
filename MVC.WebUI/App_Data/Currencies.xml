@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Currencies>
+  <Currency name="Afghan Afghani" isoCode="AFN" symbol="؋" />
+  <Currency name="Albanian Lek" isoCode="ALL" symbol="Lekë" />
+  <Currency name="Algerian Dinar" isoCode="DZD" symbol="د.ج.‏" />
+  <Currency name="Argentine Peso" isoCode="ARS" symbol="$" />
+  <Currency name="Armenian Dram" isoCode="AMD" symbol="֏" />
+  <Currency name="Australian Dollar" isoCode="AUD" symbol="$" />
+  <Currency name="Azerbaijani Manat" isoCode="AZN" symbol="₼" />
+  <Currency name="Bahraini Dinar" isoCode="BHD" symbol="د.ب.‏" />
+  <Currency name="Bangladeshi Taka" isoCode="BDT" symbol="৳" />
+  <Currency name="Belarusian Ruble" isoCode="BYN" symbol="Br" />
+  <Currency name="Belize Dollar" isoCode="BZD" symbol="$" />
+  <Currency name="Bhutanese Ngultrum" isoCode="BTN" symbol="Nu." />
+  <Currency name="Bolivian Boliviano" isoCode="BOB" symbol="Bs" />
+  <Currency name="Bosnia-Herzegovina Convertible Mark" isoCode="BAM" symbol="КМ" />
+  <Currency name="Botswanan Pula" isoCode="BWP" symbol="P" />
+  <Currency name="Brazilian Real" isoCode="BRL" symbol="R$" />
+  <Currency name="British Pound" isoCode="GBP" symbol="£" />
+  <Currency name="Brunei Dollar" isoCode="BND" symbol="$" />
+  <Currency name="Bulgarian Lev" isoCode="BGN" symbol="лв." />
+  <Currency name="Cambodian Riel" isoCode="KHR" symbol="៛" />
+  <Currency name="Canadian Dollar" isoCode="CAD" symbol="$" />
+  <Currency name="Central African CFA Franc" isoCode="XAF" symbol="FCFA" />
+  <Currency name="CFA" isoCode="XOF" symbol="CFA" />
+  <Currency name="Chilean Peso" isoCode="CLP" symbol="$" />
+  <Currency name="Chinese Yuan" isoCode="CNY" symbol="¥" />
+  <Currency name="Colombian Peso" isoCode="COP" symbol="$" />
+  <Currency name="Congolese Franc" isoCode="CDF" symbol="FC" />
+  <Currency name="Costa Rican Colón" isoCode="CRC" symbol="₡" />
+  <Currency name="Croatian Kuna" isoCode="HRK" symbol="kn" />
+  <Currency name="Cuban Peso" isoCode="CUP" symbol="$" />
+  <Currency name="Czech Republic Koruna" isoCode="CZK" symbol="Kč" />
+  <Currency name="Danish Krone" isoCode="DKK" symbol="kr" />
+  <Currency name="Dominican Peso" isoCode="DOP" symbol="$" />
+  <Currency name="Eastern Caribbean Dollar" isoCode="XCD" symbol="EC$" />
+  <Currency name="Egyptian Pound" isoCode="EGP" symbol="ج.م.‏" />
+  <Currency name="Eritrean Nakfa" isoCode="ERN" symbol="Nfk" />
+  <Currency name="Ethiopian Birr" isoCode="ETB" symbol="Br" />
+  <Currency name="Euro" isoCode="EUR" symbol="€" />
+  <Currency name="Georgian Lari" isoCode="GEL" symbol="₾" />
+  <Currency name="Guatemalan Quetzal" isoCode="GTQ" symbol="Q" />
+  <Currency name="Haitian Gourde" isoCode="HTG" symbol="G" />
+  <Currency name="Honduran Lempira" isoCode="HNL" symbol="L" />
+  <Currency name="Hong Kong Dollar" isoCode="HKD" symbol="$" />
+  <Currency name="Hungarian Forint" isoCode="HUF" symbol="Ft" />
+  <Currency name="Icelandic Króna" isoCode="ISK" symbol="ISK" />
+  <Currency name="Indian Rupee" isoCode="INR" symbol="₹" />
+  <Currency name="Indonesian Rupiah" isoCode="IDR" symbol="Rp" />
+  <Currency name="Iranian Rial" isoCode="IRR" symbol="ريال" />
+  <Currency name="Iraqi Dinar" isoCode="IQD" symbol="د.ع.‏" />
+  <Currency name="Israeli New Shekel" isoCode="ILS" symbol="₪" />
+  <Currency name="Jamaican Dollar" isoCode="JMD" symbol="$" />
+  <Currency name="Japanese Yen" isoCode="JPY" symbol="¥" />
+  <Currency name="Jordanian Dinar" isoCode="JOD" symbol="د.ا.‏" />
+  <Currency name="Kazakhstani Tenge" isoCode="KZT" symbol="₸" />
+  <Currency name="Kenyan Shilling" isoCode="KES" symbol="Ksh" />
+  <Currency name="Kuwaiti Dinar" isoCode="KWD" symbol="د.ك.‏" />
+  <Currency name="Kyrgystani Som" isoCode="KGS" symbol="сом" />
+  <Currency name="Laotian Kip" isoCode="LAK" symbol="₭" />
+  <Currency name="Lebanese Pound" isoCode="LBP" symbol="ل.ل.‏" />
+  <Currency name="Libyan Dinar" isoCode="LYD" symbol="د.ل.‏" />
+  <Currency name="Macanese Pataca" isoCode="MOP" symbol="MOP" />
+  <Currency name="Macedonian Denar" isoCode="MKD" symbol="ден" />
+  <Currency name="Malaysian Ringgit" isoCode="MYR" symbol="RM" />
+  <Currency name="Mexican Peso" isoCode="MXN" symbol="$" />
+  <Currency name="Moldovan Leu" isoCode="MDL" symbol="L" />
+  <Currency name="Mongolian Tugrik" isoCode="MNT" symbol="₮" />
+  <Currency name="Moroccan Dirham" isoCode="MAD" symbol="د.م.‏" />
+  <Currency name="Myanmar Kyat" isoCode="MMK" symbol="K" />
+  <Currency name="Nepalese Rupee" isoCode="NPR" symbol="रु" />
+  <Currency name="New Taiwan Dollar" isoCode="TWD" symbol="NT$" />
+  <Currency name="New Zealand Dollar" isoCode="NZD" symbol="$" />
+  <Currency name="Nicaraguan Córdoba" isoCode="NIO" symbol="C$" />
+  <Currency name="Nigerian Naira" isoCode="NGN" symbol="₦" />
+  <Currency name="Norwegian Krone" isoCode="NOK" symbol="kr" />
+  <Currency name="Omani Rial" isoCode="OMR" symbol="ر.ع.‏" />
+  <Currency name="Pakistan Rupee" isoCode="PKR" symbol="Rs" />
+  <Currency name="Panamanian Balboa" isoCode="PAB" symbol="B/." />
+  <Currency name="Paraguay Guarani" isoCode="PYG" symbol="₲" />
+  <Currency name="Peruvian Nuevo Sol" isoCode="PEN" symbol="S/." />
+  <Currency name="Philippine Peso" isoCode="PHP" symbol="₱" />
+  <Currency name="Polish Zloty" isoCode="PLN" symbol="zł" />
+  <Currency name="Qatari Rial" isoCode="QAR" symbol="ر.ق.‏" />
+  <Currency name="Romanian Leu" isoCode="RON" symbol="RON" />
+  <Currency name="Rufiyaa" isoCode="MVR" symbol="ރ." />
+  <Currency name="Russian Ruble" isoCode="RUB" symbol="₽" />
+  <Currency name="Rwandan Franc" isoCode="RWF" symbol="RF" />
+  <Currency name="Saudi Riyal" isoCode="SAR" symbol="ر.س.‏" />
+  <Currency name="Serbian Dinar" isoCode="RSD" symbol="дин." />
+  <Currency name="Singapore Dollar" isoCode="SGD" symbol="$" />
+  <Currency name="Somali Shilling" isoCode="SOS" symbol="S" />
+  <Currency name="South African Rand" isoCode="ZAR" symbol="R" />
+  <Currency name="South Korean Won" isoCode="KRW" symbol="₩" />
+  <Currency name="Special Drawing Rights" isoCode="XDR" symbol="XDR" />
+  <Currency name="Sri Lankan Rupee" isoCode="LKR" symbol="රු." />
+  <Currency name="Swedish Krona" isoCode="SEK" symbol="kr" />
+  <Currency name="Swiss Franc" isoCode="CHF" symbol="CHF" />
+  <Currency name="Syrian Pound" isoCode="SYP" symbol="ل.س.‏" />
+  <Currency name="Tajikistani Somoni" isoCode="TJS" symbol="смн" />
+  <Currency name="Thai Baht" isoCode="THB" symbol="฿" />
+  <Currency name="Trinidad and Tobago Dollar" isoCode="TTD" symbol="$" />
+  <Currency name="Tunisian Dinar" isoCode="TND" symbol="د.ت.‏" />
+  <Currency name="Turkish Lira" isoCode="TRY" symbol="₺" />
+  <Currency name="Turkmen manat" isoCode="TMT" symbol="m." />
+  <Currency name="Ukrainian Hryvnia" isoCode="UAH" symbol="₴" />
+  <Currency name="United Arab Emirates Dirham" isoCode="AED" symbol="د.إ.‏" />
+  <Currency name="Uruguayan Peso" isoCode="UYU" symbol="$" />
+  <Currency name="US Dollar" isoCode="USD" symbol="$" />
+  <Currency name="Uzbekistani Som" isoCode="UZS" symbol="сўм" />
+  <Currency name="Venezuelan Bolívar Fuerte" isoCode="VEF" symbol="Bs." />
+  <Currency name="Vietnamese Dong" isoCode="VND" symbol="₫" />
+  <Currency name="West African CFA Franc" isoCode="XOF" symbol="CFA" />
+  <Currency name="Yemeni Rial" isoCode="YER" symbol="ر.ي.‏" />
+</Currencies>

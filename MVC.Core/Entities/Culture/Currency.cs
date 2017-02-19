@@ -5,14 +5,14 @@
 
     public class Currency : BaseEntity<string>
     {
-        [Column("IsoCode")]
-        [MaxLength(2), RegularExpression("^[A-Z]{3}$")]
+        [Column("IsoCode", TypeName = "char")]
+        [MaxLength(3), RegularExpression("^[A-Z]{3}$")]
         public override string Id { get; set; }
 
         [Required, MaxLength(50)]
         public string Name { get; set; }
 
-        [Required, MaxLength(1)]
+        [Required, MaxLength(5)]
         public string Symbol { get; set; }
     }
 }

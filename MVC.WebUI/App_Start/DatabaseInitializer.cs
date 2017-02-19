@@ -20,8 +20,9 @@
     {
         protected override void Seed(WebsiteDbContext context)
         {
-            this.AddCountries(context);
             this.AddLanguages(context);
+            this.AddCurrencies(context);
+            this.AddCountries(context);
             this.InitialiseWebSecurity();
 
             this.CreateArticles(context);
@@ -94,9 +95,10 @@
                     var element = (XElement)XNode.ReadFrom(r);
                     var language = new Language
                     {
-                        Id = (string)element.Attribute("languageCode"),
+                        Id = (string)element.Attribute("isoCode2"),
                         Name = (string)element.Attribute("name"),
-                        LocalName = (string)element.Attribute("localName"),
+                        NativeName = (string)element.Attribute("nativeName"),
+                        IsoCode3 = (string)element.Attribute("isoCode3"),
                         Created = DateTimeOffset.UtcNow,
                         Updated = DateTimeOffset.UtcNow
                     };
@@ -123,13 +125,46 @@
                     var element = (XElement)XNode.ReadFrom(r);
                     var country = new Country
                     {
-                        Id = (string)element.Attribute("isoCode"),
+                        Id = (string)element.Attribute("isoCode2"),
                         Name = (string)element.Attribute("name"),
+                        IsoCode3A = (string)element.Attribute("isoCode3"),
+                        Currency = context.Currencies.Find(element.Attribute("isoCurrencySymbol")),
+                        DiallingCode = (string)element.Attribute("diallingCode"),
+                        Continent = (string)element.Attribute("continent"),
                         Created = DateTimeOffset.UtcNow,
                         Updated = DateTimeOffset.UtcNow
                     };
 
                     context.Countries.Add(country);
+                }
+
+                r.ReadEndElement();
+            }
+        }
+
+        private void AddCurrencies(WebsiteDbContext context)
+        {
+            var settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+            var filePath = System.Web.HttpContext.Current.Server.MapPath("/App_Data/Currencies.xml");
+
+            using (var r = XmlReader.Create(filePath, settings))
+            {
+                r.ReadStartElement("Currencies");
+
+                while (r.Name == "Currency")
+                {
+                    var element = (XElement)XNode.ReadFrom(r);
+                    var currency = new Currency
+                    {
+                        Id = (string)element.Attribute("isoCode"),
+                        Name = (string)element.Attribute("name"),
+                        Symbol = (string)element.Attribute("symbol"),
+                        Created = DateTimeOffset.UtcNow,
+                        Updated = DateTimeOffset.UtcNow
+                    };
+
+                    context.Currencies.Add(currency);
                 }
 
                 r.ReadEndElement();

@@ -18,6 +18,7 @@ namespace MVC.Core.Data.EntityFramework
         private readonly IRepository<Article, int> articleRepository;
         private readonly IRepository<ArticleVersion, int> articleVersionRepository;
         private readonly IReadOnlyRepository<Country, string> countryRepository;
+        private readonly IReadOnlyRepository<Currency, string> currencyRepository;
         private readonly IReadOnlyRepository<Language, string> languageRepository;
         private readonly IRepository<Page, int> pageRepository;
         private readonly IRepository<PageVersion, int> pageVersionRepository;
@@ -36,6 +37,7 @@ namespace MVC.Core.Data.EntityFramework
             this.articleRepository = new EntityFrameworkRepository<Article, int>(this.context);
             this.articleVersionRepository = new EntityFrameworkRepository<ArticleVersion, int>(this.context);
             this.countryRepository = new EntityFrameworkReadOnlyRepository<Country, string>(this.context);
+            this.currencyRepository = new EntityFrameworkReadOnlyRepository<Currency, string>(this.context);
             this.languageRepository = new EntityFrameworkReadOnlyRepository<Language, string>(this.context);
             this.pageRepository = new EntityFrameworkRepository<Page, int>(this.context);
             this.pageVersionRepository = new EntityFrameworkRepository<PageVersion, int>(this.context);
@@ -49,6 +51,8 @@ namespace MVC.Core.Data.EntityFramework
         public IRepository<ArticleVersion, int> ArticleVersionRepository => this.articleVersionRepository;
 
         public IReadOnlyRepository<Country, string> CountryRepository => this.countryRepository;
+
+        public IReadOnlyRepository<Currency, string> CurrencyRepository => this.currencyRepository;
 
         public IReadOnlyRepository<Language, string> LanguageRepository => this.languageRepository;
 

@@ -6,7 +6,7 @@
 
     public class Country : BaseEntity<string>
     {
-        [Column("IsoCode")]
+        [Column("IsoCode", TypeName = "char")]
         [MaxLength(2), RegularExpression("^[A-Z]{2}$")]
         public override string Id { get; set; }
 
@@ -25,5 +25,8 @@
         public string DiallingCode { get; set; }
 
         public Currency Currency { get; set; }
+
+        [MaxLength(30)]
+        public string Continent { get; set; }
     }
 }

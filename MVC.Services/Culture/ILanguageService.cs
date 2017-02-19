@@ -1,13 +1,14 @@
 ﻿namespace MVC.Services.Culture
 {
-    using System.Threading.Tasks;
     using Transfer;
 
     public interface ILanguageService
     {
-        GetLanguagesResponse GetLanguages(GetLanguagesRequest request = null);
+        GetLanguageResponse GetLanguage(GetLanguageRequest request);
 
-        Task<GetLanguagesResponse> GetLanguagesAsync(GetLanguagesRequest request);
+        GetLanguagesResponse GetAllLanguages();
+
+        GetLanguagesResponse GetAllLanguageRegions();
 
         GetPreferredLanguageResponse GetPreferredLanguage(GetPreferredLanguageRequest request);
 

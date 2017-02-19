@@ -1,87 +1,123 @@
 ﻿namespace MVC.Services.Culture
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using System.Web;
     using Core.Data;
-    using Core.Entities.Culture;
     using Core.Exceptions;
     using Storage;
     using Transfer;
 
     public class LanguageService : ILanguageService
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly IRepository<Language> languageRepository;
+        private readonly HttpContextBase context;
         private readonly IExceptionHandler exceptionHandler;
         private readonly ILocalStorageService storageService;
-        private readonly HttpContextBase context;
+        private readonly IUnitOfWork unitOfWork;
         private const string defaultLanguage = "en-gb";
         private const string key = "lang";
 
-        public LanguageService(IUnitOfWork unitOfWork, IExceptionHandler exceptionHandler, ILocalStorageService storageService, HttpContextBase context)
+        public LanguageService(
+            HttpContextBase context,
+            IExceptionHandler exceptionHandler,
+            ILocalStorageService storageService,
+            IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
-            this.languageRepository = unitOfWork.LanguageRepository;
+            this.context = context;
             this.exceptionHandler = exceptionHandler;
             this.storageService = storageService;
-            this.context = context;
+            this.unitOfWork = unitOfWork;
         }
 
-        public GetLanguagesResponse GetLanguages(GetLanguagesRequest request = null)
+        public GetLanguageResponse GetLanguage(GetLanguageRequest request)
         {
-            var response = new GetLanguagesResponse();
+            var response = new GetLanguageResponse();
+            var isValidFormat = Regex.IsMatch(request.LanguageCode, "[a-z]{2}(-[a-z]{2})?", RegexOptions.IgnoreCase);
+
+            if (!isValidFormat)
+            {
+                response.Message = "The language code is in the wrong format.";
+                return response;
+            }
 
             try
             {
-                response.Languages = this.unitOfWork.LanguageRepository.Get(q => q
-                    .Where(x => x.Active)
-                    .OrderBy(x => x.LocalName)
-                    .Select(x => new LanguageDto
-                    {
-                        Id = x.Id,
-                        LanguageCode = x.LanguageCode,
-                        Name = x.LocalName
-                    })
-                );
+                var cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
+                var culture = cultures.FirstOrDefault(x => x.Name.Equals(request.LanguageCode, StringComparison.InvariantCultureIgnoreCase));
+                var language = new LanguageDto();
 
-                response.Status = StatusCode.OK;
+                if (culture != null)
+                {
+                    language.IsoCode = culture.IetfLanguageTag;
+                    language.Name = culture.EnglishName;
+                    language.NativeName = culture.NativeName;
+                }
+
+                response.Language = language;
+                response.Success = true;
             }
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Status = StatusCode.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;
         }
 
-        public async Task<GetLanguagesResponse> GetLanguagesAsync(GetLanguagesRequest request)
+        public GetLanguagesResponse GetAllLanguages()
         {
             var response = new GetLanguagesResponse();
 
             try
             {
-                response.Languages = await this.unitOfWork.LanguageRepository.GetAsync(q => q
-                    .Where(x => x.IsSupported)
-                    .OrderBy(x => x.LocalName)
-                    .Select(x => new LanguageDto
-                    {
-                        Id = x.Id,
-                        LanguageCode = x.LanguageCode,
-                        Name = x.LocalName,
-                        Region = x.LocalRegionName
-                    })
-                );
+                var cultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
+                var languages = cultures
+                .OrderBy(x => x.NativeName)
+                .Select(x => new LanguageDto
+                {
+                    IsoCode = x.TwoLetterISOLanguageName,
+                    Name = x.EnglishName,
+                    NativeName = x.NativeName
+                }).ToList();
 
-                response.Status = StatusCode.OK;
+                response.Languages = languages;
+                response.Success = true;
             }
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Status = StatusCode.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
+            }
+
+            return response;
+        }
+
+        public GetLanguagesResponse GetAllLanguageRegions()
+        {
+            var response = new GetLanguagesResponse();
+
+            try
+            {
+                var cultures = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+                var languages = cultures
+                .OrderBy(x => x.NativeName)
+                .Select(x => new LanguageDto
+                {
+                    IsoCode = x.TwoLetterISOLanguageName,
+                    Name = x.EnglishName,
+                    NativeName = x.NativeName
+                }).ToList();
+
+                response.Languages = languages;
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                this.exceptionHandler.HandleException(ex);
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;
@@ -124,7 +160,7 @@
                 if (!string.IsNullOrWhiteSpace(langCode) && Regex.IsMatch(langCode, "^[a-z]{2}-[a-z]{2}$"))
                 {
                     this.storageService.SaveValue(key, langCode);
-                    response.Status = StatusCode.OK;
+                    response.Success = true;
                 }
                 else
                 {
@@ -133,8 +169,8 @@
             }
             catch (Exception ex)
             {
-                response.Status = StatusCode.InternalServerError;
                 this.exceptionHandler.HandleException(ex);
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;

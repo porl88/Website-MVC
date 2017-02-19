@@ -57,9 +57,11 @@
 		{
 		}
 
-		public async Task CommitAsync()
+#pragma warning disable CS1998 // ignore 'async lacks await' errors
+        public async Task CommitAsync()
 		{
 		}
+#pragma warning restore CS1998
 
         public void Dispose()
         {

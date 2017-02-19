@@ -22,6 +22,8 @@
 
         public DbSet<Country> Countries { get; set; }
 
+        public DbSet<Currency> Currencies { get; set; }
+
         public DbSet<Language> Languages { get; set; }
 
         public DbSet<Page> Pages { get; set; }

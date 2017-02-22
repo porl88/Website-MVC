@@ -13,6 +13,7 @@
     using System.Xml.Linq;
     using Core.Entities.Location;
     using System.Xml;
+    using System.Web;
 
     // http://www.codeproject.com/Tips/814618/Use-of-Database-SetInitializer-method-in-Code-Firs
 
@@ -84,7 +85,9 @@
         {
             var settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
-            var filePath = System.Web.HttpContext.Current.Server.MapPath("/App_Data/Languages.xml");
+            settings.IgnoreComments = true;
+
+            var filePath = HttpContext.Current.Server.MapPath("/App_Data/Languages.xml");
 
             using (var r = XmlReader.Create(filePath, settings))
             {
@@ -95,10 +98,10 @@
                     var element = (XElement)XNode.ReadFrom(r);
                     var language = new Language
                     {
-                        Id = (string)element.Attribute("isoCode2"),
-                        Name = (string)element.Attribute("name"),
-                        NativeName = (string)element.Attribute("nativeName"),
-                        IsoCode3 = (string)element.Attribute("isoCode3"),
+                        Id = element.Attribute("isoCode2").Value,
+                        Name = element.Attribute("name").Value,
+                        NativeName = element.Attribute("nativeName").Value,
+                        IsoCode3 = element.Attribute("isoCode3").Value,
                         Created = DateTimeOffset.UtcNow,
                         Updated = DateTimeOffset.UtcNow
                     };
@@ -114,7 +117,9 @@
         {
             var settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
-            var filePath = System.Web.HttpContext.Current.Server.MapPath("/App_Data/Countries.xml");
+            settings.IgnoreComments = true;
+
+            var filePath = HttpContext.Current.Server.MapPath("/App_Data/Countries.xml");
 
             using (var r = XmlReader.Create(filePath, settings))
             {
@@ -125,12 +130,12 @@
                     var element = (XElement)XNode.ReadFrom(r);
                     var country = new Country
                     {
-                        Id = (string)element.Attribute("isoCode2"),
-                        Name = (string)element.Attribute("name"),
-                        IsoCode3A = (string)element.Attribute("isoCode3"),
+                        Id = element.Attribute("isoCode2").Value,
+                        Name = element.Attribute("name").Value,
+                        IsoCode3A = element.Attribute("isoCode3").Value,
                         Currency = context.Currencies.Find(element.Attribute("isoCurrencySymbol")),
-                        DiallingCode = (string)element.Attribute("diallingCode"),
-                        Continent = (string)element.Attribute("continent"),
+                        DiallingCode = element.Attribute("diallingCode").Value,
+                        Continent = element.Attribute("continent").Value,
                         Created = DateTimeOffset.UtcNow,
                         Updated = DateTimeOffset.UtcNow
                     };
@@ -146,7 +151,9 @@
         {
             var settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
-            var filePath = System.Web.HttpContext.Current.Server.MapPath("/App_Data/Currencies.xml");
+            settings.IgnoreComments = true;
+
+            var filePath = HttpContext.Current.Server.MapPath("/App_Data/Currencies.xml");
 
             using (var r = XmlReader.Create(filePath, settings))
             {
@@ -157,9 +164,9 @@
                     var element = (XElement)XNode.ReadFrom(r);
                     var currency = new Currency
                     {
-                        Id = (string)element.Attribute("isoCode"),
-                        Name = (string)element.Attribute("name"),
-                        Symbol = (string)element.Attribute("symbol"),
+                        Id = element.Attribute("isoCode").Value,
+                        Name = element.Attribute("name").Value,
+                        Symbol = element.Attribute("symbol").Value,
                         Created = DateTimeOffset.UtcNow,
                         Updated = DateTimeOffset.UtcNow
                     };

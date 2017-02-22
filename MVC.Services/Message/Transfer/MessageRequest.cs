@@ -33,14 +33,7 @@
 
         public void AddToAddress(string address, string name = null)
         {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                this.ToAddresses.Add(new MessageAddress(address));
-            }
-            else
-            {
-                this.ToAddresses.Add(new MessageAddress(address, name));
-            }
+            this.ToAddresses.Add(new MessageAddress(address, name));
         }
     }
 }

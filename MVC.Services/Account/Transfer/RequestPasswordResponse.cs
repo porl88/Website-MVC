@@ -3,5 +3,7 @@
     public class RequestPasswordResponse : BaseResponse
     {
         public string ResetPasswordToken { get; set; }
+
+        public string Email { get; set; }
     }
 }

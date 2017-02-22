@@ -106,7 +106,7 @@
                 .OrderBy(x => x.NativeName)
                 .Select(x => new LanguageDto
                 {
-                    IsoCode = x.TwoLetterISOLanguageName,
+                    IsoCode = x.Name,
                     Name = x.EnglishName,
                     NativeName = x.NativeName
                 }).ToList();

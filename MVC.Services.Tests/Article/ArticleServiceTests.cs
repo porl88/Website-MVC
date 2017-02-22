@@ -1,4 +1,17 @@
-﻿namespace MVC.Services.Tests.Article
+﻿namespace DemoNamespace
+{
+    public delegate TResult GenericDelegate<T, TResult>(T arg);
+
+    public class Wank
+    {
+        public void Cheese()
+        {
+            //Debug.WriteLine("cheese");
+        }
+    }
+}
+
+namespace MVC.Services.Tests.Article
 {
     using System;
     using System.Collections.Generic;

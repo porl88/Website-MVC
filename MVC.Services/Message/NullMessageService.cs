@@ -6,7 +6,10 @@
     {
         public MessageResponse SendMessage(MessageRequest message)
         {
-            return null;
+            return new MessageResponse
+            {
+                Success = true
+            };
         }
     }
 }

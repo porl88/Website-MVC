@@ -74,7 +74,7 @@ namespace MVC.Services.Account
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Message = Resources.Account.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;

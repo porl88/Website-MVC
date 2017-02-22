@@ -69,7 +69,7 @@
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Message = Resources.Account.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;
@@ -86,6 +86,7 @@
                 if (WebSecurity.UserExists(request.UserName))
                 {
                     response.ResetPasswordToken = WebSecurity.GeneratePasswordResetToken(request.UserName, (int)request.Expires.TotalMinutes);
+                    response.Message = Resources.Account.PasswordRequestSuccess;
                     response.Success = true;
                 }
                 else
@@ -96,7 +97,7 @@
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Message = Resources.Account.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;
@@ -110,6 +111,7 @@
             {
                 if (WebSecurity.ResetPassword(request.ResetPasswordToken, request.NewPassword))
                 {
+                    response.Message = Resources.Account.PasswordResetSuccess;
                     response.Success = true;
                 }
                 else
@@ -120,7 +122,7 @@
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Message = Resources.Account.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;
@@ -144,7 +146,7 @@
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Message = Resources.Account.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;
@@ -168,7 +170,7 @@
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Message = Resources.Account.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;
@@ -196,7 +198,7 @@
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Message = Resources.Account.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;
@@ -224,7 +226,7 @@
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Message = Resources.Account.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;
@@ -261,7 +263,7 @@
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Message = Resources.Account.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;
@@ -286,7 +288,7 @@
             catch (Exception ex)
             {
                 this.exceptionHandler.HandleException(ex);
-                response.Message = Resources.Account.InternalServerError;
+                response.Message = Resources.Common.InternalServerError;
             }
 
             return response;

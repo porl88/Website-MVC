@@ -153,26 +153,31 @@
     @*page not usually needed nowadays*@
     <div class="page">
         <header class="page-header" role="banner">
-            <a href="/" title="Click here to return to the home page">
+            <a href="@Url.Action("Index", "Home")" accesskey="1" title="Home [accesskey: 1]">
                 <img src="~/content/images/_layout/website-logo.png" alt="Website logo" width="50" height="50" />
             </a>
             <nav role="navigation">
                 <ul>
-                    <li>@Html.ActionLink("Home", "index", "home")</li>
+                    <li><a href="@Url.Action("Index", "Home")" accesskey="1" title="Home [accesskey: 1]">Home</a></li>
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("My Account", "Index", "Account")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        <li><a href="@Url.Action("Index", "Account")">My Account</a></li>
+                        <li><a href="@Url.Action("Logout", "Account")" accesskey="o" title="Logout [accesskey: o]">Logout</a></li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                        <li><a href="@Url.Action("Login", "Account")" accesskey="i" title="Sign In [accesskey: i]">Sign In</a></li>
+                        <li><a href="@Url.Action("Register", "Account")" accesskey="2" title="Register [accesskey: 2]">Register</a></li>
                     }
                 </ul>
             </nav>
-            <form action="/" method="get" role="search">
-                <input name="search" type="search" maxlength="100" accesskey="4" placeholder="Search..." required="required" pattern=".{3,100}" title="Your search must be between 3 and 100 characters long." />
+            <form action="@Url.Action("Index", "Home")" method="get" role="search">
+                <input type="search" name="search" accesskey="4" list="search-list" maxlength="100" minlength="3" pattern=".{3,100}" placeholder="Search..." required="required" title="Your search must be between 3 and 100 characters long. [accesskey: 4]" />
+                <datalist id="search-list">
+                    <option>One</option>
+                    <option>Two</option>
+                    <option>Three</option>
+                </datalist>
                 <button>Search</button>
             </form>
             @Html.Action("Languages", "Base")
@@ -184,23 +189,30 @@
 
         <main id="main" class="@ViewBag.PageClass" role="main">
             @RenderBody()
+            <a href="#" accesskey="t" title="Back to Top [accesskey: t]">Back to Top</a>
         </main>
 
         <footer class="page-footer" role="contentinfo">
             <nav>
+                @*AccessKey Standards:
+                https://www.standardaccesskeys.com/SAK2014/*@
                 <ul>
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
-                    <li>@Html.ActionLink("Sitemap", "Sitemap", "Home")</li>
+                    <li><a href="@Url.Action("Index", "Home")" accesskey="1" title="Home [accesskey: 1]">Home</a></li>
+                    <li><a href="@Url.Action("Contact", "Home")" accesskey="9" title="Contact [accesskey: 9]">Contact</a></li>
+                    <li><a href="@Url.Action("Sitemap", "Home")" accesskey="3" title="Sitemap [accesskey: 3]">Sitemap</a></li>
+                    <li><a href="@Url.Action("Index", "Help")" accesskey="0" title="Help [accesskey: 0]">Help</a></li>
+                    <li><a href="@Url.Action("Privacy", "Help")" accesskey="7" title="Privacy Policy [accesskey: 7]">Privacy Policy</a></li>
+                    <li><a href="@Url.Action("Terms", "Help")" accesskey="8" title="Terms &amp; Conditions [accesskey: 8]">Terms &amp; Conditions</a></li>
+                    <li><a href="@Url.Action("AccessKeys", "Help")" accesskey="k" title="Access Keys [accesskey: k]">Access Keys</a></li>
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("My Account", "Index", "Account")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        <li><a href="@Url.Action("Index", "Account")">My Account</a></li>
+                        <li><a href="@Url.Action("Logout", "Account")" accesskey="o" title="Logout [accesskey: o]">Logout</a></li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                        <li><a href="@Url.Action("Login", "Account")" accesskey="i" title="Sign In [accesskey: i]">Sign In</a></li>
+                        <li><a href="@Url.Action("Register", "Account")" accesskey="2" title="Register [accesskey: 2]">Register</a></li>
                     }
                 </ul>
             </nav>

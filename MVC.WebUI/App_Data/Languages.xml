@@ -13,11 +13,11 @@
   <Language name="Asturian" nativeName="asturianu" isoCode2="ast" isoCode3="ast" />
   <Language name="Asu" nativeName="Kipare" isoCode2="asa" isoCode3="asa" />
   <Language name="Azerbaijani" nativeName="azərbaycan dili" isoCode2="az" isoCode3="aze" />
-  <Language name="Azerbaijani (Cyrillic)" nativeName="Азәрбајҹан дили" isoCode2="az" isoCode3="aze" />
-  <Language name="Azerbaijani (Latin)" nativeName="Azərbaycan dili" isoCode2="az" isoCode3="aze" />
+  <!--<Language name="Azerbaijani (Cyrillic)" nativeName="Азәрбајҹан дили" isoCode2="az" isoCode3="aze" />
+  <Language name="Azerbaijani (Latin)" nativeName="Azərbaycan dili" isoCode2="az" isoCode3="aze" />-->
   <Language name="Bafia" nativeName="rikpa" isoCode2="ksf" isoCode3="ksf" />
   <Language name="Bamanankan" nativeName="bamanakan" isoCode2="bm" isoCode3="bam" />
-  <Language name="Bamanankan (Latin)" nativeName="bamanakan" isoCode2="bm" isoCode3="bam" />
+  <!--<Language name="Bamanankan (Latin)" nativeName="bamanakan" isoCode2="bm" isoCode3="bam" />-->
   <Language name="Bangla" nativeName="বাংলা" isoCode2="bn" isoCode3="ben" />
   <Language name="Basaa" nativeName="Ɓàsàa" isoCode2="bas" isoCode3="bas" />
   <Language name="Bashkir" nativeName="Башҡорт" isoCode2="ba" isoCode3="bak" />
@@ -28,27 +28,25 @@
   <Language name="Blin" nativeName="ብሊን" isoCode2="byn" isoCode3="byn" />
   <Language name="Bodo" nativeName="बड़ो" isoCode2="brx" isoCode3="brx" />
   <Language name="Bosnian" nativeName="bosanski" isoCode2="bs" isoCode3="bos" />
-  <Language name="Bosnian (Cyrillic)" nativeName="босански" isoCode2="bs" isoCode3="bos" />
-  <Language name="Bosnian (Latin)" nativeName="bosanski" isoCode2="bs" isoCode3="bos" />
+  <!--<Language name="Bosnian (Cyrillic)" nativeName="босански" isoCode2="bs" isoCode3="bos" />
+  <Language name="Bosnian (Latin)" nativeName="bosanski" isoCode2="bs" isoCode3="bos" />-->
   <Language name="Breton" nativeName="brezhoneg" isoCode2="br" isoCode3="bre" />
   <Language name="Bulgarian" nativeName="български" isoCode2="bg" isoCode3="bul" />
   <Language name="Burmese" nativeName="ဗမာ" isoCode2="my" isoCode3="mya" />
   <Language name="Catalan" nativeName="català" isoCode2="ca" isoCode3="cat" />
   <Language name="Central Atlas Tamazight" nativeName="Tamaziɣt n laṭlaṣ" isoCode2="tzm" isoCode3="tzm" />
-  <Language name="Central Atlas Tamazight (Arabic)" nativeName="أطلس المركزية التامازيتية" isoCode2="tzm" isoCode3="tzm" />
+  <!--<Language name="Central Atlas Tamazight (Arabic)" nativeName="أطلس المركزية التامازيتية" isoCode2="tzm" isoCode3="tzm" />
   <Language name="Central Atlas Tamazight (Latin)" nativeName="Tamaziɣt n laṭlaṣ" isoCode2="tzm" isoCode3="tzm" />
-  <Language name="Central Atlas Tamazight (Tifinagh)" nativeName="ⵜⴰⵎⴰⵣⵉⵖⵜ" isoCode2="tzm" isoCode3="tzm" />
-  <Language name="Central Kurdish" nativeName="کوردیی ناوەڕاست" isoCode2="ku" isoCode3="kur" />
+  <Language name="Central Atlas Tamazight (Tifinagh)" nativeName="ⵜⴰⵎⴰⵣⵉⵖⵜ" isoCode2="tzm" isoCode3="tzm" />-->
   <Language name="Central Kurdish" nativeName="کوردیی ناوەڕاست" isoCode2="ku" isoCode3="kur" />
   <Language name="Chechen" nativeName="нохчийн" isoCode2="ce" isoCode3="che" />
   <Language name="Cherokee" nativeName="ᏣᎳᎩ" isoCode2="chr" isoCode3="chr" />
-  <Language name="Cherokee" nativeName="ᏣᎳᎩ" isoCode2="chr" isoCode3="chr" />
   <Language name="Chiga" nativeName="Rukiga" isoCode2="cgg" isoCode3="cgg" />
   <Language name="Chinese" nativeName="中文" isoCode2="zh" isoCode3="zho" />
-  <Language name="Chinese (Simplified)" nativeName="中文(简体)" isoCode2="zh" isoCode3="zho" />
+  <!--<Language name="Chinese (Simplified)" nativeName="中文(简体)" isoCode2="zh" isoCode3="zho" />
   <Language name="Chinese (Simplified) Legacy" nativeName="中文(简体) 旧版" isoCode2="zh" isoCode3="zho" />
   <Language name="Chinese (Traditional)" nativeName="中文(繁體)" isoCode2="zh" isoCode3="zho" />
-  <Language name="Chinese (Traditional) Legacy" nativeName="中文(繁體) 舊版" isoCode2="zh" isoCode3="zho" />
+  <Language name="Chinese (Traditional) Legacy" nativeName="中文(繁體) 舊版" isoCode2="zh" isoCode3="zho" />-->
   <Language name="Church Slavic" nativeName="церковнослове́нскїй" isoCode2="cu" isoCode3="chu" />
   <Language name="Cornish" nativeName="kernewek" isoCode2="kw" isoCode3="cor" />
   <Language name="Corsican" nativeName="Corsu" isoCode2="co" isoCode3="cos" />
@@ -73,7 +71,6 @@
   <Language name="French" nativeName="français" isoCode2="fr" isoCode3="fra" />
   <Language name="Friulian" nativeName="furlan" isoCode2="fur" isoCode3="fur" />
   <Language name="Fulah" nativeName="Fulah" isoCode2="ff" isoCode3="ful" />
-  <Language name="Fulah" nativeName="Fulah" isoCode2="ff" isoCode3="ful" />
   <Language name="Galician" nativeName="galego" isoCode2="gl" isoCode3="glg" />
   <Language name="Ganda" nativeName="Luganda" isoCode2="lg" isoCode3="lug" />
   <Language name="Georgian" nativeName="ქართული" isoCode2="ka" isoCode3="kat" />
@@ -84,7 +81,7 @@
   <Language name="Gujarati" nativeName="ગુજરાતી" isoCode2="gu" isoCode3="guj" />
   <Language name="Gusii" nativeName="Ekegusii" isoCode2="guz" isoCode3="guz" />
   <Language name="Hausa" nativeName="Hausa" isoCode2="ha" isoCode3="hau" />
-  <Language name="Hausa (Latin)" nativeName="Hausa" isoCode2="ha" isoCode3="hau" />
+  <!--<Language name="Hausa (Latin)" nativeName="Hausa" isoCode2="ha" isoCode3="hau" />-->
   <Language name="Hawaiian" nativeName="ʻŌlelo Hawaiʻi" isoCode2="haw" isoCode3="haw" />
   <Language name="Hebrew" nativeName="עברית" isoCode2="he" isoCode3="heb" />
   <Language name="Hindi" nativeName="हिंदी" isoCode2="hi" isoCode3="hin" />
@@ -95,17 +92,16 @@
   <Language name="Indonesian" nativeName="Indonesia" isoCode2="id" isoCode3="ind" />
   <Language name="Interlingua" nativeName="interlingua" isoCode2="ia" isoCode3="ina" />
   <Language name="Inuktitut" nativeName="Inuktitut" isoCode2="iu" isoCode3="iku" />
-  <Language name="Inuktitut (Latin)" nativeName="Inuktitut" isoCode2="iu" isoCode3="iku" />
-  <Language name="Inuktitut (Syllabics)" nativeName="ᐃᓄᒃᑎᑐᑦ" isoCode2="iu" isoCode3="iku" />
-  <Language name="Invariant Language (Invariant Country)" nativeName="Invariant Language (Invariant Country)" isoCode2="iv" isoCode3="ivl" />
+  <!--<Language name="Inuktitut (Latin)" nativeName="Inuktitut" isoCode2="iu" isoCode3="iku" />
+  <Language name="Inuktitut (Syllabics)" nativeName="ᐃᓄᒃᑎᑐᑦ" isoCode2="iu" isoCode3="iku" />-->
+  <!--<Language name="Invariant Language (Invariant Country)" nativeName="Invariant Language (Invariant Country)" isoCode2="iv" isoCode3="ivl" />-->
   <Language name="Irish" nativeName="Gaeilge" isoCode2="ga" isoCode3="gle" />
   <Language name="isiXhosa" nativeName="isiXhosa" isoCode2="xh" isoCode3="xho" />
   <Language name="isiZulu" nativeName="isiZulu" isoCode2="zu" isoCode3="zul" />
   <Language name="Italian" nativeName="italiano" isoCode2="it" isoCode3="ita" />
   <Language name="Japanese" nativeName="日本語" isoCode2="ja" isoCode3="jpn" />
   <Language name="Javanese" nativeName="Basa Jawa" isoCode2="jv" isoCode3="jav" />
-  <Language name="Javanese" nativeName="Basa Jawa" isoCode2="jv" isoCode3="jav" />
-  <Language name="Javanese (Javanese)" nativeName="ꦧꦱꦗꦮ" isoCode2="jv" isoCode3="jav" />
+  <!--<Language name="Javanese (Javanese)" nativeName="ꦧꦱꦗꦮ" isoCode2="jv" isoCode3="jav" />-->
   <Language name="Jola-Fonyi" nativeName="joola" isoCode2="dyo" isoCode3="dyo" />
   <Language name="Kabuverdianu" nativeName="kabuverdianu" isoCode2="kea" isoCode3="kea" />
   <Language name="Kabyle" nativeName="Taqbaylit" isoCode2="kab" isoCode3="kab" />
@@ -115,11 +111,10 @@
   <Language name="Kannada" nativeName="ಕನ್ನಡ" isoCode2="kn" isoCode3="kan" />
   <Language name="Kanuri" nativeName="Kanuri" isoCode2="kr" isoCode3="kau" />
   <Language name="Kashmiri" nativeName="کٲشُر" isoCode2="ks" isoCode3="kas" />
-  <Language name="Kashmiri (Devanagari)" nativeName="कॉशुर" isoCode2="ks" isoCode3="kas" />
-  <Language name="Kashmiri (Perso-Arabic)" nativeName="کٲشُر" isoCode2="ks" isoCode3="kas" />
+  <!--<Language name="Kashmiri (Devanagari)" nativeName="कॉशुर" isoCode2="ks" isoCode3="kas" />
+  <Language name="Kashmiri (Perso-Arabic)" nativeName="کٲشُر" isoCode2="ks" isoCode3="kas" />-->
   <Language name="Kazakh" nativeName="қазақ тілі" isoCode2="kk" isoCode3="kaz" />
   <Language name="Khmer" nativeName="ភាសាខ្មែរ" isoCode2="km" isoCode3="khm" />
-  <Language name="K'iche'" nativeName="K'iche'" isoCode2="quc" isoCode3="quc" />
   <Language name="K'iche'" nativeName="K'iche'" isoCode2="quc" isoCode3="quc" />
   <Language name="Kikuyu" nativeName="Gikuyu" isoCode2="ki" isoCode3="kik" />
   <Language name="Kinyarwanda" nativeName="Kinyarwanda" isoCode2="rw" isoCode3="kin" />
@@ -161,8 +156,8 @@
   <Language name="Metaʼ" nativeName="metaʼ" isoCode2="mgo" isoCode3="mgo" />
   <Language name="Mohawk" nativeName="Kanien’kéha" isoCode2="moh" isoCode3="moh" />
   <Language name="Mongolian" nativeName="Монгол хэл" isoCode2="mn" isoCode3="mon" />
-  <Language name="Mongolian" nativeName="монгол" isoCode2="mn" isoCode3="mon" />
-  <Language name="Mongolian (Traditional Mongolian)" nativeName="ᠮᠤᠨᠭᠭᠤᠯ ᠬᠡᠯᠡ" isoCode2="mn" isoCode3="mon" />
+  <!--<Language name="Mongolian" nativeName="монгол" isoCode2="mn" isoCode3="mon" />
+  <Language name="Mongolian (Traditional Mongolian)" nativeName="ᠮᠤᠨᠭᠭᠤᠯ ᠬᠡᠯᠡ" isoCode2="mn" isoCode3="mon" />-->
   <Language name="Morisyen" nativeName="kreol morisien" isoCode2="mfe" isoCode3="mfe" />
   <Language name="Mundang" nativeName="MUNDAŊ" isoCode2="mua" isoCode3="mua" />
   <Language name="Nama" nativeName="Khoekhoegowab" isoCode2="naq" isoCode3="naq" />
@@ -174,7 +169,7 @@
   <Language name="Northern Luri" nativeName="لۊری شومالی" isoCode2="lrc" isoCode3="lrc" />
   <Language name="Northern Sami" nativeName="davvisámegiella" isoCode2="se" isoCode3="sme" />
   <Language name="Norwegian" nativeName="norsk" isoCode2="nb" isoCode3="nob" />
-  <Language name="Norwegian Bokmål" nativeName="norsk bokmål" isoCode2="nb" isoCode3="nob" />
+  <!--<Language name="Norwegian Bokmål" nativeName="norsk bokmål" isoCode2="nb" isoCode3="nob" />-->
   <Language name="Norwegian Nynorsk" nativeName="nynorsk" isoCode2="nn" isoCode3="nno" />
   <Language name="Nuer" nativeName="Thok Nath" isoCode2="nus" isoCode3="nus" />
   <Language name="Nyankole" nativeName="Runyankore" isoCode2="nyn" isoCode3="nyn" />
@@ -189,7 +184,7 @@
   <Language name="Portuguese" nativeName="português" isoCode2="pt" isoCode3="por" />
   <Language name="Prussian" nativeName="prūsiskan" isoCode2="prg" isoCode3="prg" />
   <Language name="Punjabi" nativeName="ਪੰਜਾਬੀ" isoCode2="pa" isoCode3="pan" />
-  <Language name="Punjabi" nativeName="پنجابی" isoCode2="pa" isoCode3="pan" />
+  <!--<Language name="Punjabi" nativeName="پنجابی" isoCode2="pa" isoCode3="pan" />-->
   <Language name="Quechua" nativeName="runasimi" isoCode2="quz" isoCode3="qub" />
   <Language name="Ripuarian" nativeName="Kölsch" isoCode2="ksh" isoCode3="ksh" />
   <Language name="Romanian" nativeName="română" isoCode2="ro" isoCode3="ron" />
@@ -211,17 +206,16 @@
   <Language name="Scottish Gaelic" nativeName="Gàidhlig" isoCode2="gd" isoCode3="gla" />
   <Language name="Sena" nativeName="sena" isoCode2="seh" isoCode3="seh" />
   <Language name="Serbian" nativeName="srpski" isoCode2="sr" isoCode3="srp" />
-  <Language name="Serbian (Cyrillic)" nativeName="српски" isoCode2="sr" isoCode3="srp" />
-  <Language name="Serbian (Latin)" nativeName="srpski" isoCode2="sr" isoCode3="srp" />
+  <!--<Language name="Serbian (Cyrillic)" nativeName="српски" isoCode2="sr" isoCode3="srp" />
+  <Language name="Serbian (Latin)" nativeName="srpski" isoCode2="sr" isoCode3="srp" />-->
   <Language name="Sesotho" nativeName="Sesotho" isoCode2="st" isoCode3="sot" />
   <Language name="Sesotho sa Leboa" nativeName="Sesotho sa Leboa" isoCode2="nso" isoCode3="nso" />
   <Language name="Setswana" nativeName="Setswana" isoCode2="tn" isoCode3="tsn" />
   <Language name="Shambala" nativeName="Kishambaa" isoCode2="ksb" isoCode3="ksb" />
   <Language name="Shona" nativeName="chiShona" isoCode2="sn" isoCode3="sna" />
-  <Language name="Shona (Latin)" nativeName="chiShona (Latin)" isoCode2="sn" isoCode3="sna" />
+  <!--<Language name="Shona (Latin)" nativeName="chiShona (Latin)" isoCode2="sn" isoCode3="sna" />-->
   <Language name="Sindhi" nativeName="سنڌي" isoCode2="sd" isoCode3="sin" />
-  <Language name="Sindhi" nativeName="سنڌي" isoCode2="sd" isoCode3="sin" />
-  <Language name="Sindhi (Devanagari)" nativeName="सिन्धी" isoCode2="sd" isoCode3="sin" />
+  <!--<Language name="Sindhi (Devanagari)" nativeName="सिन्धी" isoCode2="sd" isoCode3="sin" />-->
   <Language name="Sinhala" nativeName="සිංහල" isoCode2="si" isoCode3="sin" />
   <Language name="siSwati" nativeName="Siswati" isoCode2="ss" isoCode3="ssw" />
   <Language name="Slovak" nativeName="slovenčina" isoCode2="sk" isoCode3="slk" />
@@ -231,15 +225,15 @@
   <Language name="South Ndebele" nativeName="isiNdebele" isoCode2="nr" isoCode3="nbl" />
   <Language name="Spanish" nativeName="español" isoCode2="es" isoCode3="spa" />
   <Language name="Standard Moroccan Tamazight" nativeName="ⵜⴰⵎⴰⵣⵉⵖⵜ" isoCode2="zgh" isoCode3="zgh" />
-  <Language name="Standard Moroccan Tamazight (Tifinagh)" nativeName="ⵜⴰⵎⴰⵣⵉⵖⵜ" isoCode2="zgh" isoCode3="zgh" />
+  <!--<Language name="Standard Moroccan Tamazight (Tifinagh)" nativeName="ⵜⴰⵎⴰⵣⵉⵖⵜ" isoCode2="zgh" isoCode3="zgh" />-->
   <Language name="Swedish" nativeName="svenska" isoCode2="sv" isoCode3="swe" />
   <Language name="Syriac" nativeName="ܣܘܪܝܝܐ" isoCode2="syr" isoCode3="syr" />
   <Language name="Tachelhit" nativeName="ⵜⴰⵛⵍⵃⵉⵜ" isoCode2="shi" isoCode3="shi" />
-  <Language name="Tachelhit (Latin)" nativeName="Tashelḥiyt" isoCode2="shi" isoCode3="shi" />
-  <Language name="Tachelhit (Tifinagh)" nativeName="ⵜⴰⵛⵍⵃⵉⵜ" isoCode2="shi" isoCode3="shi" />
+  <!--<Language name="Tachelhit (Latin)" nativeName="Tashelḥiyt" isoCode2="shi" isoCode3="shi" />
+  <Language name="Tachelhit (Tifinagh)" nativeName="ⵜⴰⵛⵍⵃⵉⵜ" isoCode2="shi" isoCode3="shi" />-->
   <Language name="Taita" nativeName="Kitaita" isoCode2="dav" isoCode3="dav" />
   <Language name="Tajik" nativeName="Тоҷикӣ" isoCode2="tg" isoCode3="tgk" />
-  <Language name="Tajik (Cyrillic)" nativeName="Тоҷикӣ" isoCode2="tg" isoCode3="tgk" />
+  <!--<Language name="Tajik (Cyrillic)" nativeName="Тоҷикӣ" isoCode2="tg" isoCode3="tgk" />-->
   <Language name="Tamil" nativeName="தமிழ்" isoCode2="ta" isoCode3="tam" />
   <Language name="Tasawaq" nativeName="Tasawaq senni" isoCode2="twq" isoCode3="twq" />
   <Language name="Tatar" nativeName="Татар" isoCode2="tt" isoCode3="tat" />
@@ -258,12 +252,12 @@
   <Language name="Urdu" nativeName="اُردو" isoCode2="ur" isoCode3="urd" />
   <Language name="Uyghur" nativeName="ئۇيغۇرچە" isoCode2="ug" isoCode3="uig" />
   <Language name="Uzbek" nativeName="o‘zbek" isoCode2="uz" isoCode3="uzb" />
-  <Language name="Uzbek (Cyrillic)" nativeName="Ўзбек" isoCode2="uz" isoCode3="uzb" />
+  <!--<Language name="Uzbek (Cyrillic)" nativeName="Ўзбек" isoCode2="uz" isoCode3="uzb" />
   <Language name="Uzbek (Latin)" nativeName="o‘zbek" isoCode2="uz" isoCode3="uzb" />
-  <Language name="Uzbek (Perso-Arabic)" nativeName="اوزبیک" isoCode2="uz" isoCode3="uzb" />
+  <Language name="Uzbek (Perso-Arabic)" nativeName="اوزبیک" isoCode2="uz" isoCode3="uzb" />-->
   <Language name="Vai" nativeName="ꕙꔤ" isoCode2="vai" isoCode3="vai" />
-  <Language name="Vai (Latin)" nativeName="Vai" isoCode2="vai" isoCode3="vai" />
-  <Language name="Vai (Vai)" nativeName="ꕙꔤ" isoCode2="vai" isoCode3="vai" />
+  <!--<Language name="Vai (Latin)" nativeName="Vai" isoCode2="vai" isoCode3="vai" />
+  <Language name="Vai (Vai)" nativeName="ꕙꔤ" isoCode2="vai" isoCode3="vai" />-->
   <Language name="Venda" nativeName="Tshivenḓa" isoCode2="ve" isoCode3="ven" />
   <Language name="Vietnamese" nativeName="Tiếng Việt" isoCode2="vi" isoCode3="vie" />
   <Language name="Volapük" nativeName="Volapük" isoCode2="vo" isoCode3="vol" />

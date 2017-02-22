@@ -197,15 +197,28 @@
                 var response = this.authenticationService.ResetPasswordRequest(request);
                 if (response.Success)
                 {
-                    var message = new MessageRequest
+                    var message = new MessageRequest(response.Email)
                     {
-                        //ToAddress = string.Empty,
                         Subject = "You have requested to reset your password",
-                        Message = response.ResetPasswordToken
+                        Message = response.ResetPasswordToken,
+                        FromAddress = Email.DoNotReply
                     };
-                    this.messageService.SendMessage(message);
-                    this.TempData["SuccessMessage"] = "You have successfully requested a new password. You should receive an email presently with instructions on how to reset your password. If you do not receive an email within 15 minutes, please check that you have the correct user name and try again.";
-                    return this.RedirectToAction("Login");
+
+                    var messageResponse = this.messageService.SendMessage(message);
+
+                    if (messageResponse.Success)
+                    {
+                        this.TempData["SuccessMessage"] = response.Message;
+                        return this.RedirectToAction("Login");
+                    }
+                    else
+                    {
+                        this.ModelState.AddModelError(string.Empty, response.Message);
+                    }
+                }
+                else
+                {
+                    this.ModelState.AddModelError(string.Empty, response.Message);
                 }
             }
 

@@ -25,28 +25,8 @@
                 try
                 {
                     var message = new MailMessage();
-
-                    foreach (var address in request.ToAddresses)
-                    {
-                        if (string.IsNullOrWhiteSpace(address.DisplayName))
-                        {
-                            message.To.Add(new MailAddress(address.Address));
-                        }
-                        else
-                        {
-                            message.To.Add(new MailAddress(address.Address, address.DisplayName));
-                        }
-                    }
-
-                    if (string.IsNullOrWhiteSpace(request.FromName))
-                    {
-                        message.From = new MailAddress(request.FromAddress);
-                    }
-                    else
-                    {
-                        message.From = new MailAddress(request.FromAddress, request.FromName);
-                    }
-
+                    request.ToAddresses.ForEach(x => message.To.Add(new MailAddress(x.Address, x.DisplayName)));
+                    message.From = new MailAddress(request.FromAddress, request.FromName);
                     message.Subject = request.Subject;
 
                     if (request.MessageUrl != null)
@@ -66,17 +46,17 @@
                     var smtp = new SmtpClient();
                     smtp.Send(message);
 
-                    response.Status = StatusCode.OK;
+                    response.Success = true;
                 }
                 catch (Exception ex)
                 {
-                    response.Status = StatusCode.InternalServerError;
                     this.exceptionHandler.HandleException(ex);
+                    response.Message = Resources.Common.InternalServerError;
                 }
             }
             else
             {
-                response.Status = StatusCode.BadRequest;
+                response.Message = Resources.Common.BadRequest;
             }
 
             return response;

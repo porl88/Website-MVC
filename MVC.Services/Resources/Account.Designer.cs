@@ -142,6 +142,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have successfully requested a new password. If your email or user name is recognised, you should receive an email presently with instructions on how to reset your password. If you do not receive an email within 15 minutes, please check that you have the correct user name / email address and try again..
+        /// </summary>
+        internal static string PasswordRequestSuccess {
+            get {
+                return ResourceManager.GetString("PasswordRequestSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have successfully reset your password..
+        /// </summary>
+        internal static string PasswordResetSuccess {
+            get {
+                return ResourceManager.GetString("PasswordResetSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The authentication provider returned an error. Please verify your entry and try again..
         /// </summary>
         internal static string ProviderError {

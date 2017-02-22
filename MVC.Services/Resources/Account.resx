@@ -144,6 +144,12 @@
   <data name="InvalidUserNameOrPassword" xml:space="preserve">
     <value>Your username and/or password has not been recognised.</value>
   </data>
+  <data name="PasswordRequestSuccess" xml:space="preserve">
+    <value>You have successfully requested a new password. If your email or user name is recognised, you should receive an email presently with instructions on how to reset your password. If you do not receive an email within 15 minutes, please check that you have the correct user name / email address and try again.</value>
+  </data>
+  <data name="PasswordResetSuccess" xml:space="preserve">
+    <value>You have successfully reset your password.</value>
+  </data>
   <data name="ProviderError" xml:space="preserve">
     <value>The authentication provider returned an error. Please verify your entry and try again.</value>
   </data>

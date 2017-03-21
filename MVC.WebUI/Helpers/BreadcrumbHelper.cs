@@ -19,11 +19,22 @@
 
             var orderedList = new TagBuilder("ol");
             orderedList.AddCssClass("breadcrumb");
+            orderedList.InnerHtml = AddFirstLink(html);
+            orderedList.InnerHtml += AddSecondLink(html, controllerName, controller, action);
+            orderedList.InnerHtml += AddThirdLink(html, actionName, action);
 
+            return MvcHtmlString.Create(orderedList.ToString());
+        }
+
+        private static string AddFirstLink(HtmlHelper html)
+        {
             var firstItem = new TagBuilder("li");
             firstItem.InnerHtml += html.ActionLink("Home", "Index", "Home");
-            orderedList.InnerHtml += firstItem;
+            return firstItem.ToString();
+        }
 
+        private static string AddSecondLink(HtmlHelper html, string controllerName, string controller, string action)
+        {
             var secondItem = new TagBuilder("li");
             if (action == "index")
             {
@@ -34,16 +45,19 @@
                 secondItem.InnerHtml += html.ActionLink(controllerName, "Index", controller);
             }
 
-            orderedList.InnerHtml += secondItem;
+            return secondItem.ToString();
+        }
 
+        private static string AddThirdLink(HtmlHelper html, string actionName, string action)
+        {
             if (action != "index")
             {
                 var thirdItem = new TagBuilder("li");
                 thirdItem.SetInnerText(actionName);
-                orderedList.InnerHtml += thirdItem;
+                return thirdItem.ToString();
             }
 
-            return MvcHtmlString.Create(orderedList.ToString());
+            return string.Empty;
         }
     }
 }

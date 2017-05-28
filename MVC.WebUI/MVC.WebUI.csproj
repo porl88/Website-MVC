@@ -231,10 +231,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FormLabels.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\ValidationErrorMessages.Designer.cs">
+    <Compile Include="Resources\ValidationErrors.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ValidationErrorMessages.resx</DependentUpon>
+      <DependentUpon>ValidationErrors.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -392,9 +392,9 @@
       <LastGenOutput>FormLabels.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ValidationErrorMessages.resx">
+    <EmbeddedResource Include="Resources\ValidationErrors.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ValidationErrorMessages.Designer.cs</LastGenOutput>
+      <LastGenOutput>ValidationErrors.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>

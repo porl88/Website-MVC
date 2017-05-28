@@ -152,7 +152,7 @@
             {
                 var request = new ChangePasswordRequest
                 {
-                    UserName = "???",
+                    UserName = this.authenticationService.CurrentUserName,
                     OldPassword = model.OldPassword,
                     NewPassword = model.NewPassword
                 };

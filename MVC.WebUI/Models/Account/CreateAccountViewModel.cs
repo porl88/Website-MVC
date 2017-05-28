@@ -14,7 +14,7 @@
         public string Email { get; set; }
 
         [Display(Name = "Password", ResourceType = typeof(Resources.FormLabels))]
-        [Required, Password(ErrorMessageResourceName = "Password", ErrorMessageResourceType = typeof(Resources.ValidationErrorMessages))]
+        [Required, Password(ErrorMessageResourceName = "Password", ErrorMessageResourceType = typeof(Resources.ValidationErrors))]
         public string Password { get; set; }
 
         [Display(Name = "PasswordConfirm", ResourceType = typeof(Resources.FormLabels))]

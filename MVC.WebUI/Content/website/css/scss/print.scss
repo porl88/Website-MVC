@@ -85,6 +85,13 @@ https://uxdesign.cc/i-totally-forgot-about-print-style-sheets-f1e6604cfd6
 		}
 	}
 
+    blockquote,
+    figure,
+    pre,
+    table {
+        page-break-inside: avoid;
+    }
+
 
 	/*
 =========================================================================================================================================

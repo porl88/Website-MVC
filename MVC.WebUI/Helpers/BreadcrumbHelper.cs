@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
+    using PA.Text.String;
 
     public static class BreadcrumbHelper
     {
@@ -53,7 +54,7 @@
             if (action != "index")
             {
                 var thirdItem = new TagBuilder("li");
-                thirdItem.SetInnerText(actionName);
+                thirdItem.SetInnerText(actionName.DeSlugify());
                 return thirdItem.ToString();
             }
 

@@ -40,6 +40,11 @@
     font-size: 1rem;
     background-color: #FFEEEE;
 
+    span:first-child {
+        display: block;
+        margin-bottom: 0.8em;
+    }
+
     ul {
         margin: 0;
         padding-left: 2em;
@@ -48,6 +53,9 @@
 }
 
 .field-validation-error {
+    display: block;
+    margin-top: 0.3em;
+    font-size: 0.7em;
     color: #CC0000;
 }
 

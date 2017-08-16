@@ -19,7 +19,7 @@
     @*http://stackoverflow.com/questions/12107263/why-is-validationsummarytrue-displaying-an-empty-summary-for-property-errors*@
     @if (ViewContext.ViewData.ModelState.Where(x => x.Key == string.Empty).Any())
     {
-        Html.ValidationSummary(false);
+        Html.ValidationSummary(false, "You cannot sign in because:");
     }
 
     @Html.CustomValidationSummary(false)

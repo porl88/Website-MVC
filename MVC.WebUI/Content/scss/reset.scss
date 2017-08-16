@@ -27,7 +27,7 @@
     /* N.B. each @font-face should have its own font-size-adjust setting */
     /*font-size-adjust: 0.545;*/ /* http://fontdeck.com/support/fontsizeadjust */
     -webkit-font-smoothing: antialiased; /* maxvoltar.com/archive/-webkit-font-smoothing */
-    line-height: 1; /* prefer unitless numbers for line-height values: https://developer.mozilla.org/en-US/docs/Web/CSS/line-height */
+    line-height: 1.2; /* prefer unitless numbers for line-height values: https://developer.mozilla.org/en-US/docs/Web/CSS/line-height */
     word-wrap: break-word; /* word-wrap has been renamed to overflow-wrap */
     overflow-wrap: break-word; /* word-wrap/overflow-wrap does not work with dynamic widths (e.g. percentage widths, tables that are not set to layout="fixed") - you will need to use word-break instead for these */
     color: var(--text-colour);

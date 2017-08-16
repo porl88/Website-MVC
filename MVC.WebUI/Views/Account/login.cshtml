@@ -35,7 +35,7 @@
             </li>
             <li>
                 @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password, new { autocomplete = "off", minlength = "8", pattern = RegularExpressions.PasswordWeak, required = "required", title = Resources.ValidationErrorMessages.Password })
+                @Html.PasswordFor(m => m.Password, new { autocomplete = "off", minlength = "8", pattern = RegularExpressions.PasswordWeak, required = "required", title = Resources.ValidationErrors.Password })
                 @Html.ValidationMessageFor(m => m.Password)
             </li>
             <li>

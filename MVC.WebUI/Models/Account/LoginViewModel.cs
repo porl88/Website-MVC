@@ -5,11 +5,11 @@
     public class LoginViewModel
 	{
         [Display(Name = "UserName", ResourceType = typeof(Resources.FormLabels))]
-        [Required]
+        [Required, MaxLength(30)]
 		public string UserName { get; set; }
 
         [Display(Name = "Password", ResourceType = typeof(Resources.FormLabels))]
-        [Required]
+        [Required, MinLength(8)]
         public string Password { get; set; }
 
         [Display(Name = "LoginPersist", ResourceType = typeof(Resources.FormLabels))]

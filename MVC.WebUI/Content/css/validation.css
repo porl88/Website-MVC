@@ -1,15 +1,37 @@
-﻿ul > ul,
+﻿/*
+The 'content' attribute does not work with self-closing tags: img, input, etc.
+a:not([href]), a[href=""], a[href="#"], b, data:not([value]), data[value=""], form:not([action]), form[action=""], form[action="#"], form:not([method]), form[method=""] , html:not([lang]), href[lang=""], i, label:not([for]), time:not([datetime]), time[datetime=""]
+*/
+
+a:not([href]),
+a[href="#"],
+audio:not([src]),
+audio[src=""],
+b,
+data:not([value]),
+html:not([lang]),
+i,
+img:not([src]),
+img[src=""],
+img:not([alt]),
+img[alt=""],
+img:not([width]),
+img[width=""],
+img:not([height]),
+img[height=""],
+time:not([datetime]),
+time[datetime=""],
+ul > ul,
 ul > ol,
 ol > ul,
 ol > ol,
-img:not([src]),
-img:not([alt]),
-img:not([width]),
-img:not([height]),
-audio:not([src]),
 video:not([src]),
+video[src=""],
 form:not([action]),
+form[action=""],
+form[action="#"],
 form:not([method]),
+form[method=""],
 label:not([for]),
 input:not([type]),
 input:not([id]),
@@ -42,55 +64,126 @@ input[type="time"]:not([maxlength]),
 input[type="url"]:not([maxlength]),
 input[type="week"]:not([maxlength]),
 textarea:not([id]),
+textarea[id=""],
 textarea:not([name]),
+textarea[name=""],
 textarea:not([maxlength]),
+textarea[maxlength=""],
 select:not([id]),
-select:not([name]) {
-    outline: 0.2em solid red;
+select:not([name]),
+select:empty {
+    position: relative;
+    outline: 0.4rem solid red;
+    outline-offset: 0.2em;
+    cursor: help;
 }
 
-a:not([href])::before,
-a[href="#"]::before,
-b::before,
-data:not([value])::before,
-html:not([lang])::before,
-i::before,
-time:not([datetime])::before,
-:empty:not(img):not(td):not(input):not(textarea):not(br):not(hr)::before {
-    display: inline-block;
-    outline: 0.2em solid red;
-    padding: 0 0.3em;
-    margin-right: 0.4em;
+:-moz-any(a:not([href]), a[href=""], a[href="#"], b, data:not([value]), data[value=""], form:not([action]), form[action=""], form[action="#"], form:not([method]), form[method=""], html:not([lang]), href[lang=""], i, label:not([for]), time:not([datetime]), time[datetime=""]):not(:empty):hover {
+    outline: none;
 }
 
-a:not([href])::before {
+    :-moz-any(a:not([href]), a[href=""], a[href="#"], b, data:not([value]), data[value=""], form:not([action]), form[action=""], form[action="#"], form:not([method]), form[method=""], html:not([lang]), href[lang=""], i, label:not([for]), time:not([datetime]), time[datetime=""]):not(:empty):hover::before {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        z-index: 999;
+        min-width: 13em;
+        margin-top: 0.8em;
+        padding: 0.5em 1em;
+        box-sizing: border-box;
+        font-size: 0.9rem;
+        text-align: center;
+        color: #FFF;
+        background-color: #000;
+        transform: translateX(-50%);
+    }
+
+    :-moz-any(a:not([href]), a[href=""], a[href="#"], b, data:not([value]), data[value=""], form:not([action]), form[action=""], form[action="#"], form:not([method]), form[method=""], html:not([lang]), href[lang=""], i, label:not([for]), time:not([datetime]), time[datetime=""]):not(:empty):hover::after {
+        position: absolute;
+        bottom: -0.8em;
+        left: 50%;
+        z-index: 999;
+        display: block;
+        width: 0;
+        height: 0;
+        margin-left: -0.8em;
+        font-size: 0.9rem;
+        border: 0.8em solid transparent;
+        border-bottom-color: #000;
+        pointer-events: none;
+        content: "";
+    }
+
+a:not([href]):hover::before,
+a[href=""]:hover::before {
     content: "<a>: no 'href' attribute.";
 }
 
-a[href="#"]::before {
-    content: "<a href=\"#\">: Must have valid, meaningful URL. Consider using <button type=\"button\"> instead."
+a[href="#"]:hover::before {
+    content: "<a href=\"#\">: Must have a valid, meaningful URL. Consider using <button type=\"button\"> instead."
 }
 
-b::before {
+b:hover::before {
     content: "<b>: consider using <strong> instead."
 }
 
-data:not([value])::before {
+data:not([value]):hover::before,
+data[value=""]:hover::before {
     content: "<data>: no 'value' attribute."
 }
 
-html:not([lang])::before {
+form:not([action]):hover::before,
+form[action=""]:hover::before {
+    content: "<form>: no 'action' attribute."
+}
+
+form[action="#"]:hover::before {
+    content: "<form action=\"#\">: Must have a valid, meaningful URL."
+}
+
+form:not([method]):hover::before,
+form[method=""]:hover::before {
+    content: "<form>: no 'method' attribute."
+}
+
+html:not([lang]):hover::before,
+html[lang=""]:hover::before {
     content: "<html>: no 'lang' attribute."
 }
 
-i::before {
+i:hover::before {
     content: "<i>: consider using <em> or <cite> instead."
 }
 
-time:not([datetime])::before {
+label:not([for]):hover::before,
+label[for=""]:hover::before {
+    content: "<label>: no 'for' attribute."
+}
+
+time:not([datetime]):hover::before,
+time[datetime=""]:hover::before {
     content: "<time>: no 'datetime' attribute.";
 }
 
+ul > ul:hover::before,
+ul > ol:hover::before,
+ol > ul:hover::before,
+ol > ol:hover::before {
+    content: "<ul><ol>: cannot be nested directly with one another.";
+}
+
+:empty:not(img):not(td):not(input):not(textarea):not(select):not(br):not(hr) {
+    outline: none;
+}
+
 :empty:not(img):not(td):not(input):not(textarea):not(br):not(hr)::before {
-    content: "Empty element.";
+    display: inline-block;
+    padding: 0.5em 1em;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    color: #FFF;
+    background-color: #000;
+    outline: 0.4rem solid red;
+    outline-offset: 0.2em;
+    content: "Empty element." !important;
 }

@@ -1,0 +1,96 @@
+﻿ul > ul,
+ul > ol,
+ol > ul,
+ol > ol,
+img:not([src]),
+img:not([alt]),
+img:not([width]),
+img:not([height]),
+audio:not([src]),
+video:not([src]),
+form:not([action]),
+form:not([method]),
+label:not([for]),
+input:not([type]),
+input:not([id]),
+input:not([name]),
+input[type="text"]:not([maxlength]),
+input[type="password"][maxlength],
+input[type="password"]:not([minlength]),
+input[type="password"]:not([pattern]),
+input[type="password"]:not([title]),
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="image"],
+input[type="color"]:not([maxlength]),
+input[type="date"]:not([maxlength]),
+input[type="datetime"]:not([maxlength]),
+input[type="datetime-local"]:not([maxlength]),
+input[type="email"]:not([maxlength]),
+input[type="month"]:not([maxlength]),
+input[type="number"]:not([maxlength]),
+input[type="number"]:not([min]),
+input[type="number"]:not([max]),
+input[type="range"]:not([maxlength]),
+input[type="range"]:not([min]),
+input[type="range"]:not([max]),
+input[type="search"]:not([minlength]),
+input[type="search"]:not([maxlength]),
+input[type="tel"]:not([maxlength]),
+input[type="time"]:not([maxlength]),
+input[type="url"]:not([maxlength]),
+input[type="week"]:not([maxlength]),
+textarea:not([id]),
+textarea:not([name]),
+textarea:not([maxlength]),
+select:not([id]),
+select:not([name]) {
+    outline: 0.2em solid red;
+}
+
+a:not([href])::before,
+a[href="#"]::before,
+b::before,
+data:not([value])::before,
+html:not([lang])::before,
+i::before,
+time:not([datetime])::before,
+:empty:not(img):not(td):not(input):not(textarea):not(br):not(hr)::before {
+    display: inline-block;
+    outline: 0.2em solid red;
+    padding: 0 0.3em;
+    margin-right: 0.4em;
+}
+
+a:not([href])::before {
+    content: "<a>: no 'href' attribute.";
+}
+
+a[href="#"]::before {
+    content: "<a href=\"#\">: Must have valid, meaningful URL. Consider using <button type=\"button\"> instead."
+}
+
+b::before {
+    content: "<b>: consider using <strong> instead."
+}
+
+data:not([value])::before {
+    content: "<data>: no 'value' attribute."
+}
+
+html:not([lang])::before {
+    content: "<html>: no 'lang' attribute."
+}
+
+i::before {
+    content: "<i>: consider using <em> or <cite> instead."
+}
+
+time:not([datetime])::before {
+    content: "<time>: no 'datetime' attribute.";
+}
+
+:empty:not(img):not(td):not(input):not(textarea):not(br):not(hr)::before {
+    content: "Empty element.";
+}

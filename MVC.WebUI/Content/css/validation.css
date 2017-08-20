@@ -75,7 +75,6 @@ select:empty {
     position: relative;
     outline: 0.4rem solid red;
     outline-offset: 0.2em;
-    cursor: help;
 }
 
 :-moz-any(a:not([href]), a[href=""], a[href="#"], b, data:not([value]), data[value=""], form:not([action]), form[action=""], form[action="#"], form:not([method]), form[method=""], html:not([lang]), href[lang=""], i, label:not([for]), time:not([datetime]), time[datetime=""]):not(:empty):hover {

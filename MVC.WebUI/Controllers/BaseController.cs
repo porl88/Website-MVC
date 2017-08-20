@@ -51,7 +51,7 @@
                 {
                     Languages = response.Languages.Select(x => new LanguageDto
                     {
-                        LanguageCode = x.LanguageCode,
+                        IsoCode = x.LanguageCode,
                         Name = x.Name,
                         Url = url.Replace($"/{lang}/", $"/{x.LanguageCode}/"),
                         IsSelected = x.LanguageCode.Equals(lang, StringComparison.InvariantCultureIgnoreCase)

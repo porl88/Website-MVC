@@ -10,16 +10,20 @@
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             var request = context.HttpContext.Request;
-           
-            if (request.HttpMethod == "GET" && (request.UrlReferrer == null || !request.UrlReferrer.Host.Equals(request.Url.Host, StringComparison.InvariantCultureIgnoreCase)))
+            var currentLang = context.RouteData.Values["lang"] as string;
+
+            if (request.HttpMethod == "GET" && (string.IsNullOrWhiteSpace(currentLang) || request.UrlReferrer == null || !request.UrlReferrer.Host.Equals(request.Url.Host, StringComparison.InvariantCultureIgnoreCase)))
             {
                 var availableLanguages = new string[] { "en-gb", "fr-fr", "de-de" };
                 var preferredLang = this.GetPreferredLanguage(request, availableLanguages, "en-gb");
-                var routes = context.RouteData.Values;
-                routes["lang"] = preferredLang;
-                // 301 redirects are cached aggressively by browsers
-                context.HttpContext.Response.CacheControl = "no-cache";
-                context.Result = new RedirectToRouteResult("DefaultLocalized", routes, true);
+                if (!preferredLang.Equals(currentLang, StringComparison.OrdinalIgnoreCase))
+                {
+                    var routes = context.RouteData.Values;
+                    routes["lang"] = preferredLang;
+                    // 301 redirects are cached aggressively by browsers
+                    context.HttpContext.Response.CacheControl = "no-cache";
+                    context.Result = new RedirectToRouteResult("DefaultLocalized", routes, true);
+                }
             }
         }
 

@@ -23,7 +23,6 @@
 
             try
             {
-
                 if (!string.IsNullOrWhiteSpace(key))
                 {
                     var cookie = this.GetCookie(key);
@@ -137,6 +136,7 @@
         {
             var cookie = new HttpCookie(cookieName);
             cookie.HttpOnly = true;
+            cookie.Secure = true;
 
             if (expiryDate != null && expiryDate > DateTime.Now)
             {

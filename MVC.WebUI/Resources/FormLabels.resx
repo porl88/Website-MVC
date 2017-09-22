@@ -186,4 +186,10 @@
   <data name="Previous" xml:space="preserve">
     <value>Previous</value>
   </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="RequiredMessage" xml:space="preserve">
+    <value>Fields marked with an asterisk (*) are required.</value>
+  </data>
 </root>

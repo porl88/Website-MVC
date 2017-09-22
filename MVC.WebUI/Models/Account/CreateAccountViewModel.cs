@@ -14,12 +14,12 @@
         public string Email { get; set; }
 
         [Display(Name = "Password", ResourceType = typeof(Resources.FormLabels))]
-        [Required, Password(ErrorMessageResourceName = "Password", ErrorMessageResourceType = typeof(Resources.ValidationErrors))]
+        [Required, MaxLength(200), Password(ErrorMessageResourceName = "Password", ErrorMessageResourceType = typeof(Resources.ValidationErrors))]
         public string Password { get; set; }
 
         [Display(Name = "PasswordConfirm", ResourceType = typeof(Resources.FormLabels))]
         [Compare("Password")] // N.B. Compare has built-in language support
-		public string ConfirmPassword { get; set; }
+		public string PasswordConfirm { get; set; }
 
         [Display(Name = "FirstName", ResourceType = typeof(Resources.FormLabels))]
         [Required, MaxLength(30), Name]
@@ -28,5 +28,9 @@
         [Display(Name = "LastName", ResourceType = typeof(Resources.FormLabels))]
         [Required, MaxLength(50), Name]
         public string LastName { get; set; }
-    }
+
+		[Display(Name = "FullName", ResourceType = typeof(Resources.FormLabels))]
+		[Required, MaxLength(80), Name]
+		public string FullName { get; set; }
+	}
 }

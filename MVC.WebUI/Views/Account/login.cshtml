@@ -9,17 +9,12 @@
 <section>
     <h1>@Resources.FormLabels.LogIn</h1>
 
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <section class="alert success">
-            <p>@TempData["SuccessMessage"]</p>
-        </section>
-    }
+	@Html.Partial("_alert")
 
     @*http://stackoverflow.com/questions/12107263/why-is-validationsummarytrue-displaying-an-empty-summary-for-property-errors*@
     @if (ViewContext.ViewData.ModelState.Where(x => x.Key == string.Empty).Any())
     {
-        Html.ValidationSummary(false, "You cannot sign in because:");
+        Html.ValidationSummary(false, "You have not been able to sign in because:");
     }
 
     @Html.CustomValidationSummary(false)

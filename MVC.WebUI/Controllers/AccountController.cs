@@ -56,8 +56,8 @@
                     UserName = model.UserName,
                     Password = model.Password,
                     Email = model.Email,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
+                    GivenName = model.FirstName,
+                    FamilyName = model.LastName
                 };
 
                 var response = this.accountService.CreateAccount(request);
@@ -135,6 +135,28 @@
             this.TempData["SuccessMessage"] = "You have successfully logged out.";
             return this.RedirectToAction("Index", "Home");
         }
+
+		// GET: /account/activate
+		public ActionResult Activate(string activationToken)
+		{
+			var request = new ActivateAccountRequest();
+			var response = this.accountService.ActivateAccount(new ActivateAccountRequest
+			{
+				ActivateAccountToken = activationToken
+			});
+
+			if (response.Success)
+			{
+				this.TempData["SuccessMessage"] = "Your account has been successfully activated."; // response.Message???
+				return this.RedirectToAction("LogIn");
+			}
+			else
+			{
+				this.ModelState.AddModelError(string.Empty, response.Message);
+			}
+
+			return this.View();
+		}
 
         // GET: /account/change-password
         [ActionName("change-password")]
@@ -293,7 +315,7 @@
 
             var message = new MessageRequest(email, fullName)
             {
-                FromAddress = "donotreply@" + Website.DomainName,
+                FromAddress = "donotreply@" + Website.CanonicalDomain,
                 FromName = Website.Name,
                 Subject = "Please activate your account with " + Website.Name,
                 MessageUrl = new Uri(emailUrl)

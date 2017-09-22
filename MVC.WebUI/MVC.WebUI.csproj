@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -140,10 +141,6 @@
     <Content Include="Content\css\bootstrap.html" />
     <Content Include="Content\css\validation.css" />
     <Content Include="Content\css\website.css" />
-    <Content Include="Content\html5-shiv\html5shiv-printshiv.js" />
-    <Content Include="Content\html5-shiv\html5shiv-printshiv.min.js" />
-    <Content Include="Content\html5-shiv\html5shiv.js" />
-    <Content Include="Content\html5-shiv\html5shiv.min.js" />
     <Content Include="Content\images\browser\chrome.png" />
     <Content Include="Content\images\browser\firefox.png" />
     <Content Include="Content\images\browser\ie.png" />
@@ -303,6 +300,7 @@
     <Content Include="Content\fonts\raleway.zip" />
     <Content Include="Content\fonts\sniglet.zip" />
     <Content Include="Content\fonts\sorts-mill-goudy.zip" />
+    <Content Include="Views\Account\activateaccount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -311,22 +309,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\angularjs\" />
-    <Folder Include="Content\bootstrap\" />
     <Folder Include="Content\components\" />
     <Folder Include="Content\html\" />
     <Folder Include="Content\images\favicons\" />
-    <Folder Include="Content\jquery-ui\" />
-    <Folder Include="Content\jquery\" />
-    <Folder Include="Content\js\" />
     <Folder Include="Content\lib\angularjs\" />
     <Folder Include="Content\lib\bootstrap\" />
     <Folder Include="Content\lib\jquery-ui\" />
     <Folder Include="Content\lib\jquery\" />
     <Folder Include="Content\lib\modernizr\" />
     <Folder Include="Content\lib\react\" />
-    <Folder Include="Content\modernizr\" />
-    <Folder Include="Content\react\" />
     <Folder Include="Content\scss\buttons-links\images\" />
     <Folder Include="Content\views\" />
     <Folder Include="Content\xsd\" />

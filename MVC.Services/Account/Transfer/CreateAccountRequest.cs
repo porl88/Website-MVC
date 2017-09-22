@@ -19,11 +19,14 @@
         public string Email { get; set; }
 
         [Required]
-        public string FirstName { get; set; }
+        public string GivenName { get; set; }
 
         [Required]
-        public string LastName { get; set; }
+        public string FamilyName { get; set; }
 
-        public bool RequireActivation { get; set; }
+		[Required]
+		public string FullName { get; set; }
+
+		public bool RequireActivation { get; set; }
     }
 }

@@ -39,8 +39,8 @@ gulp.task('website-js', function () {
     .pipe(gulp.dest('./content/website'));
 });
 
-gulp.task('website-sass-compile', function () {
-    gulp.src('./content/website/css/scss/website.scss')
+gulp.task('website-sass-compile', () => {
+    return gulp.src('./content/website/css/scss/website.scss')
         .pipe(sourcemaps.init())
         .pipe(autoprefixer(autoprefixerOptions))
         .pipe(sass({ outputStyle: 'compressed' }))

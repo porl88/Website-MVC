@@ -17,17 +17,32 @@ https://css-tricks.com/snippets/css/using-font-face/
 */
 
 @font-face {
-    font-family: 'Web Font Name';
-    font-style: normal;
-    font-weight: 400;
-    /*font-size-adjust: 0.545;*/ /* http://fontdeck.com/support/fontsizeadjust */
-    src: url('webfont.eot'); /* IE6-11 only */
-    src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('webfont.woff2') format('woff2'), /* Edge 14+, Firefox 39+, Chrome 36+, Safari 10+, Opera 23+ - no support: IE, IOS Safari */
-    url('webfont.woff') format('woff'), /* IE9+, Edge, Firefox 3.6+, Chrome 5+, Safari 5.1+, IOS Safari 5.1+, Opera 11.5+ */
-    url('webfont.ttf') format('truetype'), /* IE9+ (only when set to 'installable'), Edge, Firefox 3.5+, Chrome 4+, Safari 3.1+, IOS Safari 4.3+, Opera 10.1+  */
-    url('webfont.svg#svgFontName') format('svg'); /* Chrome 4-37, Safari 3.2+, IOS Safari 3.2+, Opera 10.1-24 - no support: IE, Edge, Firefox */
-    unicode-range: initial;
+	font-family: 'Web Font Name';
+	font-style: normal;
+	font-weight: 400;
+	/*font-size-adjust: 0.545;*/ /* http://fontdeck.com/support/fontsizeadjust */
+	src: url('webfont.eot'); /* IE6-11 only */
+	src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('webfont.woff2') format('woff2'), /* Edge 14+, Firefox 39+, Chrome 36+, Safari 10+, Opera 23+ - no support: IE, IOS Safari */
+	url('webfont.woff') format('woff'), /* IE9+, Edge, Firefox 3.6+, Chrome 5+, Safari 5.1+, IOS Safari 5.1+, Opera 11.5+ */
+	url('webfont.ttf') format('truetype'), /* IE9+ (only when set to 'installable'), Edge, Firefox 3.5+, Chrome 4+, Safari 3.1+, IOS Safari 4.3+, Opera 10.1+  */
+	url('webfont.svg#svgFontName') format('svg'); /* Chrome 4-37, Safari 3.2+, IOS Safari 3.2+, Opera 10.1-24 - no support: IE, Edge, Firefox */
+	unicode-range: initial;
+}
+
+/* example for modern browsers: */
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size-adjust: 0.535;
+	src: local('Open Sans'),
+		local('OpenSans'),
+		url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2'),
+		url(/content/fonts/open-sans/open-sans.woff2) format('woff2'),
+		url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff'),
+		url(/content/fonts/open-sans/open-sans.woff) format('woff');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
 /*

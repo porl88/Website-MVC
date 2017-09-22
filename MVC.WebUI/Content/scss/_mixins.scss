@@ -291,7 +291,7 @@
     #{$selector}::-ms-input-placeholder {
         @content;
     }
-    /* ::placeholder not yet fully finilised - may end up as ::input-placeholder or ::placeholder-text */
+    /* ::placeholder not yet fully finalised - may end up as ::input-placeholder or ::placeholder-text */
     #{$selector}::placeholder {
     }
 }

@@ -1,0 +1,22 @@
+﻿@model MVC.WebUI.Models.Account.ActivateAccountViewModel
+@{
+    ViewBag.Title = "Activate Account";
+}
+
+<section>
+	<h1 class="page-title">Activate Account</h1>
+	<p>The activation code has not been recognised. This might be because it has expired. To request a new activation code, enter you email address in the field below:</p>
+	<form class="form" action="@Url.Action("Activate", "Account")" method="post">
+		@Html.AntiForgeryToken()
+		@Html.ValidationSummary(true)
+		<p>@Resources.FormLabels.RequiredMessage</p>
+		<ol class="form-fields">
+			<li>
+				@Html.LabelFor(m => m.Email)
+				@Html.TextBoxFor(m => m.Email, new { type = "email", autocomplete = "on", maxlength = "256", placeholder = "e.g. 'john.smith@example.com'", required = "required", size = "40" })
+				@Html.ValidationMessageFor(m => m.Email)
+			</li>
+		</ol>
+	</form>
+</section>
+

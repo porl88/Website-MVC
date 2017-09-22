@@ -2,7 +2,7 @@
 {
 	public interface ISystemSettings
 	{
-		bool IsProductionEnviroment { get; }
+		bool IsProductionEnvironment { get; }
 
 		string DwsDomainName { get; }
 	}

@@ -3,55 +3,81 @@ The 'content' attribute does not work with self-closing tags: img, input, etc.
 a:not([href]), a[href=""], a[href="#"], b, data:not([value]), data[value=""], form:not([action]), form[action=""], form[action="#"], form:not([method]), form[method=""] , html:not([lang]), href[lang=""], i, label:not([for]), time:not([datetime]), time[datetime=""]
 */
 
+[action]:not([action^="http"]):not([action^="/"]),
+[alt=""],
+[datetime=""],
+[disabled]:not([disabled="disabled"]),
+[formaction]:not([formaction^="http"]):not([formaction^="/"]),
+[formenctype]:not([formenctype="application/x-www-form-urlencoded"]):not([formenctype="multipart/form-data"]):not([formenctype="text/plain"]),
+[formmethod]:not([formmethod="get"]):not([formmethod="post"]),
+[formnovalidate]:not([formnovalidate="formnovalidate"]),
+[formnovalidate],
+[formtarget]:not([formtarget="_self"]):not([formtarget="_blank"]):not([formtarget="_parent"]):not([formtarget="_parent"]):not([formtarget="_top"]),
+[height=""],
+[href]:not([href^="http"]):not([href^="mailto"]):not([href^="/"]):not([href^="#"]),
+[href="#"],
+[id=""],
+[list=""],
+[method]:not([method="get"]):not([method="post"]),
+[novalidate]:not([novalidate="novalidate"]),
+[novalidate],
+[selectionDirection]:not([selectionDirection="none"]):not([selectionDirection="forward"]):not([selectionDirection="backward"]),
+[selectionEnd=""],
+[selectionStart=""],
+[spellcheck]:not([spellcheck="default"]):not([spellcheck="true"]):not([spellcheck="false"]),
+[src]:not([src^="http"]):not([src^="/"]),
+[tabindex]:not([tabindex="-1"]):not([tabindex="0"]),
 a:not([href]),
-a[href="#"],
+a[target="_blank"]:not([rel="noopener"]),
 audio:not([src]),
-audio[src=""],
 b,
 data:not([value]),
 html:not([lang]),
 i,
 img:not([src]),
-img[src=""],
+img:not([srcset]),
 img:not([alt]),
-img[alt=""],
 img:not([width]),
-img[width=""],
 img:not([height]),
-img[height=""],
 time:not([datetime]),
-time[datetime=""],
 ul > ul,
 ul > ol,
 ol > ul,
 ol > ol,
 video:not([src]),
-video[src=""],
 form:not([action]),
-form[action=""],
-form[action="#"],
 form:not([method]),
-form[method=""],
+form[novalidate],
+form > input:first-of-type:not([autofocus]),
+form > ol:first-of-type > li:first-child > input:first-of-type:not([autofocus]),
 label:not([for]),
 input:not([type]),
 input:not([id]),
 input:not([name]),
-input[type="text"]:not([maxlength]),
-input[type="password"][maxlength],
+input[type]:not([type="button"]):not([type="checkbox"]):not([type="color"]):not([type="date"]):not([type="datetime-local"]):not([type="email"]):not([type="file"]):not([type="hidden"]):not([type="month"]):not([type="number"]):not([type="password"]):not([type="radio"]):not([type="range"]):not([type="reset"]):not([type="search"]):not([type="submit"]):not([type="tel"]):not([type="text"]):not([type="time"]):not([type="url"]):not([type="week"]),
+/*input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([maxlength]),*/
+input[type="text"][inputmode^="latin"]:not([autocapitalize]),
+input[type="text"]:not([autocomplete]),
+/*input[type="text"]:not([autocorrect]),*/
+input[type="text"]:not([inputmode]),
+input[type="file"]:not([accept]),
+input[type="password"]:not([maxlength="200"]),
 input[type="password"]:not([minlength]),
 input[type="password"]:not([pattern]),
-input[type="password"]:not([title]),
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
 input[type="image"],
-input[type="color"]:not([maxlength]),
-input[type="date"]:not([maxlength]),
-input[type="datetime"]:not([maxlength]),
-input[type="datetime-local"]:not([maxlength]),
-input[type="email"]:not([maxlength]),
+input[type^="date"]:not([max]),
+input[type^="date"][maxlength], /* if no backwards-compatibility is required */
+input[type^="date"]:not([min]),
+input[type^="date"][minlength], /* if no backwards-compatibility is required */
+input[type^="date"][pattern], /* if no backwards-compatibility is required */
+input[type^="date"]:not([maxlength="10"]), /* needed for backward-compatibility only */
+input[type^="date"]:not([minlength="10"]), /* needed for backward-compatibility only */
+input[type^="date"]:not([pattern="\d{4}-\d{2}-\d{2}"]), /* needed for backward-compatibility only */
+input[type="email"]:not([maxlength="256"]),
 input[type="month"]:not([maxlength]),
-input[type="number"]:not([maxlength]),
 input[type="number"]:not([min]),
 input[type="number"]:not([max]),
 input[type="range"]:not([maxlength]),
@@ -63,126 +89,251 @@ input[type="tel"]:not([maxlength]),
 input[type="time"]:not([maxlength]),
 input[type="url"]:not([maxlength]),
 input[type="week"]:not([maxlength]),
+input[accept=""],
+input[autocapitalize]:not([autocapitalize="none"]):not([autocapitalize="sentences"]):not([autocapitalize="words"]):not([autocapitalize="characters"]), /* non-standard */
+input[autocomplete]:not([autocomplete="off"]):not([autocomplete="on"]):not([autocomplete="name"]):not([autocomplete="honorific-prefix"]):not([autocomplete="given-name"]):not([autocomplete="additional-name"]):not([autocomplete="family-name"]):not([autocomplete="honorific-suffix"]):not([autocomplete="nickname"]):not([autocomplete="email"]):not([autocomplete="username"]):not([autocomplete="new-password"]):not([autocomplete="current-password"]):not([autocomplete="organization-title"]):not([autocomplete="organization"]):not([autocomplete="street-address"]):not([autocomplete="address-line-1"]):not([autocomplete="address-line-2"]):not([autocomplete="address-line-3"]):not([autocomplete="address-level-1"]):not([autocomplete="address-level-2"]):not([autocomplete="address-level-3"]):not([autocomplete="address-level-4"]):not([autocomplete="country"]):not([autocomplete="country-name"]):not([autocomplete="post-code"]):not([autocomplete="cc-name"]):not([autocomplete="cc-given-name"]):not([autocomplete="cc-additional-name"]):not([autocomplete="cc-family-name"]):not([autocomplete="cc-number"]):not([autocomplete="cc-exp"]):not([autocomplete="cc-exp-month"]):not([autocomplete="cc-exp-year"]):not([autocomplete="cc-csc"]):not([autocomplete="cc-type"]):not([autocomplete="transaction-currency"]):not([autocomplete="transaction-amount"]):not([autocomplete="language"]):not([autocomplete="bday"]):not([autocomplete="bday-day"]):not([autocomplete="bday-month"]):not([autocomplete="bday-year"]):not([autocomplete="sex"]):not([autocomplete="tel"]):not([autocomplete="tel-country-code"]):not([autocomplete="tel-national"]):not([autocomplete="tel-area-code"]):not([autocomplete="tel-local"]):not([autocomplete="tel-local-prefix"]):not([autocomplete="tel-local-suffix"]):not([autocomplete="tel-extension"]):not([autocomplete="url"]):not([autocomplete="photo"]),
+input[autocorrect]:not([autocorrect="on"]):not([autocorrect="off"]), /* non-standard */
+input[autofocus]:not([autofocus="autofocus"]),
+input[checked]:not([checked="checked"]),
+input[inputmode]:not([inputmode="verbatim"]):not([inputmode="latin"]):not([inputmode="latin-name"]):not([inputmode="latin-prose"]):not([inputmode="full-width-latin"]):not([inputmode="kana"]):not([inputmode="katakana"]):not([inputmode="numeric"]):not([inputmode="tel"]):not([inputmode="email"]):not([inputmode="url"]),
+input[max=""],
+input[maxlength=""],
+input[min=""],
+input[minlength=""],
+input[multiple]:not([multiple="multiple"]),
+input[name=""],
+input[pattern=""],
+input[pattern]:not([title]),
+input[readonly]:not([readonly="readonly"]),
+input[required]:not([required="required"]),
+input[step=""],
+input[size=""],
 textarea:not([id]),
-textarea[id=""],
 textarea:not([name]),
-textarea[name=""],
 textarea:not([maxlength]),
-textarea[maxlength=""],
 select:not([id]),
 select:not([name]),
 select:empty {
-    position: relative;
-    outline: 0.4rem solid red;
-    outline-offset: 0.2em;
+	position: relative;
+	outline: 0.4rem solid red;
+	outline-offset: 0.2em;
 }
 
-:-moz-any(a:not([href]), a[href=""], a[href="#"], b, data:not([value]), data[value=""], form:not([action]), form[action=""], form[action="#"], form:not([method]), form[method=""], html:not([lang]), href[lang=""], i, label:not([for]), time:not([datetime]), time[datetime=""]):not(:empty):hover {
-    outline: none;
+input:not([id]) {
+	outline-color: lime;
 }
 
-    :-moz-any(a:not([href]), a[href=""], a[href="#"], b, data:not([value]), data[value=""], form:not([action]), form[action=""], form[action="#"], form:not([method]), form[method=""], html:not([lang]), href[lang=""], i, label:not([for]), time:not([datetime]), time[datetime=""]):not(:empty):hover::before {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        z-index: 999;
-        min-width: 13em;
-        margin-top: 0.8em;
-        padding: 0.5em 1em;
-        box-sizing: border-box;
-        font-size: 0.9rem;
-        text-align: center;
-        color: #FFF;
-        background-color: #000;
-        transform: translateX(-50%);
-    }
+input:not([name]) {
+	outline-color: lightpink;
+}
 
-    :-moz-any(a:not([href]), a[href=""], a[href="#"], b, data:not([value]), data[value=""], form:not([action]), form[action=""], form[action="#"], form:not([method]), form[method=""], html:not([lang]), href[lang=""], i, label:not([for]), time:not([datetime]), time[datetime=""]):not(:empty):hover::after {
-        position: absolute;
-        bottom: -0.8em;
-        left: 50%;
-        z-index: 999;
-        display: block;
-        width: 0;
-        height: 0;
-        margin-left: -0.8em;
-        font-size: 0.9rem;
-        border: 0.8em solid transparent;
-        border-bottom-color: #000;
-        pointer-events: none;
-        content: "";
-    }
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([maxlength]) {
+	outline-color: orange;
+}
 
+input[type="text"]:not([autocapitalize]) {
+	outline-color: aqua;
+}
+
+input[type="text"]:not([autocomplete]) {
+	outline-color: blueviolet;
+}
+
+input[type="text"]:not([autocorrect]) {
+	outline-color: magenta;
+}
+
+input[type="text"]:not([inputmode]) {
+	outline-color: darkviolet;
+}
+
+input[type="file"]:not([accept]) {
+	outline-color: lightgreen;
+}
+
+:-moz-any([accept=""], [action]:not([action^="http"]):not([action^="/"]), [alt=""], [autocapitalize]:not([autocapitalize="none"]):not([autocapitalize="sentences"]):not([autocapitalize="words"]):not([autocapitalize="characters"]), [autocomplete]:not([autocomplete="off"]):not([autocomplete="on"]):not([autocomplete="name"]):not([autocomplete="honorific-prefix"]):not([autocomplete="given-name"]):not([autocomplete="additional-name"]):not([autocomplete="family-name"]):not([autocomplete="honorific-suffix"]):not([autocomplete="nickname"]):not([autocomplete="email"]):not([autocomplete="username"]):not([autocomplete="new-password"]):not([autocomplete="current-password"]):not([autocomplete="organization-title"]):not([autocomplete="organization"]):not([autocomplete="street-address"]):not([autocomplete="address-line-1"]):not([autocomplete="address-line-2"]):not([autocomplete="address-line-3"]):not([autocomplete="address-level-1"]):not([autocomplete="address-level-2"]):not([autocomplete="address-level-3"]):not([autocomplete="address-level-4"]):not([autocomplete="country"]):not([autocomplete="country-name"]):not([autocomplete="post-code"]):not([autocomplete="cc-name"]):not([autocomplete="cc-given-name"]):not([autocomplete="cc-additional-name"]):not([autocomplete="cc-family-name"]):not([autocomplete="cc-number"]):not([autocomplete="cc-exp"]):not([autocomplete="cc-exp-month"]):not([autocomplete="cc-exp-year"]):not([autocomplete="cc-csc"]):not([autocomplete="cc-type"]):not([autocomplete="transaction-currency"]):not([autocomplete="transaction-amount"]):not([autocomplete="language"]):not([autocomplete="bday"]):not([autocomplete="bday-day"]):not([autocomplete="bday-month"]):not([autocomplete="bday-year"]):not([autocomplete="sex"]):not([autocomplete="tel"]):not([autocomplete="tel-country-code"]):not([autocomplete="tel-national"]):not([autocomplete="tel-area-code"]):not([autocomplete="tel-local"]):not([autocomplete="tel-local-prefix"]):not([autocomplete="tel-local-suffix"]):not([autocomplete="tel-extension"]):not([autocomplete="url"]):not([autocomplete="photo"]), [autocorrect]:not([autocorrect="on"]):not([autocorrect="off"]), [autofocus]:not([autofocus="autofocus"]), [checked]:not([checked="checked"]), [datetime=""], [disabled]:not([disabled="disabled"]), [formaction]:not([formaction^="http"]):not([formaction^="/"]), [formenctype]:not([formenctype="application/x-www-form-urlencoded"]):not([formenctype="multipart/form-data"]):not([formenctype="text/plain"]), [formmethod]:not([formmethod="get"]):not([formmethod="post"]), [formnovalidate]:not([formnovalidate="formnovalidate"]), [formnovalidate], [formtarget]:not([formtarget="_self"]):not([formtarget="_blank"]):not([formtarget="_parent"]):not([formtarget="_parent"]):not([formtarget="_top"]), [height=""], [href]:not([href^="http"]):not([href^="mailto"]):not([href^="/"]):not([href^="#"]), [href="#"], [id=""], [inputmode]:not([inputmode="verbatim"]):not([inputmode="latin"]):not([inputmode="latin-name"]):not([inputmode="latin-prose"]):not([inputmode="full-width-latin"]):not([inputmode="kana"]):not([inputmode="katakana"]):not([inputmode="numeric"]):not([inputmode="tel"]):not([inputmode="email"]):not([inputmode="url"]), [list=""], [max=""], [maxlength=""], [method]:not([method="get"]):not([method="post"]), [min=""], [minlength=""], [multiple]:not([multiple="multiple"]), [novalidate]:not([novalidate="novalidate"]), [novalidate], [name=""], [pattern=""], [pattern]:not([title]), [readonly]:not([readonly="readonly"]), [required]:not([required="required"]), [selectionDirection]:not([selectionDirection="none"]):not([selectionDirection="forward"]):not([selectionDirection="backward"]), [selectionEnd=""], [selectionStart=""], [size=""], [spellcheck]:not([spellcheck="default"]):not([spellcheck="true"]):not([spellcheck="false"]), [src]:not([src^="http"]):not([src^="/"]), [step=""], [tabindex=""], [type]:not([type="button"]):not([type="checkbox"]):not([type="color"]):not([type="date"]):not([type="datetime-local"]):not([type="email"]):not([type="file"]):not([type="hidden"]):not([type="month"]):not([type="number"]):not([type="password"]):not([type="radio"]):not([type="range"]):not([type="reset"]):not([type="search"]):not([type="submit"]):not([type="tel"]):not([type="text"]):not([type="time"]):not([type="url"]):not([type="week"]), [size=""], a:not([href]), a[target="_blank"]:not([rel="noopener"]), audio:not([src]), b, data:not([value]), html:not([lang]), i, img:not([src]), img:not([alt]), img:not([width]), img:not([height]), time:not([datetime]), video:not([src]), form:not([action]), form:not([method]), form[novalidate], label:not([for])):not(:empty):hover {
+	outline: none;
+}
+
+:-moz-any([accept=""], [action]:not([action^="http"]):not([action^="/"]), [alt=""], [autocapitalize]:not([autocapitalize="none"]):not([autocapitalize="sentences"]):not([autocapitalize="words"]):not([autocapitalize="characters"]), [autocomplete]:not([autocomplete="off"]):not([autocomplete="on"]):not([autocomplete="name"]):not([autocomplete="honorific-prefix"]):not([autocomplete="given-name"]):not([autocomplete="additional-name"]):not([autocomplete="family-name"]):not([autocomplete="honorific-suffix"]):not([autocomplete="nickname"]):not([autocomplete="email"]):not([autocomplete="username"]):not([autocomplete="new-password"]):not([autocomplete="current-password"]):not([autocomplete="organization-title"]):not([autocomplete="organization"]):not([autocomplete="street-address"]):not([autocomplete="address-line-1"]):not([autocomplete="address-line-2"]):not([autocomplete="address-line-3"]):not([autocomplete="address-level-1"]):not([autocomplete="address-level-2"]):not([autocomplete="address-level-3"]):not([autocomplete="address-level-4"]):not([autocomplete="country"]):not([autocomplete="country-name"]):not([autocomplete="post-code"]):not([autocomplete="cc-name"]):not([autocomplete="cc-given-name"]):not([autocomplete="cc-additional-name"]):not([autocomplete="cc-family-name"]):not([autocomplete="cc-number"]):not([autocomplete="cc-exp"]):not([autocomplete="cc-exp-month"]):not([autocomplete="cc-exp-year"]):not([autocomplete="cc-csc"]):not([autocomplete="cc-type"]):not([autocomplete="transaction-currency"]):not([autocomplete="transaction-amount"]):not([autocomplete="language"]):not([autocomplete="bday"]):not([autocomplete="bday-day"]):not([autocomplete="bday-month"]):not([autocomplete="bday-year"]):not([autocomplete="sex"]):not([autocomplete="tel"]):not([autocomplete="tel-country-code"]):not([autocomplete="tel-national"]):not([autocomplete="tel-area-code"]):not([autocomplete="tel-local"]):not([autocomplete="tel-local-prefix"]):not([autocomplete="tel-local-suffix"]):not([autocomplete="tel-extension"]):not([autocomplete="url"]):not([autocomplete="photo"]), [autocorrect]:not([autocorrect="on"]):not([autocorrect="off"]), [autofocus]:not([autofocus="autofocus"]), [checked]:not([checked="checked"]), [datetime=""], [disabled]:not([disabled="disabled"]), [formaction]:not([formaction^="http"]):not([formaction^="/"]), [formenctype]:not([formenctype="application/x-www-form-urlencoded"]):not([formenctype="multipart/form-data"]):not([formenctype="text/plain"]), [formmethod]:not([formmethod="get"]):not([formmethod="post"]), [formnovalidate]:not([formnovalidate="formnovalidate"]), [formnovalidate], [formtarget]:not([formtarget="_self"]):not([formtarget="_blank"]):not([formtarget="_parent"]):not([formtarget="_parent"]):not([formtarget="_top"]), [height=""], [href]:not([href^="http"]):not([href^="mailto"]):not([href^="/"]):not([href^="#"]), [href="#"], [id=""], [inputmode]:not([inputmode="verbatim"]):not([inputmode="latin"]):not([inputmode="latin-name"]):not([inputmode="latin-prose"]):not([inputmode="full-width-latin"]):not([inputmode="kana"]):not([inputmode="katakana"]):not([inputmode="numeric"]):not([inputmode="tel"]):not([inputmode="email"]):not([inputmode="url"]), [list=""], [max=""], [maxlength=""], [method]:not([method="get"]):not([method="post"]), [min=""], [minlength=""], [multiple]:not([multiple="multiple"]), [novalidate]:not([novalidate="novalidate"]), [novalidate], [name=""], [pattern=""], [pattern]:not([title]), [readonly]:not([readonly="readonly"]), [required]:not([required="required"]), [selectionDirection]:not([selectionDirection="none"]):not([selectionDirection="forward"]):not([selectionDirection="backward"]), [selectionEnd=""], [selectionStart=""], [size=""], [spellcheck]:not([spellcheck="default"]):not([spellcheck="true"]):not([spellcheck="false"]), [src]:not([src^="http"]):not([src^="/"]), [step=""], [tabindex=""], [type]:not([type="button"]):not([type="checkbox"]):not([type="color"]):not([type="date"]):not([type="datetime-local"]):not([type="email"]):not([type="file"]):not([type="hidden"]):not([type="month"]):not([type="number"]):not([type="password"]):not([type="radio"]):not([type="range"]):not([type="reset"]):not([type="search"]):not([type="submit"]):not([type="tel"]):not([type="text"]):not([type="time"]):not([type="url"]):not([type="week"]), [size=""], a:not([href]), a[target="_blank"]:not([rel="noopener"]), audio:not([src]), b, data:not([value]), html:not([lang]), i, img:not([src]), img:not([alt]), img:not([width]), img:not([height]), time:not([datetime]), video:not([src]), form:not([action]), form:not([method]), form[novalidate], label:not([for])):hover::before {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	z-index: 999;
+	min-width: 13em;
+	margin-top: 0.8em;
+	padding: 0.5em 1em;
+	box-sizing: border-box;
+	font-size: 0.9rem;
+	text-align: center;
+	color: #FFF;
+	background-color: #000;
+	transform: translateX(-50%);
+	content: "This element is invalid.";
+}
+
+:-moz-any([accept=""], [action]:not([action^="http"]):not([action^="/"]), [alt=""], [autocapitalize]:not([autocapitalize="none"]):not([autocapitalize="sentences"]):not([autocapitalize="words"]):not([autocapitalize="characters"]), [autocomplete]:not([autocomplete="off"]):not([autocomplete="on"]):not([autocomplete="name"]):not([autocomplete="honorific-prefix"]):not([autocomplete="given-name"]):not([autocomplete="additional-name"]):not([autocomplete="family-name"]):not([autocomplete="honorific-suffix"]):not([autocomplete="nickname"]):not([autocomplete="email"]):not([autocomplete="username"]):not([autocomplete="new-password"]):not([autocomplete="current-password"]):not([autocomplete="organization-title"]):not([autocomplete="organization"]):not([autocomplete="street-address"]):not([autocomplete="address-line-1"]):not([autocomplete="address-line-2"]):not([autocomplete="address-line-3"]):not([autocomplete="address-level-1"]):not([autocomplete="address-level-2"]):not([autocomplete="address-level-3"]):not([autocomplete="address-level-4"]):not([autocomplete="country"]):not([autocomplete="country-name"]):not([autocomplete="post-code"]):not([autocomplete="cc-name"]):not([autocomplete="cc-given-name"]):not([autocomplete="cc-additional-name"]):not([autocomplete="cc-family-name"]):not([autocomplete="cc-number"]):not([autocomplete="cc-exp"]):not([autocomplete="cc-exp-month"]):not([autocomplete="cc-exp-year"]):not([autocomplete="cc-csc"]):not([autocomplete="cc-type"]):not([autocomplete="transaction-currency"]):not([autocomplete="transaction-amount"]):not([autocomplete="language"]):not([autocomplete="bday"]):not([autocomplete="bday-day"]):not([autocomplete="bday-month"]):not([autocomplete="bday-year"]):not([autocomplete="sex"]):not([autocomplete="tel"]):not([autocomplete="tel-country-code"]):not([autocomplete="tel-national"]):not([autocomplete="tel-area-code"]):not([autocomplete="tel-local"]):not([autocomplete="tel-local-prefix"]):not([autocomplete="tel-local-suffix"]):not([autocomplete="tel-extension"]):not([autocomplete="url"]):not([autocomplete="photo"]), [autocorrect]:not([autocorrect="on"]):not([autocorrect="off"]), [autofocus]:not([autofocus="autofocus"]), [checked]:not([checked="checked"]), [datetime=""], [disabled]:not([disabled="disabled"]), [formaction]:not([formaction^="http"]):not([formaction^="/"]), [formenctype]:not([formenctype="application/x-www-form-urlencoded"]):not([formenctype="multipart/form-data"]):not([formenctype="text/plain"]), [formmethod]:not([formmethod="get"]):not([formmethod="post"]), [formnovalidate]:not([formnovalidate="formnovalidate"]), [formnovalidate], [formtarget]:not([formtarget="_self"]):not([formtarget="_blank"]):not([formtarget="_parent"]):not([formtarget="_parent"]):not([formtarget="_top"]), [height=""], [href]:not([href^="http"]):not([href^="mailto"]):not([href^="/"]):not([href^="#"]), [href="#"], [id=""], [inputmode]:not([inputmode="verbatim"]):not([inputmode="latin"]):not([inputmode="latin-name"]):not([inputmode="latin-prose"]):not([inputmode="full-width-latin"]):not([inputmode="kana"]):not([inputmode="katakana"]):not([inputmode="numeric"]):not([inputmode="tel"]):not([inputmode="email"]):not([inputmode="url"]), [list=""], [max=""], [maxlength=""], [method]:not([method="get"]):not([method="post"]), [min=""], [minlength=""], [multiple]:not([multiple="multiple"]), [novalidate]:not([novalidate="novalidate"]), [novalidate], [name=""], [pattern=""], [pattern]:not([title]), [readonly]:not([readonly="readonly"]), [required]:not([required="required"]), [selectionDirection]:not([selectionDirection="none"]):not([selectionDirection="forward"]):not([selectionDirection="backward"]), [selectionEnd=""], [selectionStart=""], [size=""], [spellcheck]:not([spellcheck="default"]):not([spellcheck="true"]):not([spellcheck="false"]), [src]:not([src^="http"]):not([src^="/"]), [step=""], [tabindex=""], [type]:not([type="button"]):not([type="checkbox"]):not([type="color"]):not([type="date"]):not([type="datetime-local"]):not([type="email"]):not([type="file"]):not([type="hidden"]):not([type="month"]):not([type="number"]):not([type="password"]):not([type="radio"]):not([type="range"]):not([type="reset"]):not([type="search"]):not([type="submit"]):not([type="tel"]):not([type="text"]):not([type="time"]):not([type="url"]):not([type="week"]), [size=""], a:not([href]), a[target="_blank"]:not([rel="noopener"]), audio:not([src]), b, data:not([value]), html:not([lang]), i, img:not([src]), img:not([alt]), img:not([width]), img:not([height]), time:not([datetime]), video:not([src]), form:not([action]), form:not([method]), form[novalidate], label:not([for])):hover::after {
+	position: absolute;
+	bottom: -0.8em;
+	left: 50%;
+	z-index: 999;
+	display: block;
+	width: 0;
+	height: 0;
+	margin-left: -0.8em;
+	font-size: 0.9rem;
+	border: 0.8em solid transparent;
+	border-bottom-color: #000;
+	pointer-events: none;
+	content: "";
+}
+
+/********************************************************************************************************************************************************/
+/* ATTRIBUTES */
+/********************************************************************************************************************************************************/
+
+[action]:not([action^="http"]):not([action^="/"]):hover::before {
+	content: "The 'action' attribute must begin with either 'http' or '/'."
+}
+
+[alt=""]:hover::before {
+	content: "The 'alt' attribute is empty."
+}
+
+[datetime=""]:hover::before {
+	content: "The 'datetime' attribute is empty."
+}
+
+[formaction]:not([formaction^="http"]):not([formaction^="/"]):hover::before {
+	content: "The 'formaction' attribute must begin with either 'http' or '/'."
+}
+
+[disabled]:not([disabled="disabled"]):hover::before {
+	content: "The 'disabled' attribute must have a value of 'disabled'.";
+}
+
+[formenctype]:not([formenctype="application/x-www-form-urlencoded"]):not([formenctype="multipart/form-data"]):not([formenctype="text/plain"]):hover::before {
+	content: "The 'formenctype' attribute must be one of the following values: 'application/x-www-form-urlencoded', 'multipart/form-data', 'text/plain'."
+}
+
+[formmethod]:not([formmethod="get"]):not([formmethod="post"]):hover::before {
+	content: "The 'formmethod' attribute must be one of the following values: 'get', 'post'."
+}
+
+[formnovalidate]:hover::before {
+	content: "The 'formnovalidate' attribute is not allowed."
+}
+
+[height=""]:hover::before {
+	content: "The 'height' attribute is empty."
+}
+
+[href]:not([href^="http"]):not([href^="mailto"]):not([href^="/"]):not([href^="#"]):hover::before {
+	content: "The 'href' attribute must start with one of the following values: 'http', 'mailto', '/'.";
+}
+
+[href="#"]:hover::before {
+	content: "The 'href' attribute must have a valid, meaningful URL. Consider using <button type=\"button\"> instead.";
+}
+
+[id=""]:hover::before {
+	content: "The 'id' attribute is empty.";
+}
+
+[method]:not([method="get"]):not([method="post"]):hover::before {
+	content: "The 'method' attribute must be one of the following values: 'get', 'post'.";
+}
+
+[novalidate]:hover::before {
+	content: "The 'novalidate' attribute is not allowed.";
+}
+
+[src]:not([src^="http"]):not([src^="/"]):hover::before {
+	content: "The 'src' attribute must start with one of the following values: 'http', '/'.";
+}
+
+[spellcheck]:not([spellcheck="default"]):not([spellcheck="true"]):not([spellcheck="false"]) {
+	content: "The 'spellcheck' attribute must be one of the following values: 'default', 'true', 'false'.";
+}
+
+[tabindex]:not([tabindex="-1"]):not([tabindex="0"]):hover::before {
+	content: "The 'tabindex' attribute must be one of the following values: '-1', '0'.";
+}
+
+
+/********************************************************************************************************************************************************/
+/* ELEMENTS */
+/********************************************************************************************************************************************************/
 a:not([href]):hover::before,
 a[href=""]:hover::before {
-    content: "<a>: no 'href' attribute.";
+	content: "<a>: No 'href' attribute.";
 }
 
-a[href="#"]:hover::before {
-    content: "<a href=\"#\">: Must have a valid, meaningful URL. Consider using <button type=\"button\"> instead."
+a[target="_blank"]:not([rel="noopener"]):hover::before {
+	content: "<a>: When using the attribute 'target=\"blank\"', the attribute 'rel=\"noopener\"' is required.";
 }
 
 b:hover::before {
-    content: "<b>: consider using <strong> instead."
+	content: "<b>: consider using <strong> instead."
 }
 
 data:not([value]):hover::before,
 data[value=""]:hover::before {
-    content: "<data>: no 'value' attribute."
+	content: "<data>: no 'value' attribute."
 }
 
 form:not([action]):hover::before,
 form[action=""]:hover::before {
-    content: "<form>: no 'action' attribute."
+	content: "<form>: no 'action' attribute."
 }
 
 form[action="#"]:hover::before {
-    content: "<form action=\"#\">: Must have a valid, meaningful URL."
+	content: "<form action=\"#\">: Must have a valid, meaningful URL."
 }
 
 form:not([method]):hover::before,
 form[method=""]:hover::before {
-    content: "<form>: no 'method' attribute."
+	content: "<form>: no 'method' attribute."
 }
 
 html:not([lang]):hover::before,
 html[lang=""]:hover::before {
-    content: "<html>: no 'lang' attribute."
+	content: "<html>: no 'lang' attribute."
 }
 
 i:hover::before {
-    content: "<i>: consider using <em> or <cite> instead."
+	content: "<i>: consider using <em> or <cite> instead."
 }
 
 label:not([for]):hover::before,
 label[for=""]:hover::before {
-    content: "<label>: no 'for' attribute."
+	content: "<label>: no 'for' attribute."
 }
 
 time:not([datetime]):hover::before,
 time[datetime=""]:hover::before {
-    content: "<time>: no 'datetime' attribute.";
+	content: "<time>: no 'datetime' attribute.";
 }
 
 ul > ul:hover::before,
 ul > ol:hover::before,
 ol > ul:hover::before,
 ol > ol:hover::before {
-    content: "<ul><ol>: cannot be nested directly with one another.";
+	content: "<ul><ol>: cannot be nested directly with one another.";
 }
 
 :empty:not(img):not(td):not(input):not(textarea):not(select):not(br):not(hr) {
-    outline: none;
+	outline: none;
 }
 
 :empty:not(img):not(td):not(input):not(textarea):not(br):not(hr)::before {
-    display: inline-block;
-    padding: 0.5em 1em;
-    box-sizing: border-box;
-    font-size: 0.9rem;
-    color: #FFF;
-    background-color: #000;
-    outline: 0.4rem solid red;
-    outline-offset: 0.2em;
-    content: "Empty element." !important;
+	display: inline-block;
+	padding: 0.5em 1em;
+	box-sizing: border-box;
+	font-size: 0.9rem;
+	color: #FFF;
+	background-color: #000;
+	outline: 0.4rem solid red;
+	outline-offset: 0.2em;
+	content: "Empty element." !important;
 }

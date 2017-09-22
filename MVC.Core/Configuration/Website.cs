@@ -4,6 +4,8 @@
     {
         public static string Name => "Website Name";
 
-        public static string DomainName => "website-url.com";
-    }
+        public static string CanonicalDomain => "website-url.com";
+
+		public static string CanonicalBaseUrl => "https://website-url.com";
+	}
 }
